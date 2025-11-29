@@ -1,0 +1,124 @@
+{
+    "key": "group_hero_sekcija",
+    "title": "Hero Sekcija",
+    "fields": [
+        {
+            "key": "field_hero_pozadinska_slika",
+            "label": "Pozadinska Slika",
+            "name": "hero_pozadinska_slika",
+            "type": "image",
+            "instructions": "Preporučena veličina: 1920x1080px ili veća. Slika će se prikazati kao fullwidth pozadina.",
+            "required": 1,
+            "return_format": "array",
+            "preview_size": "large",
+            "library": "all"
+        },
+        {
+            "key": "field_hero_tagline",
+            "label": "Tagline (Mala Poruka)",
+            "name": "hero_tagline",
+            "type": "text",
+            "instructions": "Kratka poruka iznad naslova, npr. 'plesom do zdravlja!'",
+            "default_value": "plesom do zdravlja!",
+            "placeholder": "plesom do zdravlja!"
+        },
+        {
+            "key": "field_hero_naslov",
+            "label": "Glavni Naslov",
+            "name": "hero_naslov",
+            "type": "textarea",
+            "instructions": "Glavni naslov hero sekcije. Za novi red samo pritisni Enter.",
+            "default_value": "Pokret koji\nmijenja život",
+            "rows": 2,
+            "new_lines": ""
+        },
+        {
+            "key": "field_hero_podnaslov",
+            "label": "Podnaslov",
+            "name": "hero_podnaslov",
+            "type": "textarea",
+            "instructions": "Tekst ispod glavnog naslova. Za novi red pritisni Enter.",
+            "default_value": "Plesna škola i Sportski klub koji spajaju rekreativni i profesionalni ples.",
+            "rows": 2,
+            "new_lines": ""
+        },
+        {
+            "key": "field_hero_cta_tekst",
+            "label": "CTA Gumb - Tekst",
+            "name": "hero_cta_tekst",
+            "type": "text",
+            "default_value": "ŽELIM PLESATI!",
+            "placeholder": "ŽELIM PLESATI!"
+        },
+        {
+            "key": "field_hero_cta_link",
+            "label": "CTA Gumb - Link",
+            "name": "hero_cta_link",
+            "type": "text",
+            "instructions": "URL na koji vodi CTA gumb. Za sekciju na istoj stranici koristi # (npr. #kontakt). Za druge stranice koristi puni URL.",
+            "default_value": "#kontakt",
+            "placeholder": "#kontakt ili https://pcz.hr/kontakt"
+        },
+        {
+            "key": "field_hero_intro_tab",
+            "label": "Intro Sekcija",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_hero_intro_naslov",
+            "label": "Intro - Naslov",
+            "name": "hero_intro_naslov",
+            "type": "text",
+            "default_value": "Jedan plesni centar, dva svijeta plesa."
+        },
+        {
+            "key": "field_hero_intro_tekst",
+            "label": "Intro - Tekst",
+            "name": "hero_intro_tekst",
+            "type": "wysiwyg",
+            "instructions": "Glavni tekst intro sekcije. Možeš označiti tekst i kliknuti Bold (B) za podebljanje.",
+            "default_value": "U <strong>Plesnoj školi</strong> učimo plesati srcem, a u <strong>Sportskom klubu</strong> srcem postajemo prvaci.",
+            "tabs": "visual",
+            "toolbar": "basic",
+            "media_upload": 0
+        },
+        {
+            "key": "field_hero_intro_tekst_2",
+            "label": "Intro - Tekst 2",
+            "name": "hero_intro_tekst_2",
+            "type": "wysiwyg",
+            "instructions": "Dodatni tekst (opcionalno). Možeš označiti tekst i kliknuti Bold (B) za podebljanje.",
+            "default_value": "Zaprati nas na društvenim mrežama i budi dio naše plesne energije — priča, inspiracija i pokreta koji povezuju.",
+            "tabs": "visual",
+            "toolbar": "basic",
+            "media_upload": 0
+        },
+        {
+            "key": "field_hero_social_note",
+            "label": "Socijalne Mreže",
+            "name": "",
+            "type": "message",
+            "message": "⚠️ Socijalne mreže se definiraju u <strong>Multi-Brand Postavke</strong> tabu.<br>Svaki brand (Plesna Škola / Sportski Klub) ima svoje zasebne socijalne mreže.",
+            "new_lines": "wpautop"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "site-settings"
+            }
+        ]
+    ],
+    "menu_order": 5,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true,
+    "description": "Postavke za Hero sekciju na naslovnici"
+}
+

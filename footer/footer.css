@@ -1,0 +1,394 @@
+/**
+ * pcz Custom Footer - Kompletni Stilovi
+ * 
+ * Contact Section + Main Footer + Bottom Bar
+ * Koristi iste CSS varijable kao header za konzistentnost
+ * 
+ * @package pcz_Redizajn
+ * @since 1.0.0
+ */
+
+/* ==========================================================================
+   CSS Variables (iste kao header za konzistentnost)
+   ========================================================================== */
+
+:root {
+    --pcz-primary: #C71585;
+    --pcz-primary-hover: #a01269;
+    --pcz-dark: #3d3d3d;
+    --pcz-darker: #333333;
+    --pcz-gray: #666666;
+    --pcz-light: #ffffff;
+    --pcz-accent: #ffc107;
+    --pcz-transition: 0.25s ease;
+    
+    /* Footer specific */
+    --pcz-footer-bg: var(--pcz-dark);
+    --pcz-contact-bg: #f5f5f5;
+}
+
+/* ==========================================================================
+   Contact Section (gornja siva sekcija)
+   ========================================================================== */
+
+.pcz-contact-section {
+    background: var(--pcz-contact-bg);
+    padding: 50px 0;
+}
+
+.pcz-contact-section__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.pcz-contact-section__info {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.pcz-contact-section__block h3 {
+    color: var(--pcz-primary);
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0 0 12px 0;
+}
+
+.pcz-contact-section__block p {
+    color: var(--pcz-darker);
+    font-size: 15px;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.pcz-contact-section__block p strong {
+    font-weight: 600;
+}
+
+.pcz-contact-section__block a {
+    color: var(--pcz-darker);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color var(--pcz-transition);
+}
+
+.pcz-contact-section__block a:hover {
+    color: var(--pcz-primary);
+}
+
+/* Map */
+.pcz-contact-section__map {
+    width: 100%;
+    height: 300px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.pcz-contact-section__map iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* ==========================================================================
+   Main Footer (tamna sekcija)
+   ========================================================================== */
+
+.pcz-footer {
+    background: var(--pcz-footer-bg);
+    padding: 50px 0 0 0;
+}
+
+.pcz-footer__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.pcz-footer__main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    padding-bottom: 40px;
+}
+
+/* ==========================================================================
+   Footer Logo
+   ========================================================================== */
+
+.pcz-footer__logo {
+    flex-shrink: 0;
+    text-decoration: none;
+    display: block;
+}
+
+.pcz-footer__logo img {
+    height: 50px;
+    width: auto;
+    max-width: 280px;
+    object-fit: contain;
+}
+
+.pcz-footer__logo-text {
+    color: var(--pcz-light);
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   Footer Navigation
+   ========================================================================== */
+
+.pcz-footer__nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pcz-footer__nav-link {
+    color: var(--pcz-light);
+    font-size: 15px;
+    font-weight: 600;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: color var(--pcz-transition);
+}
+
+.pcz-footer__nav-link:hover {
+    color: var(--pcz-primary);
+}
+
+/* ==========================================================================
+   Social Icons
+   ========================================================================== */
+
+.pcz-footer__social {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.pcz-footer__social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    color: var(--pcz-primary);
+    transition: all var(--pcz-transition);
+}
+
+.pcz-footer__social-link:hover {
+    color: var(--pcz-primary-hover);
+    transform: scale(1.1);
+}
+
+.pcz-footer__social-link svg {
+    width: 28px;
+    height: 28px;
+    fill: currentColor;
+}
+
+/* ==========================================================================
+   Footer Divider
+   ========================================================================== */
+
+.pcz-footer__divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* ==========================================================================
+   Footer Bottom Bar
+   ========================================================================== */
+
+.pcz-footer__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+    gap: 20px;
+}
+
+.pcz-footer__copyright {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    margin: 0;
+}
+
+.pcz-footer__legal {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.pcz-footer__legal-link {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    text-decoration: none;
+    transition: color var(--pcz-transition);
+}
+
+.pcz-footer__legal-link:hover {
+    color: var(--pcz-light);
+}
+
+/* ==========================================================================
+   Responsive - Tablet (1024px)
+   ========================================================================== */
+
+@media screen and (max-width: 1024px) {
+    .pcz-contact-section__container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .pcz-contact-section__map {
+        height: 250px;
+    }
+
+    .pcz-footer__main {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .pcz-footer__logo {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .pcz-footer__nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .pcz-footer__social {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* ==========================================================================
+   Responsive - Mobile (768px)
+   ========================================================================== */
+
+@media screen and (max-width: 768px) {
+    .pcz-contact-section {
+        padding: 40px 0;
+    }
+
+    .pcz-contact-section__container {
+        padding: 0 20px;
+        gap: 30px;
+    }
+
+    .pcz-contact-section__info {
+        gap: 25px;
+    }
+
+    .pcz-contact-section__block h3 {
+        font-size: 13px;
+    }
+
+    .pcz-contact-section__block p {
+        font-size: 14px;
+    }
+
+    .pcz-contact-section__map {
+        height: 200px;
+    }
+
+    .pcz-footer {
+        padding: 40px 0 0 0;
+    }
+
+    .pcz-footer__container {
+        padding: 0 20px;
+    }
+
+    .pcz-footer__main {
+        flex-direction: column;
+        gap: 30px;
+        padding-bottom: 30px;
+    }
+
+    .pcz-footer__logo img {
+        height: 40px;
+    }
+
+    .pcz-footer__nav {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .pcz-footer__nav-link {
+        padding: 10px 16px;
+        font-size: 14px;
+    }
+
+    .pcz-footer__social {
+        gap: 20px;
+    }
+
+    .pcz-footer__bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+        padding: 20px 0;
+    }
+
+    .pcz-footer__copyright {
+        font-size: 13px;
+    }
+
+    .pcz-footer__legal {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .pcz-footer__legal-link {
+        font-size: 13px;
+    }
+}
+
+/* ==========================================================================
+   Responsive - Small Mobile (480px)
+   ========================================================================== */
+
+@media screen and (max-width: 480px) {
+    .pcz-contact-section__container {
+        padding: 0 15px;
+    }
+
+    .pcz-footer__container {
+        padding: 0 15px;
+    }
+
+    .pcz-footer__logo img {
+        height: 35px;
+    }
+
+    .pcz-footer__nav-link {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+
+    .pcz-footer__social-link svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+

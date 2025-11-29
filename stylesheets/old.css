@@ -1,0 +1,1135 @@
+/*
+|--------------------------------------------------------------------------
+| RESET
+|--------------------------------------------------------------------------
+|
+*/
+
+.fl-accordion-button-label:focus {
+  outline: none !important;
+}
+
+#gform_23 #gform_fields_23 #field_23_6, #gform_24 #gform_fields_24 #field_24_5 {
+  display: inline-flex;
+}
+
+#gform_23 #gform_fields_23 #field_23_6 .ginput_container_consent, #gform_24 #gform_fields_24 #field_24_5 .ginput_container_consent {
+  margin: 0 0 10px 10px !important;
+}
+
+.gfield_captcha_container {
+  display: flex;
+  height: 30px;
+  align-items: center;
+}
+
+.gform_fields .gfield_captcha_input_container.math_small input {
+  width: 70px;
+  height: 30px!important;
+  margin-left: 5px;
+  margin-top: -2px!important;
+}
+
+.visible--info label {
+  display: block!important;
+}
+
+.visible--info .ginput_container.ginput_container_consent, .ginput_container.ginput_container_consent {
+  display: flex;
+}
+
+.visible--info .ginput_container.ginput_container_consent label, .ginput_container.ginput_container_consent label {
+  margin-left: 5px;
+}
+
+.naslovna__nl-prijave {
+  background-color: #252525;
+  padding: 5px 25px;
+}
+
+#gform_fields_23 #field_23_3 label, #gform_fields_24 #field_24_3 label {
+  display: none !important;
+}
+
+.naslovna__nl-prijave_l br, .naslovna__nl-prijave_r br {
+  display: none;
+}
+
+.naslovna__nl-prijave_l, .naslovna__nl-prijave_r {
+  width: 49%;
+  margin-bottom: -15px;
+}
+
+li#field_23_4, li#field_24_4 {
+  margin-bottom: -15px;
+}
+
+.skewed-divider {
+  width: 2%;
+  background: rgb(204, 0, 123);
+  background: -moz-linear-gradient(121deg, rgba(204, 0, 123, 1) 50%, rgba(0, 122, 205, 1) 50%);
+  background: -webkit-linear-gradient(121deg, rgba(204, 0, 123, 1) 50%, rgba(0, 122, 205, 1) 50%);
+  background: linear-gradient(121deg, rgba(204, 0, 123, 1) 50%, rgba(0, 122, 205, 1) 50%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#cc007b", endColorstr="#007acd", GradientType=1);
+  background: linear-gradient(121deg, rgba(204, 0, 123, 1) 50%, rgba(0, 122, 205, 1) 50%);
+  height: 40px;
+}
+
+.skewed-divider-hover-submit-left {
+  background: rgb(204, 0, 123);
+  background: -moz-linear-gradient(121deg, rgba(178, 1, 109, 1) 50%, rgba(0, 122, 205, 1) 50%);
+  background: -webkit-linear-gradient(121deg, rgba(178, 1, 109, 1) 50%, rgba(0, 122, 205, 1) 50%);
+  background: linear-gradient(121deg, rgba(178, 1, 109, 1) 50%, rgba(0, 122, 205, 1) 50%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#cc007b", endColorstr="#007acd", GradientType=1);
+  background: linear-gradient(121deg, rgba(178, 1, 109, 1) 50%, rgba(0, 122, 205, 1) 50%);
+}
+
+.skewed-divider-hover-submit-right {
+  background: rgb(204, 0, 123);
+  background: -moz-linear-gradient(121deg, rgba(204, 0, 123, 1) 50%, rgba(0, 109, 168, 1) 50%);
+  background: -webkit-linear-gradient(121deg, rgba(204, 0, 123, 1) 50%, rgba(0, 109, 168, 1) 50%);
+  background: linear-gradient(121deg, rgba(204, 0, 123, 1) 50%, rgba(0, 109, 168, 1) 50%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#cc007b", endColorstr="#007acd", GradientType=1);
+  background: linear-gradient(121deg, rgba(204, 0, 123, 1) 50%, rgba(0, 109, 168, 1) 50%);
+}
+
+.skewed-divider-hover-submit-right:hover, .skewed-divider-hover-submit-left:hover {
+  -webkit-transition: All 0.2s ease;
+  -moz-transition: All 0.2s ease;
+  -o-transition: All 0.2s ease;
+  -ms-transition: All 0.2s ease;
+  transition: All 0.2s ease;
+}
+
+form#gform_23, form#gform_24 {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+li#field_23_3, li#field_23_3 .ginput_container, li#field_24_3, li#field_24_3 .ginput_container {
+  margin: 0 !important;
+}
+
+li#field_23_3 input, li#field_24_3 input {
+  height: 40px;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+li#field_23_3 input::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  font-size: 16px;
+}
+
+li#field_23_3 input::-moz-placeholder {
+  /* Firefox 19+ */
+  font-size: 16px;
+}
+
+li#field_23_3 input:-ms-input-placeholder {
+  /* IE 10+ */
+  font-size: 16px;
+}
+
+li#field_23_3 input:-moz-placeholder {
+  /* Firefox 18- */
+  font-size: 16px;
+}
+
+li#field_24_3 input::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  font-size: 16px;
+}
+
+li#field_24_3 input::-moz-placeholder {
+  /* Firefox 19+ */
+  font-size: 16px;
+}
+
+li#field_24_3 input:-ms-input-placeholder {
+  /* IE 10+ */
+  font-size: 16px;
+}
+
+li#field_24_3 input:-moz-placeholder {
+  /* Firefox 18- */
+  font-size: 16px;
+}
+
+#gform_submit_button_23 {
+  background-color: #CC007B;
+  border: none;
+  height: 40px;
+  width: 100%;
+  margin: 0px;
+  font-size: 18px;
+color: #fff;
+cursor: pointer;
+}
+
+#gform_submit_button_23:hover {
+  background-color: #b2006b;
+  -webkit-transition: All 0s ease;
+  -moz-transition: All 0s ease;
+  -o-transition: All 0s ease;
+  -ms-transition: All 0s ease;
+  transition: All 0s ease;
+}
+
+#gform_submit_button_24 {
+  background-color: #007ACD;
+  border: none;
+  height: 40px;
+  width: 100%;
+  margin: 0px;
+  font-size: 18px;
+color: #fff;
+cursor: pointer;
+}
+
+#gform_submit_button_24:hover {
+  -webkit-transition: All 0s ease;
+  -moz-transition: All 0s ease;
+  -o-transition: All 0s ease;
+  -ms-transition: All 0s ease;
+  transition: All 0s ease;
+  background-color: #b2006b;
+}
+
+form#gform_24 .gform_body {
+  order: 1;
+}
+
+form#gform_24 .gform_footer {
+  order: 2;
+}
+
+body img.gform_ajax_spinner {
+  display: none !important;
+}
+
+.gform_confirmation_message_23, .gform_confirmation_message_24 {
+  color: #ffffff !important;
+  font-size: 15px !important;
+  line-height: 40px;
+  font-weight: normal !important;
+  text-align: center;
+}
+
+.fl-node-593fa53c3810f .gform_wrapper .gfield input:not([type='radio']):not([type='checkbox']):not([type='submit']):not([type='button']):not([type='image']):not([type='file']), .fl-node-593fa53c3810f .gform_wrapper .gfield input:focus, .fl-node-593fa53c3810f .gform_wrapper .gfield select, .fl-node-593fa53c3810f .gform_wrapper .gfield textarea {
+  color: #333333;
+  background-color: rgba(255, 255, 255, 1);
+  border-width: 0;
+  border-color: #eeeeee;
+  border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-width: 1px;
+  padding: 0 10px!important;
+  text-align: left;
+}
+
+body form#gform_5 div.gform_footer.top_label {
+  padding: 5px 0 0 !important;
+  margin: 0 !important;
+  clear: both;
+  width: 100%;
+}
+
+.footer-info {
+  padding-top: 17px !important;
+  padding-right: 10px;
+  padding-left: 15px;
+}
+
+.gform_wrapper {
+  margin: 0 !important;
+  max-width: 100%;
+}
+
+.fl-node-593fa53c3810f .pp-gf-content {
+  background-color: transparent;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-width: 0px;
+  border-color: #dddddd;
+  border-style: solid;
+  border-radius: 2px;
+  padding-top: 0 !important;
+  padding-right: 15px;
+  padding-bottom: 15px;
+  padding-left: 15px;
+}
+
+.gform_wrapper .gform_heading {
+  width: 100%;
+  margin-bottom: 0 !important;
+}
+
+.gform_wrapper h3.gform_title {
+  letter-spacing: normal!important;
+  margin: 0 !important;
+}
+
+div.fl-rich-text p {
+  padding-top: 5px;
+}
+
+.uabb-masonary {
+  padding-top: 10px;
+}
+
+div.fl-rich-text p {
+  padding-top: 0;
+}
+
+.fl-node-593f9524ac2bd .fl-icon-group-center .fl-icon {
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0;
+}
+
+a i.fa.fa-facebook, a i.fa.fa-google-plus, a i.fa.fa-twitter, a i.ua-icon.ua-icon-instagram {
+  padding: 20px 10px;
+}
+
+p a {
+  color: #cc007b;
+}
+
+p a:hover {
+  color: #494848;
+}
+
+li#menu-item-6196, li#menu-item-6191, li#menu-item-6197, li#menu-item-6219, li#menu-item-6220, li#menu-item-6192, li#menu-item-6224, li#menu-item-6193, li#menu-item-6231 {
+  text-transform: uppercase !important;
+}
+
+.fl-node-5948e3591f81c .menu a {
+  padding-left: 14px;
+  padding-right: 14px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 18px;
+}
+
+.fl-col.fl-node-5947c63637d06.fl-col-small, .fl-col.fl-node-5947c63637d46.fl-col-small {
+  padding-top: 20px;
+}
+
+@media (min-width: 769px) {
+  .fl-node-5948e3591f81c .menu li {
+      border: 0;
+  }
+}
+
+h2.widgettitle {
+  text-align: center;
+}
+
+.fl-builder-content .fl-node-5947c6676c7dc a.fl-button {
+  font-size: 16px;
+  line-height: 18px;
+  padding: 12px 24px;
+  border-radius: 0;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  background: #cc007b;
+  border: 1px solid #c0006f;
+  letter-spacing: 2px;
+}
+
+.fl-builder-content a.fl-button {
+  border-radius: 0;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 18px;
+  padding: 12px 24px;
+  text-decoration: none;
+  text-shadow: none;
+  letter-spacing: 2px;
+}
+
+.fl-module.fl-module-html.fl-node-5947c82d34b72 {
+  padding-top: 39px;
+}
+
+.uabb-text-editor p {
+  font-style: italic;
+  font-size: 32px;
+}
+
+.uabb-infobox-title {
+  font-style: italic;
+  font-size: 5.8rem;
+  text-transform: none;
+}
+
+.display-none {
+  display: none;
+}
+
+.display-hidden {
+  visibility: hidden
+}
+
+.display-hidden div {
+  height: 1px;
+}
+
+/*
+|--------------------------------------------------------------------------
+| GLOBAL
+|--------------------------------------------------------------------------
+|
+*/
+/*
+h1, h1 span {
+  font-size: 36px;
+}
+
+h2, h2 span {
+  font-size: 26px;
+}
+
+h3, h3 span {
+  font-size: 30px;
+}
+
+h4, h4 span {
+  font-size: 25px;
+}*/
+
+h1, h3, h4, h5 {
+  text-transform: uppercase;
+}
+
+h2 {
+  text-transform: none;
+}
+
+.display-none {
+  display: none;
+}
+
+.display-hidden {
+  visibility: hidden
+}
+
+.fl-accordion-button-label, .fl-accordion-button-icon {
+  color: #fff !important;
+}
+
+.fl-node-5d70c3fd190ba>.fl-row-content-wrap {
+  background-image: url(https://www.pcz.hr/wp-content/uploads/2019/09/20190829-Plesom-do-zdravlja-WEB.jpg);
+}
+
+/* TABLICE NASLOVI */
+
+th h2, th h3, th h4 {
+  color: #fff;
+}
+
+/**
+* CUSTOM CLASS
+*
+*/
+
+.font-22 {
+  font-size: 2.2rem;
+}
+
+.font-28 {
+  font-size: 2.8rem;
+}
+
+.font-48 {
+  font-size: 4.8rem;
+}
+
+.pp-padding-t-10 {
+  padding-top: 10px;
+  display: block;
+}
+
+:hover {
+  -webkit-transition: All 0.2s ease;
+  -moz-transition: All 0.2s ease;
+  -o-transition: All 0.2s ease;
+  -ms-transition: All 0.2s ease;
+  transition: All 0.2s ease;
+}
+
+/*
+|--------------------------------------------------------------------------
+| FLEX
+|--------------------------------------------------------------------------
+|
+*/
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.space-between {
+  justify-content: space-between
+}
+
+.space-around {
+  justify-content: space-around
+}
+
+.align-center {
+  align-items: center
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.flex-jf-end {
+  justify-content: flex-end;
+}
+
+/*
+|--------------------------------------------------------------------------
+| NAVIGATION
+|--------------------------------------------------------------------------
+|
+*/
+
+/* -- jezici izbornik -- */
+
+.top-jezik {
+  text-align: right;
+}
+
+.top-jezik a {
+  font-size: 22px;
+}
+
+.top-jezik div {
+  padding: 0;
+}
+
+.top-slogan {
+  max-width: 192px;
+}
+
+.top-logo {
+  max-width: 250px;
+}
+
+
+.bg-nav-setnja {
+  background-color: #007acd;
+}
+
+/*
+|--------------------------------------------------------------------------
+| CONTENT
+|--------------------------------------------------------------------------
+|
+*/
+
+/**
+* GLOBAL
+*
+*/
+
+.pp-roza {
+  color: #cc007b;
+}
+
+.header-group .fl-col-group {
+  text-align: center;
+}
+
+.naslov-l-border h1 {
+  border-left: 5px solid #cc007b;
+}
+
+.naslov-l-border h1 span {
+  padding-left: 15px;
+  display: block;
+}
+
+.naslov-l-border h2, .naslov-l-border h3, .naslov-l-border h4 {
+  border-left: 3px solid #cc007b;
+  padding-left: 15px;
+}
+
+.naslov-l-border h2 span, .naslov-l-border h3 span, .naslov-l-border h3 span {
+  padding-left: 15px;
+}
+
+.naslov-l-border p {
+  padding-left: 10px;
+}
+
+.naslov-l-border ol {
+  padding-left: 25px;
+}
+
+h4.uabb-adv-accordion-button-label {
+  border-left: 0;
+}
+
+.pp-share a {
+  padding: 0 3px;
+}
+
+/* -- footer -- */
+
+.footer-h3 h3 span {
+  font-weight: 300
+}
+
+.siva-slova h3 span, .siva-slova p, .siva-slova a, li.gchoice_5_5_1 {
+  color: #555555!important;
+}
+
+.footer-txt {
+  color: #FFE6F5!important;
+  text-transform: uppercase;
+  font-weight: 400;
+  line-height: 24px;
+font-size: 12px;
+}
+
+.footer-txt a {
+  color: #FFE6F5!important;
+  text-decoration: none;
+}
+
+.footer-txt a:hover {
+  color: #fff!important;
+  text-decoration: none;
+}
+
+/* -- table press -- */
+.tablepress td {
+font-size: 14px;
+max-width: 160px;
+}
+
+.tablepress h4 {
+  font-size: 20px;
+line-height: 42px;
+  /*margin: 5px !important;*/
+  line-height: 100% !important;
+  color: #CD007A !important;
+  font-weight: 400 !important;
+}
+
+.tablepress h3 {
+  font-size: 20px;
+  line-height: 180%;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.tablepress thead {
+background: linear-gradient(15.58deg, #CB007C 2.52%, #026BCC 151.75%);
+}
+
+.tablepress thead th, .tablepress tfoot th {
+  color: #ffffff;
+  font-weight: bold;
+  background-color: transparent;
+  font-size: 13px;
+line-height: 21px;
+  text-transform: uppercase;
+}
+
+#tablepress-18 tbody tr td.column-3 {
+  text-align: right;
+}
+
+#tablepress-19 tbody tr td.column-3 {
+  text-align: right;
+}
+
+#tablepress-20 tbody tr td.column-3 {
+  text-align: right;
+}
+
+#tablepress-39 tbody tr td.column-3 {
+  text-align: right;
+}
+
+#tablepress-40 tbody tr td.column-3 {
+  text-align: right;
+}
+
+#tablepress-43 tbody tr td.column-2 {
+  text-align: right;
+}
+
+#tablepress-44 tbody tr td.column-2 {
+  text-align: right;
+}
+
+#tablepress-49 tbody tr td.column-2, #tablepress-49 tbody tr td.column-3, #tablepress-49 tbody tr td.column-4, #tablepress-49 tbody tr td.column-5 {
+  text-align: right;
+}
+
+#tablepress-50 tbody tr td.column-2, #tablepress-50 tbody tr td.column-3, #tablepress-50 tbody tr td.column-4, #tablepress-50 tbody tr td.column-5 {
+  text-align: right;
+}
+
+#tablepress-49 thead tr.row-1 th, #tablepress-50 thead tr.row-1 th {
+  text-align: center;
+  font-size: 18px;
+  padding: 15px;
+}
+
+@media only screen and (max-width: 554px) {
+  .tablepress td, .tablepress th {
+      font-size: 12px !important;
+  }
+  #tablepress-43 h3, #tablepress-19 h3, #tablepress-20 h3, #tablepress-44 h3, #tablepress-39 h3, #tablepress-40 h3 {
+      color: #fff;
+  }
+}
+
+/**
+* FRONT PAGE
+*
+*/
+
+.pp-front-video .fl-html {
+  margin-bottom: -6px;
+}
+
+.frontpagepoznati h4 {
+  color: #CDE398;
+  font-size: 20px;
+  line-height: 100%;
+  padding-top: 15px;
+}
+
+.frontpagepoznati p {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 160%;
+}
+
+/**
+* INNER
+*
+*/
+
+/* ponuda - plesovi */
+
+.ponuda-plesovi .fl-heading-text {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
+}
+
+/* end ponuda plesovi */
+
+.pp-share p {
+  text-align: right;
+  font-size: 20px;
+}
+
+.pp-kontakt-donjidio ul {
+  list-style-type: none;
+}
+
+/**
+* FORMS
+*
+*/
+
+body .gform_wrapper ul li.gfield {
+  padding-right: 0!important;
+}
+
+/* contact select forma */
+
+#form#gform_1 label {
+  display: none;
+}
+
+label#label_1_10_1 {
+  display: inline!important;
+}
+
+form#gform_1 input, form#gform_8 input {
+  padding: 10px;
+}
+
+form#gform_1 select {
+  padding: 10px 5px;
+  color: #777;
+}
+
+form#gform_1 textarea.large, form#gform_8 textarea.large {
+  height: 120px;
+  width: 100%;
+}
+
+#form#gform_1 textarea.large {
+  height: 100px;
+  width: 100%;
+}
+
+#gform_submit_button_1 {
+  width: 97%;
+  background: #2b608b;
+  color: #fff;
+}
+
+#gform_submit_button_1:hover {
+  background: #417a9c;
+}
+
+/* -- PRIJAVI SE -- */
+
+/* -- dropdown zaobljeni rubovi -- */
+
+select#input_4_11 {
+  border-radius: 4px;
+}
+
+/* -- newsletter HR -- */
+
+li#field_5_3 label, li#field_5_6 label {
+  display: none;
+}
+
+li#field_5_5 {
+  margin-top: 0;
+}
+
+input#gform_submit_button_5, input#gform_submit_button_11 {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+}
+
+input#gform_submit_button_5:hover {
+  background: #a9a9a9;
+}
+
+/* -- newsletter EN -- */
+
+li#field_11_3 label, li#field_11_6 label {
+  display: none;
+}
+
+li#field_11_5 {
+  margin-top: 0;
+}
+
+/* -- izaberite tečaj -- */
+
+ul#gform_fields_2 select, ul#gform_fields_9 select, ul#gform_fields_10 select {
+  border-radius: 4px;
+}
+
+#gform_fields_2 .ginput_container.ginput_container_select {
+  padding-right: 2px;
+}
+
+.uabb-gf-style input[type=submit] {
+  font-size: 20px!important
+}
+
+.uabb-gf-style input[type=submit]:hover {
+  background: #B2016D!important;
+  border-color: #B2016D!important;
+}
+
+input#input_1_6::-webkit-input-placeholder, input#input_1_7::-webkit-input-placeholder, input#input_1_2::-webkit-input-placeholder, input#input_1_3::-webkit-input-placeholder, textarea#input_1_4::-webkit-input-placeholder, input#input_1_6:-ms-input-placeholder, input#input_1_7:-ms-input-placeholder, input#input_1_2:-ms-input-placeholder, input#input_1_3:-ms-input-placeholder, textarea#input_1_4:-ms-input-placeholder, input#input_1_6::-ms-input-placeholder, input#input_1_7::-ms-input-placeholder, input#input_1_2::-ms-input-placeholder, input#input_1_3::-ms-input-placeholder, textarea#input_1_4::-ms-input-placeholder {
+  color: black;
+}
+
+input#input_1_6::-moz-placeholder, input#input_1_7::-moz-placeholder, input#input_1_2::-moz-placeholder, input#input_1_3::-moz-placeholder, textarea#input_1_4::-moz-placeholder, input#input_1_6:-moz-placeholder, input#input_1_7:-moz-placeholder, input#input_1_2:-moz-placeholder, input#input_1_3:-moz-placeholder, textarea#input_1_4:-moz-placeholder {
+  color: black;
+  opacity: 1;
+}
+
+#gform_submit_button_1 {
+  width: 100% !important;
+  background: rgb(204, 0, 123) !important;
+  letter-spacing: 2px;
+  border: 1px solid rgb(204, 0, 123);
+  padding: 15px !important;
+  font-size: 20px;
+}
+
+#gform_submit_button_1:hover {
+  width: 100% !important;
+  background: #B2016D !important;
+  letter-spacing: 2px;
+  border: 1px solid rgb(204, 0, 123);
+}
+
+/* -- newsletter checkbox -- */
+
+.gform_wrapper ul.gfield_checkbox li input[type=checkbox]:checked+label, .gform_wrapper ul.gfield_radio li input[type=radio]:checked+label {
+  font-weight: 400!important;
+  padding-top: 8px;
+}
+
+.pp-novosti-loop .fl-builder-pagination, .fl-builder-pagination-load-more {
+  padding: 0;
+}
+
+/*
+|--------------------------------------------------------------------------
+| RESPONS
+|--------------------------------------------------------------------------
+|
+*/
+
+/**
+* BELOW | 1300
+*
+*/
+
+@media only screen and (max-width: 1099px) {
+  div#n2-ss-5-arrow-previous, div#n2-ss-5-arrow-next {
+      display: none!important;
+  }
+}
+
+/**
+* BELOW | 1200
+*
+*/
+
+@media only screen and (max-width: 1200px) {
+  .naslovna__nl-prijave {
+      padding: 5px;
+  }
+  .naslovna__nl-prijave_l, .naslovna__nl-prijave_r {
+      width: 100%;
+  }
+  #skewed-divider {
+      display: none;
+  }
+  body form#gform_23 div.gform_body, body form#gform_24 div.gform_body, body form#gform_23 div.gform_footer.top_label, body form#gform_24 div.gform_footer.top_label {
+      width: 100%;
+  }
+  form#gform_23 {
+      margin-bottom: 10px;
+  }
+  form#gform_23, form#gform_24 {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+  }
+  li#field_23_3 input, li#field_24_3 input, #gform_submit_button_23, #gform_submit_button_24 {
+      font-size: 1em !important;
+  }
+  li#field_23_3 input::-webkit-input-placeholder {
+      /* Chrome/Opera/Safari */
+      text-align: center;
+      font-size: 1em !important;
+  }
+  li#field_23_3 input::-moz-placeholder {
+      /* Firefox 19+ */
+      text-align: center;
+      font-size: 1em !important;
+  }
+  li#field_23_3 input:-ms-input-placeholder {
+      /* IE 10+ */
+      text-align: center;
+      font-size: 1em !important;
+  }
+  li#field_23_3 input:-moz-placeholder {
+      /* Firefox 18- */
+      text-align: center;
+      font-size: 1em !important;
+  }
+  li#field_24_3 input::-webkit-input-placeholder {
+      /* Chrome/Opera/Safari */
+      text-align: center;
+      font-size: 1em !important;
+  }
+  li#field_24_3 input::-moz-placeholder {
+      /* Firefox 19+ */
+      text-align: center;
+      font-size: 1em !important;
+  }
+  li#field_24_3 input:-ms-input-placeholder {
+      /* IE 10+ */
+      text-align: center;
+      font-size: 1em !important;
+  }
+  li#field_24_3 input:-moz-placeholder {
+      /* Firefox 18- */
+      text-align: center;
+      font-size: 1em !important;
+  }
+  form#gform_24 .gform_body {
+      order: 1;
+  }
+  form#gform_24 .gform_footer {
+      order: 2;
+  }
+}
+
+/**
+* BELOW | 1100
+*
+*/
+
+@media only screen and (max-width: 1099px) {
+  /* -- HEADER -- */
+  .c-logo {
+      width: 50%!important;
+      order: 1;
+      float: left;
+      clear: right;
+  }
+  .c-logo img {
+      width: 209px;
+      float: left;
+  }
+  .c-slogan {
+      width: 50%!important;
+      order: 2;
+      float: right;
+      clear: right;
+  }
+  .c-slogan img {
+      width: 209px;
+      float: right;
+  }
+  .c-social {
+      width: 95px;
+      order: 3;
+  }
+  .c-social i {
+      padding: 5px!important
+  }
+  .c-social .fl-icon-group-center {
+      text-align: left;
+  }
+  .c-jezici {
+      width: 8%;
+      order: 4;
+      text-align: left;
+  }
+  .c-jezici .fl-icon-group-center {
+      text-align: left;
+  }
+  .c-kontakti {
+      width: 50%;
+      order: 5;
+      text-align: right;
+  }
+}
+
+/**
+* ABOVE | 1050
+*
+*/
+
+@media only screen and (min-width: 1050px) {
+  ul#menu-main {
+      display: flex;
+      justify-content: space-between;
+      margin: 0 -7px;
+  }
+}
+
+/**
+* BELOW | 992
+*
+*/
+
+@media only screen and (max-width: 991px) {
+  #responsive-menu-container #responsive-menu li.responsive-menu-item a .responsive-menu-subarrow {
+      right: 0;
+      height: 40px;
+      line-height: 40px;
+      width: 100%!important;
+      color: #fff;
+      /*border-left: 1px solid #212121;*/
+      background-color: transparent!important;
+      text-align: right!important;
+      padding-right: 10px!important;
+  }
+  .fl-node-59aeb5d3cdc9c {
+      width: 20%;
+      min-width: 170px;
+  }
+}
+
+/**
+* ABOVE | 768
+*
+*/
+
+@media only screen and (min-width: 768px) {}
+
+/**
+* BELOW | 768
+*
+*/
+
+@media only screen and (max-width: 767px) {
+  .c-kontakti {
+      width: 100%!important;
+      order: 3;
+      text-align: left;
+      float: left;
+  }
+  .c-social {
+      width: 50%!important;
+      order: 4;
+      float: left;
+      clear: right;
+  }
+  .c-jezici {
+      width: 50%!important;
+      order: 5;
+      text-align: right;
+      float: right;
+      clear: right;
+  }
+  .pp-share p {
+      display: flex;
+      justify-content: flex-end;
+  }
+  .fl-col-small {
+      max-width: 100%;
+  }
+}
+
+/**
+* TARGETING
+*
+*/
+
+@media screen and (min-width: 900px) and (max-width: 1230px) {
+  .margin--lf-37 {
+      margin-left: 5px;
+  }
+  .c-logo>div {
+      align-items: flex-start !important;
+  }
+  .c-slogan>div {
+      align-items: flex-end !important;
+  }
+}

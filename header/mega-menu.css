@@ -1,0 +1,686 @@
+/**
+ * pcz Custom Header - Kompletni Stilovi
+ * 
+ * Header + Navigacija + Mega Menu Dropdown
+ * REDIZAJN 3.0 - Kompaktniji i moderniji dizajn
+ * 
+ * @package pcz_Redizajn
+ * @since 3.0.0
+ */
+
+/* ==========================================================================
+   CSS Variables
+   ========================================================================== */
+
+:root {
+    --pcz-primary: #C71585;
+    --pcz-primary-hover: #a01269;
+    --pcz-dark: #3d3d3d;
+    --pcz-darker: #333333;
+    --pcz-gray: #666666;
+    --pcz-light: #ffffff;
+    --pcz-accent: #ffc107;
+    --pcz-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    --pcz-transition: 0.2s ease;
+    --pcz-header-height: 80px;
+}
+
+/* ==========================================================================
+   Header - Kompaktniji
+   ========================================================================== */
+
+.pcz-header {
+    background: var(--pcz-dark);
+    position: relative;
+    z-index: 1000;
+    width: 100%;
+}
+
+.pcz-header__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* Responsive max-width - matches content sections */
+    max-width: 1200px;
+    margin: 0 auto;
+    /* Responsive padding */
+    padding: 0 clamp(16px, 4vw, 40px);
+    height: var(--pcz-header-height);
+}
+
+/* Accent Line - tanja */
+.pcz-header__accent {
+    height: 3px;
+    background: var(--pcz-primary);
+}
+
+/* ==========================================================================
+   Logo - Manji
+   ========================================================================== */
+
+.pcz-header__logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.pcz-header__logo-img {
+    /* Default visina - može se overridati iz ACF-a */
+    height: 48px;
+    width: auto;
+    max-width: 380px;
+    object-fit: contain;
+}
+
+.pcz-header__logo-text {
+    color: var(--pcz-light);
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+/* ==========================================================================
+   Navigation - Modernija i jednostavnija
+   ========================================================================== */
+
+.pcz-nav {
+    display: flex;
+    align-items: center;
+}
+
+.pcz-nav__list {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 4px;
+}
+
+.pcz-nav__item {
+    position: relative;
+}
+
+/* Linkovi - čisti i moderni */
+.pcz-nav__link {
+    display: inline-flex;
+    align-items: center;
+    color: var(--pcz-light);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: 
+        background-color var(--pcz-transition),
+        color var(--pcz-transition);
+    position: relative;
+}
+
+/* Hover - suptilna pozadina */
+.pcz-nav__link:hover,
+.pcz-nav__link:focus {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Active State - magenta pozadina */
+.pcz-nav__item.is-active .pcz-nav__link {
+    background: var(--pcz-primary);
+    color: var(--pcz-light);
+}
+
+/* Dropdown arrow za iteme s dropdownom */
+.pcz-nav__item.has-dropdown .pcz-nav__link::after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid currentColor;
+    margin-left: 6px;
+    opacity: 0.7;
+    transition: transform var(--pcz-transition);
+}
+
+.pcz-nav__item.has-dropdown:hover .pcz-nav__link::after,
+.pcz-nav__item.has-dropdown.is-open .pcz-nav__link::after {
+    transform: rotate(180deg);
+}
+
+/* ==========================================================================
+   Mobile Toggle - Kompaktniji
+   ========================================================================== */
+
+.pcz-nav__toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    gap: 4px;
+    border-radius: 6px;
+    transition: background-color var(--pcz-transition);
+}
+
+.pcz-nav__toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.pcz-nav__toggle span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: var(--pcz-light);
+    transition: var(--pcz-transition);
+    border-radius: 1px;
+}
+
+/* X animacija - ispravne translate vrijednosti */
+.pcz-nav__toggle.is-active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.pcz-nav__toggle.is-active span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.pcz-nav__toggle.is-active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ==========================================================================
+   Mega Menu Dropdown - Moderniji
+   ========================================================================== */
+
+.pcz-mega-dropdown {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-8px);
+    min-width: 520px;
+    max-width: 680px;
+    z-index: 9999;
+    background: var(--pcz-light);
+    box-shadow: var(--pcz-shadow);
+    border-radius: 8px;
+    margin-top: 8px;
+    transition: 
+        opacity var(--pcz-transition),
+        visibility var(--pcz-transition),
+        transform var(--pcz-transition);
+}
+
+/* Hover State - Show Dropdown */
+.pcz-nav__item.has-dropdown:hover .pcz-mega-dropdown,
+.pcz-nav__item.has-dropdown:focus-within .pcz-mega-dropdown,
+.pcz-mega-dropdown.is-active {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.pcz-mega-dropdown__container {
+    display: flex;
+    gap: 24px;
+    padding: 20px 24px;
+    width: 100%;
+}
+
+/* ==========================================================================
+   Mega Menu Columns
+   ========================================================================== */
+
+.pcz-mega-dropdown__column {
+    flex: 1;
+    min-width: 200px;
+}
+
+.pcz-mega-dropdown__title {
+    background: var(--pcz-primary);
+    color: var(--pcz-light);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 8px 12px;
+    margin: 0 0 16px 0;
+    border-radius: 4px;
+}
+
+/* ==========================================================================
+   Mega Menu List
+   ========================================================================== */
+
+.pcz-mega-dropdown__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.pcz-mega-dropdown__item {
+    margin-bottom: 10px;
+}
+
+.pcz-mega-dropdown__item:last-child {
+    margin-bottom: 0;
+}
+
+/* ==========================================================================
+   Section Title (neklikabilno)
+   ========================================================================== */
+
+.pcz-mega-dropdown__section-title {
+    display: block;
+    color: var(--pcz-darker);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    letter-spacing: 0.3px;
+}
+
+.pcz-mega-dropdown__section-title::before {
+    content: '';
+}
+
+/* ==========================================================================
+   Section Link (klikabilno)
+   ========================================================================== */
+
+.pcz-mega-dropdown__section-link {
+    display: inline-block;
+    color: var(--pcz-primary);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 2px 0;
+    transition: all 0.2s ease;
+    letter-spacing: 0.3px;
+}
+
+.pcz-mega-dropdown__section-link:hover {
+    color: var(--pcz-primary-hover);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+/* ==========================================================================
+   Mega Menu Sublist
+   ========================================================================== */
+
+.pcz-mega-dropdown__sublist {
+    list-style: none;
+    margin: 0;
+    padding-left: 12px;
+    margin-top: 2px;
+}
+
+.pcz-mega-dropdown__subitem {
+    margin-bottom: 2px;
+    padding-left: 0;
+}
+
+.pcz-mega-dropdown__subitem:last-child {
+    margin-bottom: 0;
+}
+
+.pcz-mega-dropdown__subitem::before {
+    content: '';
+}
+
+/* ==========================================================================
+   Mega Menu Links
+   ========================================================================== */
+
+.pcz-mega-dropdown__link {
+    color: var(--pcz-primary);
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-block;
+    padding: 2px 0;
+    transition: all 0.2s ease;
+}
+
+.pcz-mega-dropdown__link:hover {
+    color: var(--pcz-primary-hover);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+/* ==========================================================================
+   Responsive - Tablet
+   ========================================================================== */
+
+@media screen and (max-width: 1100px) {
+    /* Padding now handled by clamp() in main container */
+    
+    .pcz-nav__link {
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+    
+    .pcz-mega-dropdown {
+        min-width: 480px;
+    }
+    
+    .pcz-mega-dropdown__container {
+        gap: 20px;
+        padding: 16px 20px;
+    }
+    
+    .pcz-mega-dropdown__column {
+        min-width: 180px;
+    }
+}
+
+/* ==========================================================================
+   Responsive - Mobile (768px i manje)
+   REDIZAJN: Čist, strukturiran i moderan mobile menu
+   ========================================================================== */
+
+@media screen and (max-width: 768px) {
+    :root {
+        /* Mobile header - prilagođeno za veći logo */
+        /* Minimum visina za logo od 48px + padding = 64px */
+        --pcz-header-height: 64px;
+    }
+    
+    /* ===== Header ===== */
+    /* Padding now handled by clamp() in main container */
+    
+    .pcz-header__accent {
+        height: 2px;
+    }
+    
+    /* Logo - proporcionalno za mobile header */
+    .pcz-header__logo-img {
+        height: 48px;
+        max-width: 260px;
+    }
+    
+    .pcz-header__logo-text {
+        font-size: 14px;
+    }
+    
+    /* ===== Toggle Button ===== */
+    /* Apple HIG: minimum 44x44pt touch target */
+    .pcz-nav__toggle {
+        display: flex;
+        width: 44px;
+        height: 44px;
+        padding: 10px;
+        gap: 5px;
+        z-index: 1001;
+        position: relative;
+    }
+    
+    .pcz-nav__toggle span {
+        width: 20px;
+        height: 2px;
+    }
+    
+    /* ===== Mobile Navigation List ===== */
+    /* BULLETPROOF: Maksimalna specifičnost za override Oxygen-a */
+    .pcz-header .pcz-nav .pcz-nav__list,
+    .pcz-nav__list,
+    ul.pcz-nav__list {
+        display: none !important;
+        position: fixed !important;
+        top: var(--pcz-header-height) !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        flex-direction: column !important;
+        background: linear-gradient(180deg, #2d2d2d 0%, #252525 100%) !important;
+        padding: 8px 0 !important;
+        overflow-y: auto !important;
+        z-index: 9998 !important;
+        -webkit-overflow-scrolling: touch;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+        transition: opacity 0.25s ease, visibility 0.25s ease !important;
+    }
+    
+    /* OPEN STATE - Maksimalna specifičnost */
+    .pcz-header .pcz-nav .pcz-nav__list.is-active,
+    .pcz-nav__list.is-active,
+    ul.pcz-nav__list.is-active,
+    .pcz-nav__list[class*="is-active"] {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+    }
+    
+    /* ===== Nav Items ===== */
+    .pcz-nav__item {
+        width: 100%;
+        margin: 0;
+    }
+    
+    /* ===== Nav Links - Touch-friendly (48px min) ===== */
+    .pcz-nav__link,
+    .pcz-nav__item .pcz-nav__link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 48px;
+        padding: 12px 20px;
+        margin: 2px 12px;
+        font-size: 15px;
+        font-weight: 500;
+        letter-spacing: 0.01em;
+        border-radius: 8px;
+        width: calc(100% - 24px);
+        box-sizing: border-box;
+        color: rgba(255,255,255,0.9) !important;
+        background: transparent;
+        transition: all 0.15s ease;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    .pcz-nav__link:active {
+        background: rgba(255,255,255,0.06);
+    }
+    
+    /* Active page - subtle indicator */
+    .pcz-nav__item.is-active .pcz-nav__link {
+        color: white !important;
+        background: rgba(255,255,255,0.08);
+        font-weight: 600;
+        box-shadow: inset 3px 0 0 var(--pcz-primary);
+    }
+    
+    /* ===== Dropdown Toggle ===== */
+    .pcz-nav__item.has-dropdown .pcz-nav__link {
+        background: rgba(255,255,255,0.04);
+    }
+    
+    .pcz-nav__item.has-dropdown .pcz-nav__link::after {
+        content: '';
+        width: 7px;
+        height: 7px;
+        border-right: 1.5px solid rgba(255,255,255,0.5);
+        border-bottom: 1.5px solid rgba(255,255,255,0.5);
+        transform: rotate(45deg);
+        margin-top: -3px;
+        transition: transform 0.2s ease;
+    }
+    
+    .pcz-nav__item.has-dropdown.is-open .pcz-nav__link {
+        background: rgba(255,255,255,0.08);
+        box-shadow: inset 3px 0 0 var(--pcz-primary);
+    }
+    
+    .pcz-nav__item.has-dropdown.is-open .pcz-nav__link::after {
+        transform: rotate(-135deg);
+        margin-top: 2px;
+    }
+    
+    /* ===== Body Lock ===== */
+    body.pcz-menu-open {
+        overflow: hidden;
+    }
+    
+    /* ==========================================================================
+       MEGA MENU - Mobile: Strukturirano s jasnom hijerarhijom
+       ========================================================================== */
+    
+    .pcz-mega-dropdown {
+        position: static !important;
+        transform: none !important;
+        min-width: 100% !important;
+        width: 100% !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        background: #1f1f1f !important;
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        margin: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.25s ease;
+    }
+    
+    .pcz-nav__item.has-dropdown.is-open .pcz-mega-dropdown,
+    .pcz-nav__item.is-open .pcz-mega-dropdown {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        max-height: 2000px;
+    }
+    
+    /* ===== Container ===== */
+    .pcz-mega-dropdown__container {
+        flex-direction: column !important;
+        gap: 0 !important;
+        padding: 8px 0 !important;
+    }
+    
+    /* ===== Columns (Blokovi) ===== */
+    .pcz-mega-dropdown__column {
+        min-width: 100% !important;
+        padding: 0;
+    }
+    
+    .pcz-mega-dropdown__column:not(:last-child) {
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+        padding-bottom: 8px;
+        margin-bottom: 8px;
+    }
+    
+    /* ===== Main Title (PONUDA ZA ODRASLE, etc.) ===== */
+    .pcz-mega-dropdown__title {
+        font-size: 10px !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.5px;
+        padding: 8px 16px !important;
+        margin: 0 !important;
+        background: var(--pcz-primary) !important;
+        border-radius: 0 !important;
+    }
+    
+    /* ===== List ===== */
+    .pcz-mega-dropdown__list {
+        padding: 6px 0;
+    }
+    
+    /* ===== Items ===== */
+    .pcz-mega-dropdown__item {
+        margin: 0;
+        padding: 0;
+    }
+    
+    /* ===== Section Title (PLESNI TEČAJEVI - neklikabilno) ===== 
+       Razina 1: padding-left 24px */
+    .pcz-mega-dropdown__section-title {
+        display: block;
+        font-size: 11px !important;
+        font-weight: 600 !important;
+        letter-spacing: 0.3px;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.5) !important;
+        padding: 8px 16px 4px 24px !important;
+        margin: 0 !important;
+        background: transparent;
+    }
+    
+    /* ===== Section Link (BRZI TEČAJEVI - klikabilno) ===== 
+       Razina 1: padding-left 24px */
+    .pcz-mega-dropdown__section-link {
+        display: block;
+        font-size: 13px !important;
+        font-weight: 500 !important;
+        text-transform: none !important;
+        color: rgba(255,255,255,0.9) !important;
+        padding: 10px 16px 10px 24px !important;
+        margin: 0;
+        transition: background 0.15s ease;
+    }
+    
+    .pcz-mega-dropdown__section-link:active {
+        background: rgba(255,255,255,0.08) !important;
+    }
+    
+    /* ===== Sublist (pod-stavke) ===== 
+       Razina 2: padding-left 36px */
+    .pcz-mega-dropdown__sublist {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    
+    .pcz-mega-dropdown__subitem {
+        margin: 0;
+        padding: 0;
+    }
+    
+    /* ===== Subitem Links ===== */
+    .pcz-mega-dropdown__link {
+        display: block;
+        font-size: 13px !important;
+        font-weight: 400 !important;
+        color: rgba(255,255,255,0.8) !important;
+        padding: 10px 16px 10px 36px !important;
+        text-decoration: none;
+        transition: background 0.15s ease, color 0.15s ease;
+        position: relative;
+    }
+    
+    /* Subtle dash indicator */
+    .pcz-mega-dropdown__link::before {
+        content: '';
+        position: absolute;
+        left: 26px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 6px;
+        height: 1px;
+        background: rgba(255,255,255,0.3);
+    }
+    
+    .pcz-mega-dropdown__link:active {
+        background: rgba(255,255,255,0.08) !important;
+        color: white !important;
+    }
+    
+    .pcz-mega-dropdown__link:active::before {
+        background: var(--pcz-primary);
+        width: 8px;
+    }
+}
+

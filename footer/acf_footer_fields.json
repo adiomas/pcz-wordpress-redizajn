@@ -1,0 +1,236 @@
+[
+    {
+        "key": "group_footer_settings",
+        "title": "Footer Settings",
+        "fields": [
+            {
+                "key": "field_footer_tab_radno",
+                "label": "Radno Vrijeme",
+                "name": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "placement": "top"
+            },
+            {
+                "key": "field_footer_radno_vrijeme",
+                "label": "Radno Vrijeme Recepcije",
+                "name": "footer_radno_vrijeme",
+                "type": "group",
+                "instructions": "Unesite radno vrijeme recepcije koje se prikazuje u footeru.",
+                "required": 0,
+                "layout": "block",
+                "sub_fields": [
+                    {
+                        "key": "field_footer_radno_pon_pet",
+                        "label": "Ponedjeljak - Petak",
+                        "name": "pon_pet",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "default_value": "od 14:00 do 22:00 sata",
+                        "placeholder": "npr. od 14:00 do 22:00 sata"
+                    },
+                    {
+                        "key": "field_footer_radno_sub",
+                        "label": "Subota",
+                        "name": "sub",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "default_value": "od 10:00 do 14:00 sati",
+                        "placeholder": "npr. od 10:00 do 14:00 sati"
+                    },
+                    {
+                        "key": "field_footer_radno_ned",
+                        "label": "Nedjelja",
+                        "name": "ned",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "default_value": "ne radimo",
+                        "placeholder": "npr. ne radimo"
+                    }
+                ]
+            },
+            {
+                "key": "field_footer_tab_kontakt",
+                "label": "Kontakt",
+                "name": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "placement": "top"
+            },
+            {
+                "key": "field_footer_kontakt",
+                "label": "Kontakt Podaci",
+                "name": "footer_kontakt",
+                "type": "group",
+                "instructions": "Kontakt informacije koje se prikazuju u footeru.",
+                "required": 0,
+                "layout": "block",
+                "sub_fields": [
+                    {
+                        "key": "field_footer_kontakt_telefon",
+                        "label": "Telefon",
+                        "name": "telefon",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "default_value": "+385 98 9157 443",
+                        "placeholder": "+385 xx xxx xxxx"
+                    },
+                    {
+                        "key": "field_footer_kontakt_email",
+                        "label": "Email",
+                        "name": "email",
+                        "type": "email",
+                        "instructions": "",
+                        "required": 0,
+                        "default_value": "info@pcz.hr",
+                        "placeholder": "info@pcz.hr"
+                    },
+                    {
+                        "key": "field_footer_kontakt_adresa",
+                        "label": "Adresa",
+                        "name": "adresa",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "default_value": "Ozaljska 93, Zagreb",
+                        "placeholder": "Ulica i broj, Grad"
+                    }
+                ]
+            },
+            {
+                "key": "field_footer_google_maps_embed",
+                "label": "Google Maps Embed URL",
+                "name": "footer_google_maps_embed",
+                "type": "url",
+                "instructions": "Embed URL za Google mapu. Dobijete ga na Google Maps > Share > Embed a map > kopirajte src URL iz iframe koda.",
+                "required": 0,
+                "default_value": "",
+                "placeholder": "https://www.google.com/maps/embed?pb=..."
+            },
+            {
+                "key": "field_footer_tab_nav",
+                "label": "Navigacija",
+                "name": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "placement": "top"
+            },
+            {
+                "key": "field_footer_social_note",
+                "label": "Socijalne Mreže",
+                "name": "",
+                "type": "message",
+                "message": "⚠️ Socijalne mreže se definiraju u <strong>Multi-Brand Postavke</strong> tabu.<br>Svaki brand ima svoje zasebne socijalne mreže koje se automatski prikazuju u footeru.",
+                "new_lines": "wpautop"
+            },
+            {
+                "key": "field_footer_nav_links",
+                "label": "Footer Navigacija",
+                "name": "footer_nav_links",
+                "type": "repeater",
+                "instructions": "Navigacijski linkovi u footeru. Alternativno možete koristiti WordPress Menu (Footer Menu lokacija).",
+                "required": 0,
+                "min": 0,
+                "max": 10,
+                "layout": "table",
+                "button_label": "Dodaj Link",
+                "sub_fields": [
+                    {
+                        "key": "field_footer_nav_label",
+                        "label": "Label",
+                        "name": "label",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 1,
+                        "placeholder": "Naslovna"
+                    },
+                    {
+                        "key": "field_footer_nav_url",
+                        "label": "URL",
+                        "name": "url",
+                        "type": "url",
+                        "instructions": "",
+                        "required": 1,
+                        "placeholder": "https://..."
+                    }
+                ]
+            },
+            {
+                "key": "field_footer_tab_legal",
+                "label": "Copyright & Legal",
+                "name": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "placement": "top"
+            },
+            {
+                "key": "field_footer_copyright",
+                "label": "Copyright Tekst",
+                "name": "footer_copyright",
+                "type": "text",
+                "instructions": "Copyright tekst. Koristite {year} za automatsku godinu.",
+                "required": 0,
+                "default_value": "© {year}. Plesni Centar Zagreb by Nicolas. Sva prava pridržana.",
+                "placeholder": "© {year}. Naziv tvrtke. Sva prava pridržana."
+            },
+            {
+                "key": "field_footer_legal_links",
+                "label": "Pravni Linkovi",
+                "name": "footer_legal_links",
+                "type": "repeater",
+                "instructions": "Linkovi na pravne stranice (Pravila privatnosti, Uvjeti korištenja, itd.)",
+                "required": 0,
+                "min": 0,
+                "max": 5,
+                "layout": "table",
+                "button_label": "Dodaj Pravni Link",
+                "sub_fields": [
+                    {
+                        "key": "field_footer_legal_label",
+                        "label": "Label",
+                        "name": "label",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 1,
+                        "placeholder": "Pravila privatnosti"
+                    },
+                    {
+                        "key": "field_footer_legal_url",
+                        "label": "URL",
+                        "name": "url",
+                        "type": "url",
+                        "instructions": "",
+                        "required": 1,
+                        "placeholder": "https://..."
+                    }
+                ]
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "options_page",
+                    "operator": "==",
+                    "value": "site-settings"
+                }
+            ]
+        ],
+        "menu_order": 10,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "Postavke za footer - kontakt, social, copyright"
+    }
+]
+

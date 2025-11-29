@@ -1,0 +1,250 @@
+[
+    {
+        "key": "group_brand_settings",
+        "title": "Multi-Brand Postavke",
+        "fields": [
+            {
+                "key": "field_brand_tab_general",
+                "label": "⚙️ Opće",
+                "name": "",
+                "type": "tab",
+                "placement": "top"
+            },
+            {
+                "key": "field_default_brand",
+                "label": "Defaultni Brand",
+                "name": "default_brand",
+                "type": "select",
+                "instructions": "Koji brand se prikazuje kada korisnik prvi put dođe na stranicu.",
+                "choices": {
+                    "plesna-skola": "Plesna Škola (magenta)",
+                    "sportski-klub": "Sportski Klub (narančasta)"
+                },
+                "default_value": "plesna-skola",
+                "return_format": "value"
+            },
+            {
+                "key": "field_brand_aware_header",
+                "label": "Header mijenja boje po brandu",
+                "name": "brand_aware_header",
+                "type": "true_false",
+                "instructions": "Header će mijenjati logo i boje prema aktivnom brandu.",
+                "default_value": 1,
+                "ui": 1
+            },
+            {
+                "key": "field_brand_tab_switcher",
+                "label": "🔀 Switcher",
+                "name": "",
+                "type": "tab",
+                "placement": "top"
+            },
+            {
+                "key": "field_brand_switcher_enabled",
+                "label": "Prikaži Brand Switcher",
+                "name": "brand_switcher_enabled",
+                "type": "true_false",
+                "default_value": 1,
+                "ui": 1
+            },
+            {
+                "key": "field_brand_switcher_style",
+                "label": "Stil",
+                "name": "brand_switcher_style",
+                "type": "select",
+                "choices": {
+                    "tabs": "Tabovi",
+                    "pills": "Pills (zaobljeni)",
+                    "buttons": "Gumbi",
+                    "minimal": "Minimalni",
+                    "toggle": "Toggle"
+                },
+                "default_value": "pills",
+                "conditional_logic": [[{"field": "field_brand_switcher_enabled", "operator": "==", "value": "1"}]]
+            },
+            {
+                "key": "field_brand_switcher_size",
+                "label": "Veličina",
+                "name": "brand_switcher_size",
+                "type": "button_group",
+                "choices": {
+                    "small": "S",
+                    "normal": "M",
+                    "large": "L"
+                },
+                "default_value": "normal",
+                "layout": "horizontal",
+                "conditional_logic": [[{"field": "field_brand_switcher_enabled", "operator": "==", "value": "1"}]]
+            },
+            {
+                "key": "field_brand_switcher_alignment",
+                "label": "Poravnanje",
+                "name": "brand_switcher_alignment",
+                "type": "button_group",
+                "choices": {
+                    "left": "←",
+                    "center": "↔",
+                    "right": "→"
+                },
+                "default_value": "center",
+                "layout": "horizontal",
+                "conditional_logic": [[{"field": "field_brand_switcher_enabled", "operator": "==", "value": "1"}]]
+            },
+            {
+                "key": "field_brand_switcher_show_icons",
+                "label": "Prikaži ikone",
+                "name": "brand_switcher_show_icons",
+                "type": "true_false",
+                "default_value": 0,
+                "ui": 1,
+                "conditional_logic": [[{"field": "field_brand_switcher_enabled", "operator": "==", "value": "1"}]]
+            },
+            {
+                "key": "field_brand_switcher_ps_label",
+                "label": "Labela: Plesna Škola",
+                "name": "brand_switcher_ps_label",
+                "type": "text",
+                "placeholder": "Plesna Škola",
+                "default_value": "Plesna Škola",
+                "conditional_logic": [[{"field": "field_brand_switcher_enabled", "operator": "==", "value": "1"}]]
+            },
+            {
+                "key": "field_brand_switcher_spk_label",
+                "label": "Labela: Sportski Klub",
+                "name": "brand_switcher_spk_label",
+                "type": "text",
+                "placeholder": "Sportski Klub",
+                "default_value": "Sportski Klub",
+                "conditional_logic": [[{"field": "field_brand_switcher_enabled", "operator": "==", "value": "1"}]]
+            },
+            {
+                "key": "field_brand_switcher_intro_text",
+                "label": "Tekst iznad switchera",
+                "name": "brand_switcher_intro_text",
+                "type": "text",
+                "placeholder": "Što te zanima?",
+                "conditional_logic": [[{"field": "field_brand_switcher_enabled", "operator": "==", "value": "1"}]]
+            },
+            {
+                "key": "field_brand_tab_plesna_skola",
+                "label": "💃 Plesna Škola",
+                "name": "",
+                "type": "tab",
+                "placement": "top"
+            },
+            {
+                "key": "field_ps_logo",
+                "label": "Logo",
+                "name": "ps_logo",
+                "type": "image",
+                "instructions": "Logo za Plesnu Školu",
+                "return_format": "url",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_ps_primary_color",
+                "label": "Primarna boja",
+                "name": "ps_primary_color",
+                "type": "color_picker",
+                "default_value": "#C71585"
+            },
+            {
+                "key": "field_ps_socijalne_mreze",
+                "label": "Socijalne mreže",
+                "name": "ps_socijalne_mreze",
+                "type": "repeater",
+                "instructions": "Linkovi na socijalne mreže za Plesnu Školu",
+                "layout": "table",
+                "button_label": "Dodaj",
+                "sub_fields": [
+                    {
+                        "key": "field_ps_social_platforma",
+                        "label": "Platforma",
+                        "name": "platforma",
+                        "type": "select",
+                        "choices": {
+                            "instagram": "Instagram",
+                            "facebook": "Facebook",
+                            "youtube": "YouTube",
+                            "tiktok": "TikTok"
+                        }
+                    },
+                    {
+                        "key": "field_ps_social_url",
+                        "label": "URL",
+                        "name": "url",
+                        "type": "url"
+                    }
+                ]
+            },
+            {
+                "key": "field_brand_tab_sportski_klub",
+                "label": "🏆 Sportski Klub",
+                "name": "",
+                "type": "tab",
+                "placement": "top"
+            },
+            {
+                "key": "field_spk_logo",
+                "label": "Logo",
+                "name": "spk_logo",
+                "type": "image",
+                "instructions": "Logo za Sportski Klub",
+                "return_format": "url",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_spk_primary_color",
+                "label": "Primarna boja",
+                "name": "spk_primary_color",
+                "type": "color_picker",
+                "default_value": "#FF6B00"
+            },
+            {
+                "key": "field_spk_socijalne_mreze",
+                "label": "Socijalne mreže",
+                "name": "spk_socijalne_mreze",
+                "type": "repeater",
+                "instructions": "Linkovi na socijalne mreže za Sportski Klub",
+                "layout": "table",
+                "button_label": "Dodaj",
+                "sub_fields": [
+                    {
+                        "key": "field_spk_social_platforma",
+                        "label": "Platforma",
+                        "name": "platforma",
+                        "type": "select",
+                        "choices": {
+                            "instagram": "Instagram",
+                            "facebook": "Facebook",
+                            "youtube": "YouTube",
+                            "tiktok": "TikTok"
+                        }
+                    },
+                    {
+                        "key": "field_spk_social_url",
+                        "label": "URL",
+                        "name": "url",
+                        "type": "url"
+                    }
+                ]
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "options_page",
+                    "operator": "==",
+                    "value": "site-settings"
+                }
+            ]
+        ],
+        "menu_order": 5,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "active": true,
+        "description": "Postavke za multi-brand sustav"
+    }
+]

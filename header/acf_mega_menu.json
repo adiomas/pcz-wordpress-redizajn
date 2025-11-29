@@ -1,0 +1,275 @@
+[
+  {
+      "key": "group_mega_menu",
+      "title": "Header Postavke",
+      "fields": [
+          {
+              "key": "field_site_logo",
+              "label": "Logo",
+              "name": "site_logo",
+              "aria-label": "",
+              "type": "image",
+              "instructions": "Upload logo za header. Preporučena veličina: SVG ili PNG s transparentnom pozadinom.",
+              "required": 0,
+              "conditional_logic": 0,
+              "wrapper": {
+                  "width": "100",
+                  "class": "",
+                  "id": ""
+              },
+              "return_format": "url",
+              "library": "all",
+              "min_width": "",
+              "min_height": "",
+              "min_size": "",
+              "max_width": "",
+              "max_height": "",
+              "max_size": "500",
+              "mime_types": "svg,png,jpg,webp",
+              "preview_size": "medium"
+          },
+          {
+              "key": "field_logo_height_desktop",
+              "label": "Visina loga - Desktop",
+              "name": "logo_height_desktop",
+              "aria-label": "",
+              "type": "number",
+              "instructions": "Visina loga u pikselima za desktop. Preporučeno: 40-60px",
+              "required": 0,
+              "conditional_logic": 0,
+              "wrapper": {
+                  "width": "50",
+                  "class": "",
+                  "id": ""
+              },
+              "default_value": 48,
+              "min": 20,
+              "max": 150,
+              "step": 1,
+              "placeholder": "48",
+              "prepend": "",
+              "append": "px"
+          },
+          {
+              "key": "field_logo_height_mobile",
+              "label": "Visina loga - Mobile",
+              "name": "logo_height_mobile",
+              "aria-label": "",
+              "type": "number",
+              "instructions": "Visina loga u pikselima za mobile. Preporučeno: 32-48px",
+              "required": 0,
+              "conditional_logic": 0,
+              "wrapper": {
+                  "width": "50",
+                  "class": "",
+                  "id": ""
+              },
+              "default_value": 40,
+              "min": 20,
+              "max": 100,
+              "step": 1,
+              "placeholder": "40",
+              "prepend": "",
+              "append": "px"
+          },
+          {
+              "key": "field_ponuda_blokovi",
+              "label": "Ponuda – Blokovi",
+              "name": "ponuda_blokovi",
+              "aria-label": "",
+              "type": "repeater",
+              "instructions": "Dodaj blokove za mega menu dropdown (npr. Ponuda za odrasle, Ponuda za djecu)",
+              "required": false,
+              
+              "conditional_logic": false,
+              "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+              },
+              "min": 0,
+              "max": 0,
+              "rows_per_page": 20,
+              "layout": "block",
+              "button_label": "Dodaj blok",
+              "collapsed": "field_naslov",
+              "sub_fields": [
+                  {
+                      "key": "field_naslov",
+                      "label": "Naslov bloka",
+                      "name": "naslov",
+                      "aria-label": "",
+                      "type": "text",
+                      "instructions": "Npr. PONUDA ZA ODRASLE",
+                      "required": false,
+                      "conditional_logic": false,
+                      "wrapper": {
+                          "width": "100",
+                          "class": "",
+                          "id": ""
+                      },
+                      "default_value": "",
+                      "maxlength": "",
+                      "placeholder": "PONUDA ZA ODRASLE",
+                      "prepend": "",
+                      "append": "",
+                      "parent_repeater": "field_ponuda_blokovi"
+                  },
+                  {
+                      "key": "field_podsekcije",
+                      "label": "Podsekcije",
+                      "name": "podsekcije",
+                      "aria-label": "",
+                      "type": "repeater",
+                      "instructions": "",
+                      "required": false,
+                      "conditional_logic": false,
+                      "wrapper": {
+                          "width": "",
+                          "class": "",
+                          "id": ""
+                      },
+                      "min": 0,
+                      "max": 0,
+                      "rows_per_page": 20,
+                      "layout": "row",
+                      "button_label": "Dodaj podsekciju",
+                      "collapsed": "field_naslov_podsekcije",
+                      "sub_fields": [
+                          {
+                              "key": "field_naslov_podsekcije",
+                              "label": "Naslov podsekcije",
+                              "name": "naslov_podsekcije",
+                              "aria-label": "",
+                              "type": "text",
+                              "instructions": "",
+                              "required": false,
+                              "conditional_logic": false,
+                              "wrapper": {
+                                  "width": "50",
+                                  "class": "",
+                                  "id": ""
+                              },
+                              "default_value": "",
+                              "maxlength": "",
+                              "placeholder": "PLESNI TEČAJEVI",
+                              "prepend": "",
+                              "append": "",
+                              "parent_repeater": "field_podsekcije"
+                          },
+                          {
+                              "key": "field_page_link_podsekcije",
+                              "label": "Link stranice (opcionalno)",
+                              "name": "page_link_podsekcije",
+                              "aria-label": "",
+                              "type": "page_link",
+                              "instructions": "Ako podsekcija nema stavki, ovaj link će biti klikabilan.",
+                              "required": 0,
+                              "conditional_logic": 0,
+                              "wrapper": {
+                                  "width": "50",
+                                  "class": "",
+                                  "id": ""
+                              },
+                              "post_type": [
+                                  "page"
+                              ],
+                              "post_status": "",
+                              "taxonomy": "",
+                              "allow_archives": 1,
+                              "multiple": 0,
+                              "allow_null": 1,
+                              "parent_repeater": "field_podsekcije"
+                          },
+                          {
+                              "key": "field_stavke",
+                              "label": "Stavke (linkovi)",
+                              "name": "stavke",
+                              "aria-label": "",
+                              "type": "repeater",
+                              "instructions": "",
+                              "required": false,
+                              "conditional_logic": false,
+                              "wrapper": {
+                                  "width": "",
+                                  "class": "",
+                                  "id": ""
+                              },
+                              "min": 0,
+                              "max": 0,
+                              "rows_per_page": 20,
+                              "layout": "table",
+                              "button_label": "Dodaj stavku",
+                              "collapsed": "",
+                              "sub_fields": [
+                                  {
+                                      "key": "field_label",
+                                      "label": "Naziv",
+                                      "name": "label",
+                                      "aria-label": "",
+                                      "type": "text",
+                                      "instructions": "",
+                                      "required": false,
+                                      "conditional_logic": false,
+                                      "wrapper": {
+                                          "width": "50",
+                                          "class": "",
+                                          "id": ""
+                                      },
+                                      "default_value": "",
+                                      "maxlength": "",
+                                      "placeholder": "",
+                                      "prepend": "",
+                                      "append": "",
+                                      "parent_repeater": "field_stavke"
+                                  },
+                                  {
+                                      "key": "field_url",
+                                      "label": "Stranica",
+                                      "name": "url",
+                                      "aria-label": "",
+                                      "type": "page_link",
+                                      "instructions": "",
+                                      "required": 0,
+                                      "conditional_logic": 0,
+                                      "wrapper": {
+                                          "width": "50",
+                                          "class": "",
+                                          "id": ""
+                                      },
+                                      "post_type": [
+                                          "page"
+                                      ],
+                                      "allow_archives": 1,
+                                      "multiple": 0,
+                                      "allow_null": 0,
+                                      "parent_repeater": "field_stavke"
+                                  }
+                              ],
+                              "parent_repeater": "field_podsekcije"
+                          }
+                      ],
+                      "parent_repeater": "field_ponuda_blokovi"
+                  }
+              ]
+          }
+      ],
+      "location": [
+          [
+              {
+                  "param": "options_page",
+                  "operator": "==",
+                  "value": "site-settings"
+              }
+          ]
+      ],
+      "menu_order": 0,
+      "position": "normal",
+      "style": "default",
+      "label_placement": "top",
+      "instruction_placement": "label",
+      "hide_on_screen": "",
+      "active": true,
+      "description": "Postavke za header - logo i mega menu"
+  }
+]

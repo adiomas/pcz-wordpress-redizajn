@@ -1,0 +1,426 @@
+/**
+ * pcz "Poznati o PCZ-u" - Kompletni Stilovi
+ * 
+ * Testimonijali poznatih osoba s kružnim slikama
+ * Mobile: Swipe slider
+ * Koristi iste CSS varijable kao header/footer za konzistentnost
+ * 
+ * @package pcz_Redizajn
+ * @since 1.0.0
+ */
+
+/* ==========================================================================
+   CSS Variables (iste kao header/footer za konzistentnost)
+   ========================================================================== */
+
+:root {
+    --pcz-primary: #C71585;
+    --pcz-primary-hover: #a01269;
+    --pcz-dark: #3d3d3d;
+    --pcz-darker: #333333;
+    --pcz-gray: #666666;
+    --pcz-light: #ffffff;
+    --pcz-accent: #ffc107;
+    --pcz-transition: 0.25s ease;
+    
+    /* Footer specific - za seamless preljev */
+    --pcz-contact-bg: #f5f5f5;
+}
+
+/* ==========================================================================
+   POZNATI SECTION - Main Container
+   ========================================================================== */
+
+.pcz-poznati {
+    /* Gradient: roza gore → glatki prijelaz → footer contact bg */
+    background: linear-gradient(
+        180deg,
+        var(--pcz-primary) 0%,          /* #C71585 - početna roza */
+        #d84a9a 25%,                     /* srednja roza */
+        #e87db8 45%,                     /* svjetlija roza */
+        #f0b8d4 60%,                     /* blago roza */
+        #f5d4e6 72%,                     /* vrlo blijeda roza */
+        #f7e4ed 82%,                     /* skoro bijelo-roza */
+        #f6eeef 90%,                     /* neutralna tranzicija */
+        var(--pcz-contact-bg) 100%      /* #f5f5f5 - footer contact bg */
+    );
+    padding: 60px 20px 120px;           /* malo više paddinga dolje za glatkiji prijelaz */
+    position: relative;
+    overflow: visible;
+}
+
+.pcz-poznati__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* ==========================================================================
+   HEADER / TITLE
+   ========================================================================== */
+
+.pcz-poznati__header {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.pcz-poznati__title {
+    font-family: inherit;
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    font-weight: 800;
+    color: var(--pcz-light);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin: 0 0 18px 0;
+}
+
+.pcz-poznati__divider {
+    width: 85%;
+    max-width: 900px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.5);
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   TESTIMONIAL GRID - Desktop (4 kolone)
+   ========================================================================== */
+
+.pcz-poznati__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    align-items: start;
+}
+
+/* ==========================================================================
+   TESTIMONIAL ITEM
+   ========================================================================== */
+
+.pcz-poznati__item {
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: pcz-fadeInUp 0.5s ease forwards;
+}
+
+.pcz-poznati__item:nth-child(1) { animation-delay: 0.05s; }
+.pcz-poznati__item:nth-child(2) { animation-delay: 0.1s; }
+.pcz-poznati__item:nth-child(3) { animation-delay: 0.15s; }
+.pcz-poznati__item:nth-child(4) { animation-delay: 0.2s; }
+.pcz-poznati__item:nth-child(5) { animation-delay: 0.25s; }
+.pcz-poznati__item:nth-child(6) { animation-delay: 0.3s; }
+
+@keyframes pcz-fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================================================
+   IMAGE CONTAINER - Jednostavno & Moderno
+   ========================================================================== */
+
+.pcz-poznati__image-wrapper {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 20px;
+    position: relative;
+}
+
+.pcz-poznati__image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+    /* Jednostavan bijeli border - čisto i moderno */
+    border: 3px solid rgba(255, 255, 255, 0.7);
+    transition: transform var(--pcz-transition), border-color var(--pcz-transition);
+}
+
+.pcz-poznati__item:hover .pcz-poznati__image {
+    transform: scale(1.03);
+    border-color: var(--pcz-light);
+}
+
+/* Placeholder za slike koje nedostaju */
+.pcz-poznati__image--placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--pcz-light);
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* ==========================================================================
+   QUOTE - Italic tekst
+   ========================================================================== */
+
+.pcz-poznati__quote {
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--pcz-light);
+    line-height: 1.55;
+    margin: 0 0 14px 0;
+    padding: 0 5px;
+    min-height: 72px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+/* ==========================================================================
+   NAME - Uppercase bold
+   ========================================================================== */
+
+.pcz-poznati__name {
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 700;
+    font-style: normal;
+    color: var(--pcz-light);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    display: block;
+}
+
+/* ==========================================================================
+   EMPTY STATE (za admine)
+   ========================================================================== */
+
+.pcz-poznati__empty {
+    text-align: center;
+    color: var(--pcz-light);
+    font-style: italic;
+    padding: 40px 20px;
+}
+
+.pcz-poznati__empty a {
+    color: var(--pcz-light);
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   MOBILE SLIDER - Poboljšani
+   ========================================================================== */
+
+.pcz-poznati__slider {
+    display: none;
+    position: relative;
+}
+
+.pcz-poznati__slider-track {
+    display: flex;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    touch-action: pan-y pinch-zoom;
+    cursor: grab;
+}
+
+.pcz-poznati__slider-track:active {
+    cursor: grabbing;
+}
+
+.pcz-poznati__slide {
+    flex: 0 0 100%;
+    padding: 0 30px;
+}
+
+/* ==========================================================================
+   SLIDER NAVIGATION - Dots
+   ========================================================================== */
+
+.pcz-poznati__nav {
+    display: none;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 35px;
+}
+
+.pcz-poznati__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.35);
+    border: none;
+    cursor: pointer;
+    transition: all var(--pcz-transition);
+    padding: 0;
+}
+
+.pcz-poznati__dot:hover {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.pcz-poznati__dot.is-active {
+    background: var(--pcz-light);
+    transform: scale(1.3);
+}
+
+/* ==========================================================================
+   SLIDER ARROWS - Moderniji dizajn
+   ========================================================================== */
+
+.pcz-poznati__arrows {
+    display: none;
+    position: absolute;
+    top: 35%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    justify-content: space-between;
+    padding: 0 5px;
+    pointer-events: none;
+}
+
+.pcz-poznati__arrow {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    color: white;
+    font-size: 22px;
+    font-weight: 300;
+    cursor: pointer;
+    transition: all var(--pcz-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.pcz-poznati__arrow:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.pcz-poznati__arrow:active {
+    transform: scale(0.95);
+}
+
+.pcz-poznati__arrow:disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+}
+
+/* ==========================================================================
+   RESPONSIVE - Tablet (2 kolone)
+   ========================================================================== */
+
+@media screen and (max-width: 1024px) {
+    .pcz-poznati__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px 25px;
+    }
+    
+    .pcz-poznati__image-wrapper {
+        width: 130px;
+        height: 130px;
+    }
+    
+    .pcz-poznati__quote {
+        min-height: 65px;
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVE - Mobile (Slider Mode)
+   ========================================================================== */
+
+@media screen and (max-width: 640px) {
+    .pcz-poznati {
+        padding: 45px 15px 80px;
+    }
+    
+    .pcz-poznati__header {
+        margin-bottom: 35px;
+    }
+    
+    .pcz-poznati__title {
+        letter-spacing: 2px;
+        font-size: 1.4rem;
+    }
+    
+    .pcz-poznati__divider {
+        width: 90%;
+    }
+    
+    /* Hide grid, show slider */
+    .pcz-poznati__grid {
+        display: none;
+    }
+    
+    .pcz-poznati__slider {
+        display: block;
+        overflow: hidden;
+    }
+    
+    .pcz-poznati__nav {
+        display: flex;
+    }
+    
+    .pcz-poznati__arrows {
+        display: flex;
+    }
+    
+    /* Slide item adjustments */
+    .pcz-poznati__slide .pcz-poznati__item {
+        opacity: 1;
+        transform: none;
+        animation: none;
+    }
+    
+    .pcz-poznati__image-wrapper {
+        width: 160px;
+        height: 160px;
+        margin-bottom: 25px;
+    }
+    
+    .pcz-poznati__quote {
+        font-size: 1rem;
+        min-height: auto;
+        padding: 0 15px;
+        margin-bottom: 16px;
+        line-height: 1.6;
+    }
+    
+    .pcz-poznati__name {
+        font-size: 0.85rem;
+        letter-spacing: 2px;
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVE - Small Mobile (< 380px)
+   ========================================================================== */
+
+@media screen and (max-width: 380px) {
+    .pcz-poznati__image-wrapper {
+        width: 140px;
+        height: 140px;
+    }
+    
+    .pcz-poznati__slide {
+        padding: 0 20px;
+    }
+    
+    .pcz-poznati__arrows {
+        padding: 0;
+    }
+    
+    .pcz-poznati__arrow {
+        width: 36px;
+        height: 36px;
+        font-size: 20px;
+    }
+}
+

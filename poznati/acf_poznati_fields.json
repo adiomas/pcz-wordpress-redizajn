@@ -1,0 +1,95 @@
+[
+    {
+        "key": "group_poznati_settings",
+        "title": "Poznati o PCZ-u",
+        "fields": [
+            {
+                "key": "field_poznati_info",
+                "label": "",
+                "name": "",
+                "type": "message",
+                "instructions": "",
+                "required": 0,
+                "message": "<strong>Poznati o PCZ-u</strong><br>Testimonijali poznatih osoba koje su plesale u PCZ-u. Prikazuje se kao grid na desktopu (4 kolone) i kao slider na mobilnim uređajima.",
+                "new_lines": "wpautop",
+                "esc_html": 0
+            },
+            {
+                "key": "field_poznati_naslov",
+                "label": "Naslov Sekcije",
+                "name": "poznati_naslov",
+                "type": "text",
+                "instructions": "Naslov koji se prikazuje iznad testimonijala.",
+                "required": 0,
+                "default_value": "POZNATI O PCZ-u",
+                "placeholder": "POZNATI O PCZ-u"
+            },
+            {
+                "key": "field_poznati_testimonijali",
+                "label": "Testimonijali",
+                "name": "poznati_testimonijali",
+                "type": "repeater",
+                "instructions": "Dodajte poznate osobe i njihove citate. Preporučeno: 4 osobe za optimalan prikaz.",
+                "required": 0,
+                "min": 0,
+                "max": 12,
+                "layout": "block",
+                "button_label": "Dodaj Testimonijal",
+                "sub_fields": [
+                    {
+                        "key": "field_poznati_ime",
+                        "label": "Ime i Prezime",
+                        "name": "ime",
+                        "type": "text",
+                        "instructions": "Puno ime osobe (prikazuje se VELIKIM SLOVIMA).",
+                        "required": 1,
+                        "placeholder": "DUBRAVKO MERLIĆ"
+                    },
+                    {
+                        "key": "field_poznati_citat",
+                        "label": "Citat",
+                        "name": "citat",
+                        "type": "textarea",
+                        "instructions": "Kratki testimonijal / citat osobe.",
+                        "required": 1,
+                        "rows": 3,
+                        "placeholder": "Ispalo je da se cijeli doživljaj pretvorio u iznimno iskustvo!",
+                        "new_lines": ""
+                    },
+                    {
+                        "key": "field_poznati_slika",
+                        "label": "Fotografija",
+                        "name": "slika",
+                        "type": "image",
+                        "instructions": "Portretna fotografija (preporučeno: kvadratna, min. 300x300px). Prikazuje se u kružnom obliku.",
+                        "required": 0,
+                        "return_format": "array",
+                        "preview_size": "thumbnail",
+                        "library": "all",
+                        "min_width": 150,
+                        "min_height": 150,
+                        "mime_types": "jpg, jpeg, png, webp"
+                    }
+                ]
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "options_page",
+                    "operator": "==",
+                    "value": "site-settings"
+                }
+            ]
+        ],
+        "menu_order": 15,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "Testimonijali poznatih osoba o Plesnom Centru Zagreb"
+    }
+]
+

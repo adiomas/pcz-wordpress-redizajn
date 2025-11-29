@@ -1,0 +1,71 @@
+
+
+#rmp_menu_trigger-12831 {
+  position: absolute;
+  top: 0px;
+ 
+}
+
+/* default pozicija (kad nema announcera ili je zatvoren) */
+#rmp_menu_trigger-12831 {
+top: 30px !important;
+position: absolute;
+}
+
+/* kad je announcement aktivan */
+body.has-announcement #rmp_menu_trigger-12831 {
+top: 90px !important;
+}
+
+/* kad je meni otvoren – uvijek na 30px */
+#rmp_menu_trigger-12831.is-active {
+top: 30px !important;
+}
+
+/* kad je announcement aktivan i meni otvoren */
+body.has-announcement #rmp_menu_trigger-12831.is-active {
+top: 30px !important;
+}
+
+
+@media (max-width: 768px) {
+body #ancr-15040 .ancr-container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: nowrap !important;
+}
+
+body #ancr-15040 .ancr-inner p {
+  font-size: 14px !important;
+  line-height: 1.3 !important;
+  margin: 0 !important;
+}
+
+body #ancr-15040 .ancr-btn {
+  font-size: 13px !important;
+  padding: 4px 10px !important;
+}
+}
+
+
+@media screen and (max-width: 992px) {
+  #rmp-menu-wrap-12831 .rmp-menu-subarrow {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      text-align: center;
+      overflow: hidden;
+      background-size: cover;
+      overflow: hidden;
+      right: 80px;
+      border-left-style: solid;
+      border-left-color: #212121;
+      border-left-width: 0px;
+      height: 40px;
+      width: 40px;
+      color: #cc007b;
+      background-color: #ffffff;
+  }
+}
+

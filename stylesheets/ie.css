@@ -1,0 +1,63 @@
+/*====================================================================== INTERNET EXPLORER CSS ===========================================================*/
+
+/* IE10+ CSS styles go here */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  #div_block-259-9868,
+  .tecaj__column_container,
+  .tecaj__column,
+  .poznati__section .ct-section-inner-wrap,
+  .poznati__column{
+  	display: inline-block !important;
+  }
+  
+  #code_block-68-9931 {
+  	width: 100%;
+  }
+  
+  .tecaj__column .tecaj__text {
+  	position: absolute;
+    top: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .termini .ct-section-inner-wrap {
+  	display: block !important;
+  }
+  
+  .accordion--button::after {
+  	background: none;
+  }
+  
+  .fancy__heading::before {
+  	color: rgba(204, 0, 123, 0.4);
+    background: none;
+  }
+  
+  .poznati__section .fancy__btn {
+  	width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .gfield_select {
+	/* reset */
+  margin: 0;      
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  
+   background-image: none;
+  background-position: unset;
+  background-size: unest;
+  background-repeat: no-repeat;
+	
+}
+}
+
+
+/* IE EDGE 12+ CSS styles go here */ 
+@supports (-ms-accelerator:true) {
+  
+}
