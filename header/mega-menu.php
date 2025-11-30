@@ -68,12 +68,14 @@ function pcz_get_dropdown_field_name( $menu_item_title, $menu_item_url ) {
     
     // BRAND-AWARE mappings
     // Definiraj mapiranja za svaki brand
+    // Key = naslov menu itema (lowercase), Value = ACF field name
     $brand_mappings = array(
         'plesna-skola' => array(
-            'ponuda' => 'ponuda_blokovi',
+            'ponuda'  => 'ponuda_blokovi',
+            'program' => 'ponuda_blokovi',  // Alias ako netko koristi "Program" i za PS
         ),
         'sportski-klub' => array(
-            'program' => 'spk_program_blokovi',
+            'program' => 'spk_program_blokovi',  // Primarno za SPK
             'ponuda'  => 'spk_program_blokovi',  // Alias za kompatibilnost
         ),
     );
@@ -182,72 +184,168 @@ if ( empty( $logo_url ) ) {
 $logo_url = apply_filters( 'pcz_header_logo_url', $logo_url );
 
 // =============================================================================
-// NAVIGACIJA - Dohvat iz WordPress Menu-a
+// NAVIGACIJA - Dohvat iz WordPress Menu-a (BRAND-AWARE)
 // =============================================================================
 
 $nav_items = array();
 
-// Pokušaj dohvatiti iz WordPress menu-a
-$menu_locations = get_nav_menu_locations();
-$menu_name = isset( $menu_locations['main-menu'] ) ? 'main-menu' : 'primary';
+// Dohvati trenutni brand za odabir pravog menija
+$current_brand = 'plesna-skola';
+if ( function_exists( 'pcz_get_current_brand_id' ) ) {
+    $current_brand = pcz_get_current_brand_id();
+}
 
-if ( isset( $menu_locations[ $menu_name ] ) ) {
-    $menu = wp_get_nav_menu_object( $menu_locations[ $menu_name ] );
-    if ( $menu ) {
-        $menu_items = wp_get_nav_menu_items( $menu->term_id );
-        if ( $menu_items ) {
-            foreach ( $menu_items as $item ) {
-                if ( $item->menu_item_parent == 0 ) { // Samo top-level
-                    $has_dropdown = pcz_has_dropdown( $item->title, $item->url );
-                    $dropdown_field = $has_dropdown ? pcz_get_dropdown_field_name( $item->title, $item->url ) : null;
-                    
-                    $nav_items[] = array(
-                        'title'          => $item->title,
-                        'url'            => $item->url,
-                        'has_dropdown'   => $has_dropdown,
-                        'dropdown_field' => $dropdown_field,
-                        'item_id'        => $item->ID ?? null,
-                    );
-                }
+// BRAND-AWARE MENU SELECTION
+// Definiraj koji menu koristi koji brand
+$brand_menu_map = array(
+    'plesna-skola'  => array(
+        'menu_slug'     => 'main-menu-new',      // Slug ili ime menija
+        'menu_location' => 'main-menu',           // Fallback na lokaciju
+        'menu_name'     => 'Main Menu - NEW',     // Direktno ime menija
+    ),
+    'sportski-klub' => array(
+        'menu_slug'     => 'main-menu-spk',       // Slug za SPK menu
+        'menu_location' => 'spk-main-menu',       // Moguća nova lokacija
+        'menu_name'     => 'Main Menu - SPK',     // Direktno ime menija
+    ),
+);
+
+// Omogući filteranje menu mapiranja
+$brand_menu_map = apply_filters( 'pcz_brand_menu_map', $brand_menu_map );
+
+// Dohvati konfiguraciju za trenutni brand
+$menu_config = isset( $brand_menu_map[ $current_brand ] ) 
+    ? $brand_menu_map[ $current_brand ] 
+    : $brand_menu_map['plesna-skola'];
+
+// Pokušaj dohvatiti menu - višestruki fallback mehanizam
+$menu = null;
+
+// 1. Pokušaj po direktnom imenu menija
+if ( ! $menu && ! empty( $menu_config['menu_name'] ) ) {
+    $menu = wp_get_nav_menu_object( $menu_config['menu_name'] );
+}
+
+// 2. Pokušaj po slug-u menija
+if ( ! $menu && ! empty( $menu_config['menu_slug'] ) ) {
+    $menu = wp_get_nav_menu_object( $menu_config['menu_slug'] );
+}
+
+// 3. Pokušaj po menu location
+if ( ! $menu && ! empty( $menu_config['menu_location'] ) ) {
+    $menu_locations = get_nav_menu_locations();
+    if ( isset( $menu_locations[ $menu_config['menu_location'] ] ) ) {
+        $menu = wp_get_nav_menu_object( $menu_locations[ $menu_config['menu_location'] ] );
+    }
+}
+
+// 4. Fallback na default lokacije
+if ( ! $menu ) {
+    $menu_locations = get_nav_menu_locations();
+    $fallback_locations = array( 'main-menu', 'primary', 'primary-menu' );
+    foreach ( $fallback_locations as $loc ) {
+        if ( isset( $menu_locations[ $loc ] ) ) {
+            $menu = wp_get_nav_menu_object( $menu_locations[ $loc ] );
+            if ( $menu ) break;
+        }
+    }
+}
+
+// Dohvati stavke iz menija
+if ( $menu ) {
+    $menu_items = wp_get_nav_menu_items( $menu->term_id );
+    if ( $menu_items ) {
+        foreach ( $menu_items as $item ) {
+            if ( $item->menu_item_parent == 0 ) { // Samo top-level
+                $has_dropdown = pcz_has_dropdown( $item->title, $item->url );
+                $dropdown_field = $has_dropdown ? pcz_get_dropdown_field_name( $item->title, $item->url ) : null;
+                
+                $nav_items[] = array(
+                    'title'          => $item->title,
+                    'url'            => $item->url,
+                    'has_dropdown'   => $has_dropdown,
+                    'dropdown_field' => $dropdown_field,
+                    'item_id'        => $item->ID ?? null,
+                );
             }
         }
     }
 }
 
-// Fallback - hardkodirane stavke ako menu ne postoji
+// Fallback - hardkodirane stavke ako menu ne postoji (BRAND-AWARE)
 if ( empty( $nav_items ) ) {
-    $nav_items = array(
-        array( 
-            'title' => 'Naslovna', 
-            'url' => $site_url, 
-            'has_dropdown' => false,
-            'dropdown_field' => null,
+    // Brand-specific fallback menus
+    $fallback_menus = array(
+        'plesna-skola' => array(
+            array( 
+                'title' => 'Naslovna', 
+                'url' => $site_url, 
+                'has_dropdown' => false,
+                'dropdown_field' => null,
+            ),
+            array( 
+                'title' => 'Ponuda', 
+                'url' => '#', 
+                'has_dropdown' => true,
+                'dropdown_field' => 'ponuda_blokovi',
+            ),
+            array( 
+                'title' => 'Cjenik', 
+                'url' => $site_url . 'cjenik-usluga/', 
+                'has_dropdown' => false,
+                'dropdown_field' => null,
+            ),
+            array( 
+                'title' => 'O nama', 
+                'url' => $site_url . 'strucni-tim/', 
+                'has_dropdown' => false,
+                'dropdown_field' => null,
+            ),
+            array( 
+                'title' => 'Kontakt', 
+                'url' => $site_url . 'kontakt-i-lokacija/', 
+                'has_dropdown' => false,
+                'dropdown_field' => null,
+            ),
         ),
-        array( 
-            'title' => 'Ponuda', 
-            'url' => '#', 
-            'has_dropdown' => true,
-            'dropdown_field' => 'ponuda_blokovi',
-        ),
-        array( 
-            'title' => 'Cjenik', 
-            'url' => $site_url . 'cjenik-usluga/', 
-            'has_dropdown' => false,
-            'dropdown_field' => null,
-        ),
-        array( 
-            'title' => 'O nama', 
-            'url' => $site_url . 'strucni-tim/', 
-            'has_dropdown' => false,
-            'dropdown_field' => null,
-        ),
-        array( 
-            'title' => 'Kontakt', 
-            'url' => $site_url . 'kontakt-i-lokacija/', 
-            'has_dropdown' => false,
-            'dropdown_field' => null,
+        'sportski-klub' => array(
+            array( 
+                'title' => 'Naslovna', 
+                'url' => $site_url, 
+                'has_dropdown' => false,
+                'dropdown_field' => null,
+            ),
+            array( 
+                'title' => 'Program', 
+                'url' => '#', 
+                'has_dropdown' => true,
+                'dropdown_field' => 'spk_program_blokovi',
+            ),
+            array( 
+                'title' => 'Cjenik', 
+                'url' => $site_url . 'cjenik/', 
+                'has_dropdown' => false,
+                'dropdown_field' => null,
+            ),
+            array( 
+                'title' => 'O nama', 
+                'url' => $site_url . 'o-nama/', 
+                'has_dropdown' => false,
+                'dropdown_field' => null,
+            ),
+            array( 
+                'title' => 'Kontakt', 
+                'url' => $site_url . 'kontakt/', 
+                'has_dropdown' => false,
+                'dropdown_field' => null,
+            ),
         ),
     );
+    
+    // Odaberi fallback menu za trenutni brand
+    $nav_items = isset( $fallback_menus[ $current_brand ] ) 
+        ? $fallback_menus[ $current_brand ] 
+        : $fallback_menus['plesna-skola'];
 }
 
 // =============================================================================

@@ -64,6 +64,13 @@ $available_scenarios = array_keys($mock_data['scenarios'] ?? ['default' => []]);
            3. Obriši ih odavde
            ========================================================================== */
         
+        /* ✅ MEGA MENU REDESIGN V2 - Sada u produkciji! (/header/mega-menu.css) */
+        
+        /* Test-only: Brand-aware hero gradient */
+        [data-brand="sportski-klub"] .test-content__hero {
+            background: linear-gradient(135deg, #FF6B00 0%, #FF8C00 100%);
+        }
+        
         /* ===== Test Environment Variables ===== */
         :root {
             --test-bg: #1a1a24;
@@ -304,7 +311,14 @@ $available_scenarios = array_keys($mock_data['scenarios'] ?? ['default' => []]);
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
 </head>
-<body>
+<?php
+// Dohvati brand za data attribute
+$current_brand_id = 'plesna-skola';
+if ( function_exists( 'pcz_get_current_brand_id' ) ) {
+    $current_brand_id = pcz_get_current_brand_id();
+}
+?>
+<body data-brand="<?php echo esc_attr( $current_brand_id ); ?>">
 
 <!-- Preview Container -->
 <div class="test-preview" id="test-preview">
@@ -379,6 +393,20 @@ $available_scenarios = array_keys($mock_data['scenarios'] ?? ['default' => []]);
     </div>
     
     <div class="test-panel__section">
+        <span class="test-panel__label">Brand:</span>
+        <div class="test-panel__responsive">
+            <button type="button" class="test-panel__btn <?php echo $current_brand_id === 'plesna-skola' ? 'test-panel__btn--active' : ''; ?>" 
+                    onclick="switchBrand('plesna-skola')" style="--btn-accent: #C71585;">
+                💃 Plesna Škola
+            </button>
+            <button type="button" class="test-panel__btn <?php echo $current_brand_id === 'sportski-klub' ? 'test-panel__btn--active' : ''; ?>" 
+                    onclick="switchBrand('sportski-klub')" style="--btn-accent: #FF6B00;">
+                🏆 Sportski Klub
+            </button>
+        </div>
+    </div>
+    
+    <div class="test-panel__section">
         <span class="test-panel__label">Prikaz:</span>
         <div class="test-panel__responsive">
             <button type="button" class="test-panel__btn" onclick="setPreview('mobile')">📱 Mobile</button>
@@ -410,12 +438,22 @@ $available_scenarios = array_keys($mock_data['scenarios'] ?? ['default' => []]);
             preview.classList.add('test-preview--' + mode);
         }
         
-        // Update button states
-        buttons.forEach(btn => btn.classList.remove('test-panel__btn--active'));
+        // Update button states (only viewport buttons)
+        document.querySelectorAll('.test-panel__responsive:last-child .test-panel__btn').forEach(btn => {
+            btn.classList.remove('test-panel__btn--active');
+        });
         event.target.classList.add('test-panel__btn--active');
         
         // Trigger resize event for responsive JS
         window.dispatchEvent(new Event('resize'));
+    };
+    
+    // Brand switcher za test panel
+    window.switchBrand = function(brandId) {
+        // Redirect s brand parametrom
+        const url = new URL(window.location.href);
+        url.searchParams.set('brand', brandId);
+        window.location.href = url.toString();
     };
     
     // Keyboard shortcuts za brzo mijenjanje viewporta
@@ -423,11 +461,16 @@ $available_scenarios = array_keys($mock_data['scenarios'] ?? ['default' => []]);
         // Press 1-4 for different views
         if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
         
+        const viewportBtns = document.querySelectorAll('.test-panel__responsive:last-child .test-panel__btn');
+        
         switch(e.key) {
-            case '1': setPreview('mobile'); buttons[0].classList.add('test-panel__btn--active'); break;
-            case '2': setPreview('tablet'); buttons[1].classList.add('test-panel__btn--active'); break;
-            case '3': setPreview('desktop'); buttons[2].classList.add('test-panel__btn--active'); break;
-            case '4': setPreview('full'); buttons[3].classList.add('test-panel__btn--active'); break;
+            case '1': setPreview('mobile'); break;
+            case '2': setPreview('tablet'); break;
+            case '3': setPreview('desktop'); break;
+            case '4': setPreview('full'); break;
+            // Brand shortcuts
+            case 'p': switchBrand('plesna-skola'); break;
+            case 's': switchBrand('sportski-klub'); break;
         }
     });
     
@@ -435,7 +478,9 @@ $available_scenarios = array_keys($mock_data['scenarios'] ?? ['default' => []]);
     console.log('%c🧪 pcz Test Environment', 'font-size: 16px; font-weight: bold; color: #C71585;');
     console.log('Current template: header');
     console.log('Current scenario: <?php echo esc_js($current_scenario); ?>');
+    console.log('Current brand: <?php echo esc_js($current_brand_id); ?>');
     console.log('Press 1-4 to change viewport size');
+    console.log('Press P for Plesna Škola, S for Sportski Klub');
     
     // NAPOMENA: Mobile dropdown toggle je već u /header/mega-menu.js
     // Nema potrebe duplicirati ovdje!

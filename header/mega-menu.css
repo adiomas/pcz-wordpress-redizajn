@@ -126,16 +126,30 @@
     position: relative;
 }
 
-/* Hover - suptilna pozadina */
+/* Hover State - brand color background */
 .pcz-nav__link:hover,
 .pcz-nav__link:focus {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--pcz-primary);
+    color: white;
 }
 
-/* Active State - magenta pozadina */
+/* Active State - underline */
 .pcz-nav__item.is-active .pcz-nav__link {
-    background: var(--pcz-primary);
+    background: transparent;
     color: var(--pcz-light);
+    position: relative;
+}
+
+/* Underline za active state */
+.pcz-nav__item.is-active .pcz-nav__link::before {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 12px;
+    right: 12px;
+    height: 2px;
+    background: var(--pcz-primary);
+    border-radius: 1px;
 }
 
 /* Dropdown arrow za iteme s dropdownom */
@@ -204,7 +218,8 @@
 }
 
 /* ==========================================================================
-   Mega Menu Dropdown - Moderniji
+   Mega Menu Dropdown - REDESIGN V2
+   Elegantniji, profesionalniji dizajn s boljom hijerarhijom
    ========================================================================== */
 
 .pcz-mega-dropdown {
@@ -218,9 +233,13 @@
     min-width: 520px;
     max-width: 680px;
     z-index: 9999;
-    background: var(--pcz-light);
-    box-shadow: var(--pcz-shadow);
-    border-radius: 8px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 
+        0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 10px 25px -5px rgba(0, 0, 0, 0.12),
+        0 0 0 1px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
     margin-top: 8px;
     transition: 
         opacity var(--pcz-transition),
@@ -240,8 +259,8 @@
 
 .pcz-mega-dropdown__container {
     display: flex;
-    gap: 24px;
-    padding: 20px 24px;
+    gap: 32px;
+    padding: 24px 28px;
     width: 100%;
 }
 
@@ -251,19 +270,70 @@
 
 .pcz-mega-dropdown__column {
     flex: 1;
-    min-width: 200px;
+    min-width: 220px;
+    position: relative;
+    /* Stagger animation */
+    animation: pcz-fadeSlideIn 0.3s ease forwards;
+    opacity: 0;
 }
 
+.pcz-mega-dropdown__column:nth-child(1) { animation-delay: 0.05s; }
+.pcz-mega-dropdown__column:nth-child(2) { animation-delay: 0.1s; }
+.pcz-mega-dropdown__column:nth-child(3) { animation-delay: 0.15s; }
+
+@keyframes pcz-fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Vertical separator between columns */
+.pcz-mega-dropdown__column:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -16px;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(0, 0, 0, 0.08) 20%,
+        rgba(0, 0, 0, 0.08) 80%,
+        transparent 100%
+    );
+}
+
+/* Column Title - Elegantni stil */
 .pcz-mega-dropdown__title {
-    background: var(--pcz-primary);
-    color: var(--pcz-light);
+    background: transparent;
+    color: var(--pcz-primary);
     font-size: 11px;
-    font-weight: 700;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    padding: 8px 12px;
+    letter-spacing: 1.2px;
+    padding: 0 0 12px 0;
     margin: 0 0 16px 0;
-    border-radius: 4px;
+    border-radius: 0;
+    border-bottom: 2px solid var(--pcz-primary);
+    position: relative;
+}
+
+/* Accent dot na column title */
+.pcz-mega-dropdown__title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 8px;
+    height: 8px;
+    background: var(--pcz-primary);
+    border-radius: 50%;
 }
 
 /* ==========================================================================
@@ -274,10 +344,13 @@
     list-style: none;
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
 }
 
 .pcz-mega-dropdown__item {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .pcz-mega-dropdown__item:last-child {
@@ -289,39 +362,67 @@
    ========================================================================== */
 
 .pcz-mega-dropdown__section-title {
-    display: block;
-    color: var(--pcz-darker);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #374151;
     font-size: 12px;
     font-weight: 700;
     text-transform: uppercase;
-    margin-bottom: 4px;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.5px;
+    margin: 0 0 8px 0;
+    padding: 10px 0 6px 0;
 }
 
+/* Accent line for section title */
 .pcz-mega-dropdown__section-title::before {
     content: '';
+    width: 3px;
+    height: 12px;
+    background: var(--pcz-primary);
+    border-radius: 2px;
+    opacity: 0.6;
 }
 
 /* ==========================================================================
-   Section Link (klikabilno)
+   Section Link (klikabilno - kad nema podstavki)
    ========================================================================== */
 
 .pcz-mega-dropdown__section-link {
-    display: inline-block;
-    color: var(--pcz-primary);
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #1f2937;
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: none;
     text-decoration: none;
-    padding: 2px 0;
+    padding: 8px 12px;
+    margin: 2px 0;
+    border-radius: 6px;
     transition: all 0.2s ease;
-    letter-spacing: 0.3px;
+    background: transparent;
 }
 
 .pcz-mega-dropdown__section-link:hover {
-    color: var(--pcz-primary-hover);
-    text-decoration: underline;
-    text-underline-offset: 2px;
+    background: rgba(199, 21, 133, 0.08);
+    color: var(--pcz-primary);
+    text-decoration: none;
+    transform: translateX(4px);
+}
+
+/* Arrow icon on hover */
+.pcz-mega-dropdown__section-link::after {
+    content: '→';
+    font-size: 12px;
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: all 0.2s ease;
+}
+
+.pcz-mega-dropdown__section-link:hover::after {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 /* ==========================================================================
@@ -331,12 +432,11 @@
 .pcz-mega-dropdown__sublist {
     list-style: none;
     margin: 0;
-    padding-left: 12px;
-    margin-top: 2px;
+    padding-left: 0;
 }
 
 .pcz-mega-dropdown__subitem {
-    margin-bottom: 2px;
+    margin: 0;
     padding-left: 0;
 }
 
@@ -344,28 +444,53 @@
     margin-bottom: 0;
 }
 
-.pcz-mega-dropdown__subitem::before {
-    content: '';
-}
-
 /* ==========================================================================
    Mega Menu Links
    ========================================================================== */
 
 .pcz-mega-dropdown__link {
-    color: var(--pcz-primary);
+    display: flex;
+    align-items: center;
+    color: #4b5563;
     font-size: 13px;
-    font-weight: 500;
+    font-weight: 400;
     text-decoration: none;
-    display: inline-block;
-    padding: 2px 0;
+    padding: 7px 12px;
+    margin: 1px 0;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+/* Subtle bullet */
+.pcz-mega-dropdown__link::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    background: #d1d5db;
+    border-radius: 50%;
+    margin-right: 10px;
+    flex-shrink: 0;
     transition: all 0.2s ease;
 }
 
 .pcz-mega-dropdown__link:hover {
-    color: var(--pcz-primary-hover);
-    text-decoration: underline;
-    text-underline-offset: 2px;
+    background: rgba(199, 21, 133, 0.06);
+    color: var(--pcz-primary);
+    text-decoration: none;
+    padding-left: 16px;
+}
+
+.pcz-mega-dropdown__link:hover::before {
+    background: var(--pcz-primary);
+    transform: scale(1.5);
+}
+
+/* Focus states for accessibility */
+.pcz-mega-dropdown__link:focus,
+.pcz-mega-dropdown__section-link:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(199, 21, 133, 0.3);
 }
 
 /* ==========================================================================
@@ -545,7 +670,7 @@
     }
     
     /* ==========================================================================
-       MEGA MENU - Mobile: Strukturirano s jasnom hijerarhijom
+       MEGA MENU - Mobile: REDESIGN V2 - Kompaktnije + Tamna pozadina
        ========================================================================== */
     
     .pcz-mega-dropdown {
@@ -555,7 +680,7 @@
         width: 100% !important;
         box-shadow: none !important;
         border-radius: 0 !important;
-        background: #1f1f1f !important;
+        background: #1a1a1f !important;
         display: none !important;
         opacity: 0 !important;
         visibility: hidden !important;
@@ -573,7 +698,7 @@
         max-height: 2000px;
     }
     
-    /* ===== Container ===== */
+    /* ===== Container - Kompaktniji ===== */
     .pcz-mega-dropdown__container {
         flex-direction: column !important;
         gap: 0 !important;
@@ -584,111 +709,160 @@
     .pcz-mega-dropdown__column {
         min-width: 100% !important;
         padding: 0;
+        animation: none !important;
+        opacity: 1 !important;
     }
     
     .pcz-mega-dropdown__column:not(:last-child) {
-        border-bottom: 1px solid rgba(255,255,255,0.06);
+        border-bottom: 1px solid rgba(255,255,255,0.08);
         padding-bottom: 8px;
         margin-bottom: 8px;
     }
     
-    /* ===== Main Title (PONUDA ZA ODRASLE, etc.) ===== */
+    /* Ukloni vertical separator na mobile */
+    .pcz-mega-dropdown__column:not(:last-child)::after {
+        display: none;
+    }
+    
+    /* ===== Main Title - Kompaktniji s lijevim borderom ===== */
     .pcz-mega-dropdown__title {
         font-size: 10px !important;
         font-weight: 700 !important;
         letter-spacing: 0.5px;
-        padding: 8px 16px !important;
+        padding: 10px 16px 8px !important;
         margin: 0 !important;
-        background: var(--pcz-primary) !important;
+        background: rgba(255,255,255,0.05) !important;
+        color: var(--pcz-primary) !important;
+        border-bottom: none !important;
+        border-left: 3px solid var(--pcz-primary) !important;
         border-radius: 0 !important;
     }
     
-    /* ===== List ===== */
+    /* Ukloni dot na mobile */
+    .pcz-mega-dropdown__title::before {
+        display: none !important;
+    }
+    
+    /* ===== List - Kompaktnije ===== */
     .pcz-mega-dropdown__list {
-        padding: 6px 0;
+        padding: 4px 0;
+        gap: 0 !important;
     }
     
     /* ===== Items ===== */
     .pcz-mega-dropdown__item {
-        margin: 0;
+        margin: 0 !important;
         padding: 0;
     }
     
-    /* ===== Section Title (PLESNI TEČAJEVI - neklikabilno) ===== 
-       Razina 1: padding-left 24px */
+    /* ===== Section Title - Kompaktnije ===== */
     .pcz-mega-dropdown__section-title {
-        display: block;
-        font-size: 11px !important;
+        display: flex;
+        font-size: 10px !important;
         font-weight: 600 !important;
         letter-spacing: 0.3px;
         text-transform: uppercase;
-        color: rgba(255,255,255,0.5) !important;
-        padding: 8px 16px 4px 24px !important;
+        color: rgba(255,255,255,0.6) !important;
+        padding: 8px 16px 4px 20px !important;
         margin: 0 !important;
         background: transparent;
     }
     
-    /* ===== Section Link (BRZI TEČAJEVI - klikabilno) ===== 
-       Razina 1: padding-left 24px */
+    .pcz-mega-dropdown__section-title::before {
+        width: 2px !important;
+        height: 10px !important;
+        background: var(--pcz-primary) !important;
+        opacity: 0.6 !important;
+    }
+    
+    /* ===== Section Link - Kompaktnije ===== */
     .pcz-mega-dropdown__section-link {
         display: block;
         font-size: 13px !important;
         font-weight: 500 !important;
         text-transform: none !important;
         color: rgba(255,255,255,0.9) !important;
-        padding: 10px 16px 10px 24px !important;
-        margin: 0;
-        transition: background 0.15s ease;
+        padding: 10px 16px 10px 20px !important;
+        margin: 0 !important;
+        background: transparent !important;
+        border-radius: 0 !important;
+        transform: none !important;
     }
     
+    .pcz-mega-dropdown__section-link:hover,
     .pcz-mega-dropdown__section-link:active {
         background: rgba(255,255,255,0.08) !important;
+        transform: none !important;
     }
     
-    /* ===== Sublist (pod-stavke) ===== 
-       Razina 2: padding-left 36px */
+    /* Ukloni arrow na mobile */
+    .pcz-mega-dropdown__section-link::after {
+        display: none !important;
+    }
+    
+    /* ===== Sublist ===== */
     .pcz-mega-dropdown__sublist {
         padding: 0 !important;
         margin: 0 !important;
     }
     
     .pcz-mega-dropdown__subitem {
-        margin: 0;
+        margin: 0 !important;
         padding: 0;
     }
     
-    /* ===== Subitem Links ===== */
+    /* ===== Subitem Links - Kompaktnije ===== */
     .pcz-mega-dropdown__link {
-        display: block;
+        display: flex;
         font-size: 13px !important;
         font-weight: 400 !important;
-        color: rgba(255,255,255,0.8) !important;
-        padding: 10px 16px 10px 36px !important;
+        color: rgba(255,255,255,0.75) !important;
+        padding: 8px 16px 8px 32px !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
         text-decoration: none;
         transition: background 0.15s ease, color 0.15s ease;
-        position: relative;
     }
     
-    /* Subtle dash indicator */
+    /* Subtle bullet na mobile */
     .pcz-mega-dropdown__link::before {
-        content: '';
-        position: absolute;
-        left: 26px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 6px;
-        height: 1px;
-        background: rgba(255,255,255,0.3);
+        width: 3px !important;
+        height: 3px !important;
+        background: rgba(255,255,255,0.3) !important;
+        margin-right: 8px !important;
+        position: static !important;
+        transform: none !important;
     }
     
+    .pcz-mega-dropdown__link:hover,
     .pcz-mega-dropdown__link:active {
         background: rgba(255,255,255,0.08) !important;
         color: white !important;
+        padding-left: 32px !important;
     }
     
+    .pcz-mega-dropdown__link:hover::before,
     .pcz-mega-dropdown__link:active::before {
-        background: var(--pcz-primary);
-        width: 8px;
+        background: var(--pcz-primary) !important;
+        transform: none !important;
+    }
+    
+    /* ===== Mobile Nav - Resetiraj desktop underline ===== */
+    .pcz-nav__item.is-active .pcz-nav__link::before {
+        display: none !important;
+    }
+    
+    /* Bez hover efekta na mobile nav */
+    .pcz-nav__link:hover,
+    .pcz-nav__link:focus {
+        background: transparent !important;
+        color: rgba(255,255,255,0.9) !important;
+    }
+    
+    /* Active = samo lijevi border */
+    .pcz-nav__item.is-active .pcz-nav__link {
+        background: rgba(255,255,255,0.08) !important;
+        box-shadow: inset 3px 0 0 var(--pcz-primary) !important;
     }
 }
 
@@ -897,5 +1071,35 @@
 /* Smooth transition za accent line */
 .pcz-header__accent {
     transition: background-color 0.3s ease;
+}
+
+/* ==========================================================================
+   BRAND-AWARE MEGA MENU STYLES
+   Stilovi koji se mijenjaju ovisno o aktivnom brandu
+   ========================================================================== */
+
+/* Sportski Klub - Narančasta varijanta */
+[data-brand="sportski-klub"] {
+    --pcz-primary: #FF6B00;
+    --pcz-primary-hover: #E65C00;
+}
+
+[data-brand="sportski-klub"] .pcz-mega-dropdown__section-link:hover {
+    background: rgba(255, 107, 0, 0.08);
+    color: #FF6B00;
+}
+
+[data-brand="sportski-klub"] .pcz-mega-dropdown__link:hover {
+    background: rgba(255, 107, 0, 0.06);
+    color: #FF6B00;
+}
+
+[data-brand="sportski-klub"] .pcz-mega-dropdown__link:hover::before {
+    background: #FF6B00;
+}
+
+[data-brand="sportski-klub"] .pcz-mega-dropdown__link:focus,
+[data-brand="sportski-klub"] .pcz-mega-dropdown__section-link:focus {
+    box-shadow: 0 0 0 2px rgba(255, 107, 0, 0.3);
 }
 
