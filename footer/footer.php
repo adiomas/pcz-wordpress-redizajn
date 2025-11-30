@@ -227,6 +227,31 @@ if ( function_exists( 'get_field' ) ) {
 }
 
 // =============================================================================
+// LOGO SIZE - Desktop i Mobile (kao u headeru)
+// =============================================================================
+
+$footer_logo_height_desktop = 50; // Default za footer
+$footer_logo_height_mobile = 40;  // Default za footer
+
+if ( function_exists( 'get_field' ) ) {
+    $acf_footer_desktop = get_field( 'footer_logo_height_desktop', 'option' );
+    $acf_footer_mobile = get_field( 'footer_logo_height_mobile', 'option' );
+    
+    if ( $acf_footer_desktop && is_numeric( $acf_footer_desktop ) ) {
+        $footer_logo_height_desktop = intval( $acf_footer_desktop );
+    }
+    if ( $acf_footer_mobile && is_numeric( $acf_footer_mobile ) ) {
+        $footer_logo_height_mobile = intval( $acf_footer_mobile );
+    }
+}
+
+// Filteri za programatsko overridanje
+if ( function_exists( 'apply_filters' ) ) {
+    $footer_logo_height_desktop = apply_filters( 'pcz_footer_logo_height_desktop', $footer_logo_height_desktop );
+    $footer_logo_height_mobile = apply_filters( 'pcz_footer_logo_height_mobile', $footer_logo_height_mobile );
+}
+
+// =============================================================================
 // HELPER: SVG Ikone
 // =============================================================================
 
@@ -243,6 +268,19 @@ function pcz_get_social_icon( $platform ) {
 }
 
 ?>
+
+<!-- pcz Footer - Dynamic Logo Size -->
+<style>
+.pcz-footer__logo img {
+    height: <?php echo esc_attr( $footer_logo_height_desktop ); ?>px !important;
+    width: auto;
+}
+@media screen and (max-width: 768px) {
+    .pcz-footer__logo img {
+        height: <?php echo esc_attr( $footer_logo_height_mobile ); ?>px !important;
+    }
+}
+</style>
 
 <!-- pcz Contact Section -->
 <section class="pcz-contact-section">

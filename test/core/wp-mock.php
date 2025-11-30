@@ -687,15 +687,72 @@ if (!function_exists('add_query_arg')) {
             $url = $_SERVER['REQUEST_URI'] ?? '/';
         }
         
-        if (is_array($args)) {
-            $query = http_build_query($args);
-        } else {
-            $query = $args;
+        // Parse existing URL
+        $url_parts = parse_url($url);
+        $base_url = ($url_parts['scheme'] ?? '') . 
+                    (isset($url_parts['host']) ? '://' . $url_parts['host'] : '') .
+                    ($url_parts['path'] ?? '/');
+        
+        // Parse existing query string
+        $existing_query = [];
+        if (isset($url_parts['query'])) {
+            parse_str($url_parts['query'], $existing_query);
         }
         
-        $separator = (strpos($url, '?') !== false) ? '&' : '?';
+        // Merge with new args
+        if (is_array($args)) {
+            $merged = array_merge($existing_query, $args);
+        } else {
+            $merged = $existing_query;
+        }
         
-        return $url . $separator . $query;
+        // Build final URL
+        $query_string = http_build_query($merged);
+        if (!empty($query_string)) {
+            return $base_url . '?' . $query_string;
+        }
+        
+        return $base_url;
+    }
+}
+
+if (!function_exists('remove_query_arg')) {
+    /**
+     * Remove query arguments from URL
+     *
+     * @param string|array $key Query key(s) to remove
+     * @param string $url URL to modify (optional)
+     * @return string
+     */
+    function remove_query_arg($key, $url = '') {
+        if (empty($url)) {
+            $url = $_SERVER['REQUEST_URI'] ?? '/';
+        }
+        
+        // Parse URL
+        $url_parts = parse_url($url);
+        $base_url = ($url_parts['scheme'] ?? '') . 
+                    (isset($url_parts['host']) ? '://' . $url_parts['host'] : '') .
+                    ($url_parts['path'] ?? '/');
+        
+        // Parse existing query string
+        $query = [];
+        if (isset($url_parts['query'])) {
+            parse_str($url_parts['query'], $query);
+        }
+        
+        // Remove specified keys
+        $keys = is_array($key) ? $key : [$key];
+        foreach ($keys as $k) {
+            unset($query[$k]);
+        }
+        
+        // Rebuild URL
+        if (!empty($query)) {
+            return $base_url . '?' . http_build_query($query);
+        }
+        
+        return $base_url;
     }
 }
 
@@ -956,6 +1013,38 @@ if (!function_exists('sanitize_title')) {
         $title = strtolower($title);
         $title = preg_replace('/[^a-z0-9]+/', '-', $title);
         return trim($title, '-');
+    }
+}
+
+if (!function_exists('sanitize_key')) {
+    /**
+     * Sanitize a string key
+     * 
+     * Keys are used as internal identifiers. Lowercase alphanumeric characters,
+     * dashes and underscores are allowed.
+     * 
+     * @param string $key String key
+     * @return string Sanitized key
+     */
+    function sanitize_key($key) {
+        $key = strtolower($key);
+        $key = preg_replace('/[^a-z0-9_\-]/', '', $key);
+        return $key;
+    }
+}
+
+if (!function_exists('sanitize_text_field')) {
+    /**
+     * Sanitize a string from user input
+     * 
+     * @param string $str String to sanitize
+     * @return string Sanitized string
+     */
+    function sanitize_text_field($str) {
+        $str = strip_tags($str);
+        $str = preg_replace('/[\r\n\t]+/', ' ', $str);
+        $str = trim($str);
+        return $str;
     }
 }
 

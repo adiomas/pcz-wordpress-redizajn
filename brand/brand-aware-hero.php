@@ -68,40 +68,18 @@ function pcz_brand_hero_social_override( $social_links ) {
 }
 
 // =============================================================================
-// BRAND SWITCHER INJECTION
+// BRAND SWITCHER INJECTION - ONEMOGUĆENO
 // =============================================================================
+// 
+// NAPOMENA: Brand switcher se više NE injectira u hero automatski!
+// Korisnici trebaju dodati switcher kao ZASEBNI Oxygen Code Block
+// koristeći: oxygen-brand-switcher-code-block.php
+// 
+// Ovo omogućuje fleksibilnije pozicioniranje switchera na stranici.
+// 
 
-/**
- * Dodaj brand switcher nakon intro sekcije (ako je konfiguriran)
- */
-add_action( 'pcz_after_hero_intro', 'pcz_inject_brand_switcher_after_hero' );
-function pcz_inject_brand_switcher_after_hero() {
-    if ( ! function_exists( 'get_field' ) ) {
-        return;
-    }
-    
-    // Provjeri je li switcher uključen
-    $enabled = get_field( 'brand_switcher_enabled', 'option' );
-    if ( ! $enabled ) {
-        return;
-    }
-    
-    $position = get_field( 'brand_switcher_position', 'option' );
-    
-    if ( $position === 'hero' ) {
-        // Učitaj brand-switcher.php
-        $switcher_file = dirname( __FILE__ ) . '/brand-switcher.php';
-        if ( file_exists( $switcher_file ) ) {
-            require_once $switcher_file;
-            
-            if ( function_exists( 'pcz_render_brand_switcher' ) ) {
-                echo '<div class="pcz-hero__brand-switcher">';
-                pcz_render_brand_switcher(); // Koristi ACF postavke automatski
-                echo '</div>';
-            }
-        }
-    }
-}
+// REMOVED: add_action( 'pcz_after_hero_intro', 'pcz_inject_brand_switcher_after_hero' );
+// Funkcija ostavljena za backward compatibility, ali hook je uklonjen
 
 // =============================================================================
 // HERO TEMPLATE INCLUDE

@@ -73,8 +73,17 @@
               "append": "px"
           },
           {
+              "key": "field_menu_brand_note",
+              "label": "",
+              "name": "",
+              "type": "message",
+              "message": "<h3 style='margin:0 0 5px;'>🎭 Plesna Škola Menu</h3><p style='margin:0;color:#666;'>Mega menu dropdown za brand \"Plesna Škola\"</p>",
+              "new_lines": "",
+              "esc_html": 0
+          },
+          {
               "key": "field_ponuda_blokovi",
-              "label": "Ponuda – Blokovi",
+              "label": "Ponuda – Blokovi (Plesna Škola)",
               "name": "ponuda_blokovi",
               "aria-label": "",
               "type": "repeater",
@@ -250,6 +259,128 @@
                           }
                       ],
                       "parent_repeater": "field_ponuda_blokovi"
+                  }
+              ]
+          },
+          {
+              "key": "field_spk_menu_note",
+              "label": "",
+              "name": "",
+              "type": "message",
+              "message": "<h3 style='margin:0 0 5px;'>🏆 Sportski Klub Menu</h3><p style='margin:0;color:#666;'>Mega menu dropdown za brand \"Sportski Klub\" - Program sekcija</p>",
+              "new_lines": "",
+              "esc_html": 0
+          },
+          {
+              "key": "field_spk_program_blokovi",
+              "label": "Program – Blokovi (Sportski Klub)",
+              "name": "spk_program_blokovi",
+              "aria-label": "",
+              "type": "repeater",
+              "instructions": "Dodaj blokove za mega menu dropdown Sportskog Kluba (npr. Treninzi, Dodatni programi)",
+              "required": false,
+              "conditional_logic": false,
+              "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+              },
+              "min": 0,
+              "max": 0,
+              "rows_per_page": 20,
+              "layout": "block",
+              "button_label": "Dodaj blok",
+              "collapsed": "field_spk_naslov",
+              "sub_fields": [
+                  {
+                      "key": "field_spk_naslov",
+                      "label": "Naslov bloka",
+                      "name": "naslov",
+                      "aria-label": "",
+                      "type": "text",
+                      "instructions": "Npr. TRENINZI",
+                      "required": false,
+                      "conditional_logic": false,
+                      "wrapper": {
+                          "width": "100",
+                          "class": "",
+                          "id": ""
+                      },
+                      "default_value": "",
+                      "maxlength": "",
+                      "placeholder": "TRENINZI",
+                      "prepend": "",
+                      "append": "",
+                      "parent_repeater": "field_spk_program_blokovi"
+                  },
+                  {
+                      "key": "field_spk_podsekcije",
+                      "label": "Stavke",
+                      "name": "podsekcije",
+                      "aria-label": "",
+                      "type": "repeater",
+                      "instructions": "",
+                      "required": false,
+                      "conditional_logic": false,
+                      "wrapper": {
+                          "width": "",
+                          "class": "",
+                          "id": ""
+                      },
+                      "min": 0,
+                      "max": 0,
+                      "rows_per_page": 20,
+                      "layout": "row",
+                      "button_label": "Dodaj stavku",
+                      "collapsed": "field_spk_naslov_podsekcije",
+                      "sub_fields": [
+                          {
+                              "key": "field_spk_naslov_podsekcije",
+                              "label": "Naziv",
+                              "name": "naslov_podsekcije",
+                              "aria-label": "",
+                              "type": "text",
+                              "instructions": "",
+                              "required": false,
+                              "conditional_logic": false,
+                              "wrapper": {
+                                  "width": "50",
+                                  "class": "",
+                                  "id": ""
+                              },
+                              "default_value": "",
+                              "maxlength": "",
+                              "placeholder": "Raspored treninga",
+                              "prepend": "",
+                              "append": "",
+                              "parent_repeater": "field_spk_podsekcije"
+                          },
+                          {
+                              "key": "field_spk_page_link_podsekcije",
+                              "label": "Link stranice",
+                              "name": "page_link_podsekcije",
+                              "aria-label": "",
+                              "type": "page_link",
+                              "instructions": "",
+                              "required": 0,
+                              "conditional_logic": 0,
+                              "wrapper": {
+                                  "width": "50",
+                                  "class": "",
+                                  "id": ""
+                              },
+                              "post_type": [
+                                  "page"
+                              ],
+                              "post_status": "",
+                              "taxonomy": "",
+                              "allow_archives": 1,
+                              "multiple": 0,
+                              "allow_null": 1,
+                              "parent_repeater": "field_spk_podsekcije"
+                          }
+                      ],
+                      "parent_repeater": "field_spk_program_blokovi"
                   }
               ]
           }

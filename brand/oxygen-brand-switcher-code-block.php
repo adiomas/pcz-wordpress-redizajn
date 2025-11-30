@@ -45,19 +45,42 @@ if ( ! file_exists( $brand_switcher_path ) ) {
 // =============================================================================
 
 $is_enabled = true; // Default
+$position = 'hero';  // Default pozicija
+
 if ( function_exists( 'get_field' ) ) {
     $is_enabled = get_field( 'brand_switcher_enabled', 'option' );
-    // Provjeri poziciju - ako je "manual", ne renderaj automatski
-    $position = get_field( 'brand_switcher_position', 'option' );
-    if ( $position === 'manual' ) {
-        // Korisnik koristi shortcode ručno, ne renderaj ovdje
-        // Osim ako nije eksplicitno pozvan shortcode
-        // (ovaj code block se koristi za inline prikaz)
-    }
+    $position = get_field( 'brand_switcher_position', 'option' ) ?: 'hero';
 }
 
 // Ako nije uključen, izađi
 if ( ! $is_enabled ) {
+    return;
+}
+
+// Ako je pozicija "manual", korisnik koristi shortcode ručno - ne renderaj ovdje
+if ( $position === 'manual' ) {
+    return;
+}
+
+// Ako je pozicija "header", toggle se renderira u mega-menu.php - ne renderaj ovdje
+if ( $position === 'header' ) {
+    if ( current_user_can( 'manage_options' ) ) {
+        echo '<!-- PCZ Brand Switcher: Pozicija je "header", toggle se renderira u headeru -->';
+    }
+    return;
+}
+
+// =============================================================================
+// DUPLICATE PROTECTION
+// =============================================================================
+
+// Sprječava višestruko renderiranje switchera na istoj stranici
+global $pcz_brand_switcher_rendered;
+if ( ! empty( $pcz_brand_switcher_rendered ) ) {
+    // Switcher je već renderiran - ne renderaj opet
+    if ( current_user_can( 'manage_options' ) ) {
+        echo '<!-- pcz Brand Switcher: Već renderiran, preskačem duplikat -->';
+    }
     return;
 }
 
@@ -68,6 +91,9 @@ if ( ! $is_enabled ) {
 if ( file_exists( $brand_switcher_path ) ) {
     include_once $brand_switcher_path;
 }
+
+// Označi da je switcher renderiran
+$pcz_brand_switcher_rendered = true;
 
 // Provjeri je li shortcode registriran
 if ( shortcode_exists( 'pcz_brand_switcher' ) ) {
@@ -94,7 +120,7 @@ if ( shortcode_exists( 'pcz_brand_switcher' ) ) {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 40px 20px;
+    padding: 30px 20px;
     background: transparent;
     width: 100%;
     box-sizing: border-box;
@@ -112,14 +138,38 @@ if ( shortcode_exists( 'pcz_brand_switcher' ) ) {
 /* Tablet */
 @media (max-width: 991px) {
     .pcz-brand-switcher-wrapper {
-        padding: 30px 15px;
+        padding: 20px 15px;
     }
 }
 
-/* Mobile */
+/* Mobile - kompaktniji switcher */
 @media (max-width: 767px) {
     .pcz-brand-switcher-wrapper {
-        padding: 25px 10px;
+        padding: 15px 10px;
+    }
+    
+    /* Manji tabovi na mobitelu */
+    .pcz-brand-switcher-wrapper .pcz-brand-switcher__tab {
+        padding: 10px 16px;
+        font-size: 11px;
+        letter-spacing: 0.5px;
+    }
+    
+    /* Toggle stil - kompaktniji */
+    .pcz-brand-switcher-wrapper .pcz-brand-switcher--toggle .pcz-brand-switcher__tab {
+        padding: 8px 16px;
+    }
+}
+
+/* Extra mali ekrani */
+@media (max-width: 480px) {
+    .pcz-brand-switcher-wrapper {
+        padding: 12px 8px;
+    }
+    
+    .pcz-brand-switcher-wrapper .pcz-brand-switcher__tab {
+        padding: 8px 12px;
+        font-size: 10px;
     }
 }
 </style>

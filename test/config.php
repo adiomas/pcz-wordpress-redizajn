@@ -33,6 +33,7 @@ define('pcz_FOOTER_PATH', pcz_PROJECT_ROOT . '/footer');
 define('pcz_POZNATI_PATH', pcz_PROJECT_ROOT . '/poznati');
 define('pcz_SIDEBAR_PATH', pcz_PROJECT_ROOT . '/sidebar');
 define('pcz_HERO_PATH', pcz_PROJECT_ROOT . '/hero');
+define('pcz_BRAND_PATH', pcz_PROJECT_ROOT . '/brand');
 
 // =============================================================================
 // URLS
@@ -102,7 +103,7 @@ $GLOBALS['pcz_available_templates'] = [
         'status'      => 'ready',
         'path'        => pcz_FOOTER_PATH,
         'test_path'   => pcz_TEST_TEMPLATES . '/footer',
-        'scenarios'   => ['default', 'no_social', 'minimal', 'no_logo', 'footer_only'],
+        'scenarios'   => ['default', 'no_social', 'minimal', 'no_logo', 'footer_only', 'large_logo', 'small_logo'],
     ],
     'sidebar' => [
         'name'        => 'Sidebar',
@@ -127,6 +128,14 @@ $GLOBALS['pcz_available_templates'] = [
         'path'        => pcz_HERO_PATH,
         'test_path'   => pcz_TEST_TEMPLATES . '/hero',
         'scenarios'   => ['default', 'no_intro', 'no_social', 'minimal', 'short_title', 'long_title', 'all_social', 'placeholder_bg', 'dark_bg'],
+    ],
+    'brand' => [
+        'name'        => 'Brand System',
+        'description' => 'Multi-brand sustav s switcherom, header toggle-om i CSS varijablama',
+        'status'      => 'ready',
+        'path'        => pcz_PROJECT_ROOT . '/brand',
+        'test_path'   => pcz_TEST_TEMPLATES . '/brand',
+        'scenarios'   => ['default', 'sportski_klub', 'switcher_pills', 'switcher_buttons', 'brand_switch'],
     ],
 ];
 

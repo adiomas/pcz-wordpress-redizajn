@@ -4,9 +4,35 @@
  * 
  * UPUTE: Kopiraj CIJELI sadržaj ovog fajla u Oxygen → Code Block → PHP tab
  * 
- * @version 1.0.0
+ * BRAND VISIBILITY:
+ * - Ova sekcija se prikazuje SAMO za brand "Plesna Škola"
+ * - Za Sportski Klub sekcija je skrivena CSS-om (omogućuje smooth transition)
+ * 
+ * @version 1.1.0
  * @package pcz_Redizajn
  */
+
+// =============================================================================
+// BRAND-SPECIFIC VISIBILITY
+// =============================================================================
+
+// Definiraj za koje brandove se sekcija prikazuje
+$allowed_brands = [ 'plesna-skola' ];  // Dodaj 'sportski-klub' ako želiš prikazati za oba
+
+// Dohvati trenutni brand
+$current_brand = function_exists( 'pcz_get_current_brand_id' ) 
+    ? pcz_get_current_brand_id() 
+    : 'plesna-skola';
+
+// Provjeri treba li prikazati
+$is_visible = in_array( $current_brand, $allowed_brands, true );
+
+// CSS klasa za visibility (omogućuje smooth transition)
+$visibility_class = $is_visible ? 'pcz-poznati--visible' : 'pcz-poznati--hidden';
+
+// Opcija: Potpuno preskoči render za nevidljive brandove (štedi bandwidth)
+// Odkomentiraj sljedeće ako NE želiš smooth transition:
+// if ( ! $is_visible ) { return; }
 
 // Dohvati putanje
 $uploads = wp_upload_dir();

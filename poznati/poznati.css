@@ -424,3 +424,85 @@
     }
 }
 
+/* ==========================================================================
+   BRAND VISIBILITY - Smooth Transitions
+   
+   Omogućuje glatko sakrivanje/prikazivanje sekcije pri brand switchingu.
+   Koristi CSS umjesto PHP za smooth transitions bez page reload-a.
+   ========================================================================== */
+
+/* Default: Vidljivo */
+.pcz-poznati--visible {
+    opacity: 1;
+    max-height: 2000px; /* Dovoljno veliko za sadržaj */
+    overflow: visible;
+    transition: opacity 0.4s ease, max-height 0.5s ease;
+}
+
+/* Skriveno za određene brandove */
+.pcz-poznati--hidden {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin: 0 !important;
+    transition: opacity 0.3s ease, max-height 0.4s ease 0.1s, padding 0.4s ease;
+    pointer-events: none;
+}
+
+/* Alternative: Koristi data-brand attribute na body */
+[data-brand="sportski-klub"] .pcz-poznati:not(.pcz-poznati--force-show) {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin: 0 !important;
+    transition: opacity 0.3s ease, max-height 0.4s ease 0.1s, padding 0.4s ease;
+    pointer-events: none;
+}
+
+/* Klasa za prisilno prikazivanje (override brand rules) */
+.pcz-poznati--force-show {
+    opacity: 1 !important;
+    max-height: 2000px !important;
+    overflow: visible !important;
+}
+
+/* ==========================================================================
+   BRAND-SPECIFIC GRADIENT COLORS
+   
+   Različite boje gradijenta za svaki brand.
+   ========================================================================== */
+
+/* Plesna Škola (default - magenta) */
+.pcz-poznati--brand-plesna-skola {
+    background: linear-gradient(
+        180deg,
+        var(--pcz-primary, #C71585) 0%,
+        #d84a9a 25%,
+        #e87db8 45%,
+        #f0b8d4 60%,
+        #f5d4e6 72%,
+        #f7e4ed 82%,
+        #f6eeef 90%,
+        var(--pcz-contact-bg, #f5f5f5) 100%
+    );
+}
+
+/* Sportski Klub (narančasta) - ako se ikad bude prikazivao */
+.pcz-poznati--brand-sportski-klub {
+    background: linear-gradient(
+        180deg,
+        var(--pcz-primary, #FF6B00) 0%,
+        #ff8533 25%,
+        #ffa366 45%,
+        #ffcc99 60%,
+        #ffe0cc 72%,
+        #ffebe0 82%,
+        #fff5f0 90%,
+        var(--pcz-contact-bg, #f5f5f5) 100%
+    );
+}
+

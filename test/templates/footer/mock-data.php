@@ -20,6 +20,12 @@ return [
         'site_logo' => '/test/assets/placeholder/logo.svg',
         
         // =====================================================================
+        // LOGO VISINA - desktop i mobile
+        // =====================================================================
+        'footer_logo_height_desktop' => 50,  // Preporučeno: 40-60px
+        'footer_logo_height_mobile' => 40,   // Preporučeno: 32-48px
+        
+        // =====================================================================
         // RADNO VRIJEME - footer_radno_vrijeme (Group)
         // =====================================================================
         'footer_radno_vrijeme' => [
@@ -158,6 +164,22 @@ return [
         'long_copyright' => [
             'acf_fields' => [
                 'footer_copyright' => '© {year} Plesni Centar Zagreb by Nicolas d.o.o. - Plesna škola s tradicijom od 1990. godine. Sva prava pridržana. Zabranjeno je kopiranje sadržaja bez dozvole.',
+            ],
+        ],
+        
+        // Veći logo
+        'large_logo' => [
+            'acf_fields' => [
+                'footer_logo_height_desktop' => 70,
+                'footer_logo_height_mobile' => 55,
+            ],
+        ],
+        
+        // Manji logo
+        'small_logo' => [
+            'acf_fields' => [
+                'footer_logo_height_desktop' => 36,
+                'footer_logo_height_mobile' => 28,
             ],
         ],
     ],

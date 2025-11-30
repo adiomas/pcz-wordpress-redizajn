@@ -145,6 +145,19 @@ if ( empty( $testimonijali ) ) {
 
 $slider_id = 'pcz-poznati-' . ( function_exists( 'wp_rand' ) ? wp_rand( 1000, 9999 ) : mt_rand( 1000, 9999 ) );
 
+// =============================================================================
+// BRAND VISIBILITY CLASS (postavlja oxygen-poznati-code-block.php)
+// =============================================================================
+
+// Koristi visibility_class ako je postavljena od code block-a, inače default visible
+$section_visibility_class = isset( $visibility_class ) ? $visibility_class : 'pcz-poznati--visible';
+
+// Dodatna provjera: Ako je brand awareness uključen, dodaj klase
+$brand_classes = '';
+if ( function_exists( 'pcz_get_current_brand_id' ) ) {
+    $brand_classes = ' pcz-poznati--brand-' . pcz_get_current_brand_id();
+}
+
 ?>
 
 <!-- ==================== POZNATI O PCZ-u SEKCIJA ==================== -->
@@ -157,7 +170,7 @@ $slider_id = 'pcz-poznati-' . ( function_exists( 'wp_rand' ) ? wp_rand( 1000, 99
 </div>
 <?php endif; ?>
 
-<section class="pcz-poznati" id="<?php echo esc_attr( $slider_id ); ?>" data-fallback="<?php echo $using_fallback ? 'true' : 'false'; ?>">
+<section class="pcz-poznati <?php echo esc_attr( $section_visibility_class . $brand_classes ); ?>" id="<?php echo esc_attr( $slider_id ); ?>" data-fallback="<?php echo $using_fallback ? 'true' : 'false'; ?>">
     <div class="pcz-poznati__container">
         
         <!-- Header -->

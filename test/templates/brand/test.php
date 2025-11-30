@@ -16,9 +16,23 @@
 // Bootstrap
 require_once __DIR__ . '/../../core/bootstrap.php';
 
-// Load mock data
+// Load brand mock data
 $mock_data = require __DIR__ . '/mock-data.php';
+
+// TAKOĐER učitaj header mock data (za pravi header komponentu)
+$header_mock_data = require pcz_TEST_TEMPLATES . '/header/mock-data.php';
+
+// Merge header ACF fields s brand ACF fields
+$mock_data['acf_fields'] = array_merge(
+    $header_mock_data['acf_fields'] ?? [],
+    $mock_data['acf_fields']
+);
+
 load_mock_data($mock_data);
+
+// UČITAJ BRAND FUNKCIJE - potrebno za header toggle!
+require_once pcz_BRAND_PATH . '/brand.php';
+require_once pcz_BRAND_PATH . '/brand-switcher.php';
 
 // Apply scenario if specified
 $scenario = $GLOBALS['pcz_current_scenario'] ?? 'default';
@@ -50,14 +64,52 @@ $acf = $GLOBALS['pcz_mock_data']['acf_fields'];
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Brand CSS -->
-    <link rel="stylesheet" href="/brand/brand.css">
-    
-    <!-- Component CSS -->
+    <!-- Component CSS (BASE stilovi - učitaj PRVO) -->
     <link rel="stylesheet" href="/header/mega-menu.css">
     <link rel="stylesheet" href="/hero/hero.css">
     <link rel="stylesheet" href="/poznati/poznati.css">
     <link rel="stylesheet" href="/footer/footer.css">
+    
+    <!-- Brand CSS (OVERRIDE stilovi - učitaj POSLJEDNJE!) -->
+    <link rel="stylesheet" href="/brand/brand.css">
+    
+    <!-- Oxygen Brand Switcher Wrapper Styles -->
+    <style>
+    .pcz-brand-switcher-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 30px 20px;
+        background: transparent;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    @media (max-width: 991px) {
+        .pcz-brand-switcher-wrapper {
+            padding: 20px 15px;
+        }
+    }
+    @media (max-width: 767px) {
+        .pcz-brand-switcher-wrapper {
+            padding: 15px 10px;
+        }
+        .pcz-brand-switcher-wrapper .pcz-brand-switcher__tab {
+            padding: 10px 16px;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+        }
+    }
+    @media (max-width: 480px) {
+        .pcz-brand-switcher-wrapper {
+            padding: 12px 8px;
+        }
+        .pcz-brand-switcher-wrapper .pcz-brand-switcher__tab {
+            padding: 8px 12px;
+            font-size: 10px;
+        }
+    }
+    </style>
     
     <!-- Brand CSS Variables (inline za ovaj brand) -->
     <style id="pcz-brand-css">
@@ -201,33 +253,42 @@ $acf = $GLOBALS['pcz_mock_data']['acf_fields'];
     <div class="test-header__badge"><?php echo esc_html($brand_config['name']); ?></div>
 </div>
 
-<!-- Brand Switcher Demo -->
-<section style="background: var(--pcz-gradient); padding: 60px 20px; text-align: center;">
-    <h2 style="color: white; font-size: 28px; margin-bottom: 30px;">Brand Switcher Demo</h2>
-    
-    <!-- Tabs Style -->
-    <div class="pcz-brand-switcher pcz-brand-switcher--tabs pcz-brand-switcher--animated" 
-         style="justify-content: center; max-width: 500px; margin: 0 auto;"
-         role="tablist">
-        <?php foreach ($all_brands as $brand_id => $brand): 
-            $is_active = ($brand_id === $current_brand);
-            $brand_url = '?template=brand&brand=' . $brand_id;
-        ?>
-        <a href="<?php echo esc_url($brand_url); ?>"
-           class="pcz-brand-switcher__tab <?php echo $is_active ? 'is-active' : ''; ?>"
-           role="tab"
-           aria-selected="<?php echo $is_active ? 'true' : 'false'; ?>"
-           data-brand="<?php echo esc_attr($brand_id); ?>"
-           style="--tab-color: <?php echo esc_attr($brand['primary_color']); ?>;">
-            <span class="pcz-brand-switcher__label"><?php echo esc_html(strtoupper($brand['name'])); ?></span>
-        </a>
-        <?php endforeach; ?>
-        <span class="pcz-brand-switcher__indicator" aria-hidden="true"></span>
+<!-- ==================== -->
+<!-- PRAVI HEADER         -->
+<!-- ==================== -->
+<div class="test-component">
+    <?php 
+    // ⚠️ UKLJUČI produkcijsku komponentu - IDENTIČNO kao u header testu!
+    include pcz_HEADER_PATH . '/mega-menu.php'; 
+    ?>
+</div>
+<!-- ==================== -->
+
+<!-- Brand Switcher Demo (Standalone - ispod headera) -->
+<section style="background: #f5f5f5; padding: 0;">
+    <div class="pcz-brand-switcher-wrapper">
+        <!-- Toggle Style Switcher (kompaktniji) -->
+        <div class="pcz-brand-switcher pcz-brand-switcher--toggle" 
+             data-current-brand="<?php echo esc_attr($current_brand); ?>"
+             role="tablist">
+            <div class="pcz-brand-switcher__tabs">
+                <?php foreach ($all_brands as $brand_id => $brand): 
+                    $is_active = ($brand_id === $current_brand);
+                    $brand_url = '?template=brand&brand=' . $brand_id;
+                ?>
+                <a href="<?php echo esc_url($brand_url); ?>"
+                   class="pcz-brand-switcher__tab <?php echo $is_active ? 'is-active' : ''; ?>"
+                   role="tab"
+                   aria-selected="<?php echo $is_active ? 'true' : 'false'; ?>"
+                   data-brand="<?php echo esc_attr($brand_id); ?>"
+                   style="--tab-color: <?php echo esc_attr($brand['primary_color']); ?>;">
+                    <span class="pcz-brand-switcher__label"><?php echo esc_html(strtoupper($brand['name'])); ?></span>
+                </a>
+                <?php endforeach; ?>
+                <span class="pcz-brand-switcher__indicator" aria-hidden="true"></span>
+            </div>
+        </div>
     </div>
-    
-    <p style="color: rgba(255,255,255,0.8); margin-top: 30px; font-size: 14px;">
-        👆 Klikni za promjenu branda (page reload)
-    </p>
 </section>
 
 <!-- Color Palette Section -->

@@ -44,15 +44,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Dohvati ACF field name za dropdown menu itema
  * 
+ * BRAND-AWARE: Vraća različite field names ovisno o aktivnom brandu:
+ * - Plesna Škola: ponuda_blokovi
+ * - Sportski Klub: spk_program_blokovi
+ * 
  * @param string $menu_item_title Naslov menu itema
  * @param string $menu_item_url URL menu itema
  * @return string|null ACF field name ili null
  */
 if ( ! function_exists( 'pcz_get_dropdown_field_name' ) ) {
 function pcz_get_dropdown_field_name( $menu_item_title, $menu_item_url ) {
-    // Provjeri WordPress menu meta (ako postoji)
-    if ( function_exists( 'get_post_meta' ) ) {
-        // Ovo bi trebalo raditi ako imamo menu item ID, ali za sada koristimo fallback
+    // Dohvati trenutni brand
+    $current_brand = 'plesna-skola'; // Default
+    if ( function_exists( 'pcz_get_current_brand_id' ) ) {
+        $current_brand = pcz_get_current_brand_id();
     }
     
     // Provjeri filter za custom konfiguraciju
@@ -61,12 +66,25 @@ function pcz_get_dropdown_field_name( $menu_item_title, $menu_item_url ) {
         return $config['acf_field'];
     }
     
-    // Default mapping - za backward compatibility
-    // Može se proširiti s više mapiranja
-    $default_mappings = apply_filters( 'pcz_header_dropdown_mappings', array(
-        'ponuda' => 'ponuda_blokovi',
-        // Dodaj više mapiranja ovdje po potrebi
-    ) );
+    // BRAND-AWARE mappings
+    // Definiraj mapiranja za svaki brand
+    $brand_mappings = array(
+        'plesna-skola' => array(
+            'ponuda' => 'ponuda_blokovi',
+        ),
+        'sportski-klub' => array(
+            'program' => 'spk_program_blokovi',
+            'ponuda'  => 'spk_program_blokovi',  // Alias za kompatibilnost
+        ),
+    );
+    
+    // Dohvati mapiranja za trenutni brand
+    $default_mappings = isset( $brand_mappings[ $current_brand ] ) 
+        ? $brand_mappings[ $current_brand ] 
+        : $brand_mappings['plesna-skola'];
+    
+    // Omogući filteranje
+    $default_mappings = apply_filters( 'pcz_header_dropdown_mappings', $default_mappings, $current_brand );
     
     $title_lower = strtolower( trim( $menu_item_title ) );
     if ( isset( $default_mappings[ $title_lower ] ) ) {
@@ -77,7 +95,11 @@ function pcz_get_dropdown_field_name( $menu_item_title, $menu_item_url ) {
     if ( $menu_item_url === '#' || empty( $menu_item_url ) || strpos( $menu_item_url, '#' ) === 0 ) {
         // Pokušaj pronaći ACF field po slug-u menu itema
         $slug = sanitize_title( $menu_item_title );
-        $field_name = $slug . '_blokovi'; // Default pattern
+        
+        // Brand-specific field pattern
+        $field_name = ( $current_brand === 'sportski-klub' ) 
+            ? 'spk_' . $slug . '_blokovi'
+            : $slug . '_blokovi';
         
         // Provjeri postoji li field
         if ( function_exists( 'get_field' ) ) {
@@ -245,8 +267,62 @@ foreach ( $nav_items as &$item ) {
 unset( $item ); // Oslobodi referencu
 
 // Fallback podaci za backward compatibility (ako nema ACF podataka)
-// Ovo se koristi samo ako je dropdown_field = 'ponuda_blokovi' i nema podataka
+// Koristi se samo ako nema ACF podataka za dropdown
 foreach ( $nav_items as &$item ) {
+    // SPK Program fallback
+    if ( $item['has_dropdown'] && empty( $item['dropdown_data'] ) && $item['dropdown_field'] === 'spk_program_blokovi' ) {
+        $item['dropdown_data'] = array(
+            // TRENINZI
+            array(
+                'naslov' => 'TRENINZI',
+                'podsekcije' => array(
+                    array(
+                        'naslov_podsekcije' => 'Raspored treninga',
+                        'page_link_podsekcije' => $site_url . 'sportski-klub/raspored/',
+                        'stavke' => array(),
+                    ),
+                    array(
+                        'naslov_podsekcije' => 'Naši rezultati',
+                        'page_link_podsekcije' => $site_url . 'sportski-klub/rezultati/',
+                        'stavke' => array(),
+                    ),
+                    array(
+                        'naslov_podsekcije' => 'Galerija',
+                        'page_link_podsekcije' => $site_url . 'sportski-klub/galerija/',
+                        'stavke' => array(),
+                    ),
+                    array(
+                        'naslov_podsekcije' => 'Projekti',
+                        'page_link_podsekcije' => $site_url . 'sportski-klub/projekti/',
+                        'stavke' => array(),
+                    ),
+                ),
+            ),
+            // DODATNI PROGRAMI
+            array(
+                'naslov' => 'DODATNI PROGRAMI',
+                'podsekcije' => array(
+                    array(
+                        'naslov_podsekcije' => 'Kampovi i radionice',
+                        'page_link_podsekcije' => $site_url . 'sportski-klub/kampovi/',
+                        'stavke' => array(),
+                    ),
+                    array(
+                        'naslov_podsekcije' => 'Privatna poduka',
+                        'page_link_podsekcije' => $site_url . 'sportski-klub/privatna-poduka/',
+                        'stavke' => array(),
+                    ),
+                    array(
+                        'naslov_podsekcije' => 'FAQ',
+                        'page_link_podsekcije' => $site_url . 'sportski-klub/faq/',
+                        'stavke' => array(),
+                    ),
+                ),
+            ),
+        );
+    }
+    
+    // PS Ponuda fallback (existing)
     if ( $item['has_dropdown'] && empty( $item['dropdown_data'] ) && $item['dropdown_field'] === 'ponuda_blokovi' ) {
         $item['dropdown_data'] = array(
             // PONUDA ZA ODRASLE
@@ -407,6 +483,8 @@ foreach ( $header_attrs as $attr => $value ) {
         
         <!-- Navigation -->
         <nav class="pcz-nav" id="pcz-nav" role="navigation" aria-label="Glavna navigacija">
+            <!-- Brand toggle je premješten IZVAN nav elementa za ispravno pozicioniranje -->
+            
             <ul class="pcz-nav__list">
                 <?php foreach ( $nav_items as $index => $item ) : ?>
                     <?php 
@@ -502,20 +580,65 @@ foreach ( $header_attrs as $attr => $value ) {
                 <?php endforeach; ?>
             </ul>
             
-            <!-- Mobile Toggle -->
-            <button class="pcz-nav__toggle" id="pcz-nav-toggle" aria-label="Otvori menu" aria-expanded="false" aria-controls="pcz-nav">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            
-            <?php 
-            // Hook za brand switcher ili druge elemente nakon navigacije
-            if ( function_exists('do_action') ) {
-                do_action( 'pcz_after_header_nav' );
-            }
-            ?>
         </nav>
+        
+        <?php 
+        // Brand Toggle (mini switcher u headeru)
+        // Pozicioniran IZVAN nav elementa za ispravno flexbox pozicioniranje
+        $show_header_toggle = false;
+        if ( function_exists( 'get_field' ) ) {
+            $switcher_position = get_field( 'brand_switcher_position', 'option' );
+            $show_header_toggle = ( $switcher_position === 'header' );
+        }
+        
+        // Osiguraj da je brand-switcher.php učitan prije korištenja pcz_render_brand_toggle()
+        // NAPOMENA: pzc-brand-init.php bi trebao učitati ovo rano, ali ovo je fallback
+        if ( $show_header_toggle && ! function_exists( 'pcz_render_brand_toggle' ) ) {
+            // Pokušaj učitati brand-switcher.php - ispravne putanje za WP uploads strukturu
+            $uploads_dir = wp_upload_dir();
+            $possible_paths = array(
+                // 1. WP Uploads - primarna lokacija (pcz-brand/ je sibling od pcz-header/)
+                trailingslashit( $uploads_dir['basedir'] ) . 'pcz-brand/brand-switcher.php',
+                // 2. Relativno od trenutnog fajla (za development/test okruženje)
+                dirname( __FILE__ ) . '/../brand/brand-switcher.php',
+                // 3. Child tema fallback
+                trailingslashit( get_stylesheet_directory() ) . 'pcz-brand/brand-switcher.php',
+            );
+            foreach ( $possible_paths as $path ) {
+                if ( file_exists( $path ) ) {
+                    require_once $path;
+                    break;
+                }
+            }
+        }
+        
+        if ( $show_header_toggle && function_exists( 'pcz_render_brand_toggle' ) ) :
+        ?>
+        <div class="pcz-header__brand-toggle">
+            <?php pcz_render_brand_toggle(); ?>
+        </div>
+        <?php 
+        elseif ( $show_header_toggle && current_user_can( 'manage_options' ) ) :
+            // Debug output za admine ako funkcija nije dostupna
+        ?>
+        <!-- PCZ DEBUG: pcz_render_brand_toggle() nije dostupna. Provjeri je li brand-switcher.php učitan. -->
+        <?php
+        endif;
+        ?>
+        
+        <!-- Mobile Toggle (Hamburger) - MORA biti nakon brand toggle za ispravni order -->
+        <button class="pcz-nav__toggle" id="pcz-nav-toggle" aria-label="Otvori menu" aria-expanded="false" aria-controls="pcz-nav">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <?php
+        // Hook za brand switcher ili druge elemente nakon navigacije
+        if ( function_exists('do_action') ) {
+            do_action( 'pcz_after_header_nav' );
+        }
+        ?>
         
     </div>
     

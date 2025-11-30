@@ -296,23 +296,39 @@ function pcz_is_brand( $brand_id ) {
 /**
  * Generiraj URL za specifični brand
  * 
+ * NAPOMENA: URL UVIJEK uključuje brand parametar, čak i za default brand.
+ * Ovo osigurava da se cookie ispravno postavi kad korisnik klikne na brand.
+ * Bez toga, cookie ostaje na prethodnom brandu i stranica ne radi ispravno.
+ * 
  * @param string $brand_id Brand ID
  * @param string|null $url Base URL (default: current URL)
  * @return string
  */
 function pcz_get_brand_url( $brand_id, $url = null ) {
     if ( $url === null ) {
-        $url = function_exists( 'home_url' ) ? home_url( '/' ) : '/';
+        // Koristi trenutni URL sa svim query parametrima
+        $current_url = function_exists( 'home_url' ) ? home_url( '/' ) : '/';
+        
+        // Provjeri da li smo u test okruženju (ima template parametar)
+        if ( isset( $_GET['template'] ) ) {
+            $current_url = add_query_arg( 'template', sanitize_key( $_GET['template'] ), $current_url );
+            
+            // Zadrži i scenario ako postoji
+            if ( isset( $_GET['scenario'] ) ) {
+                $current_url = add_query_arg( 'scenario', sanitize_key( $_GET['scenario'] ), $current_url );
+            }
+        }
+        
+        $url = $current_url;
     }
     
     // Ukloni postojeći brand parametar
     $url = remove_query_arg( 'brand', $url );
     
-    // Dodaj novi brand parametar (osim za default brand)
-    $defaults = pcz_get_brand_defaults();
-    if ( isset( $defaults[ $brand_id ] ) && ! $defaults[ $brand_id ]['is_default'] ) {
-        $url = add_query_arg( 'brand', $brand_id, $url );
-    }
+    // UVIJEK dodaj brand parametar - to osigurava da se cookie postavi ispravno
+    // Prije je bilo: samo za non-default brandove, što je uzrokovalo bug
+    // gdje je cookie ostajao na sportski-klub kad se prebacivalo na plesna-skola
+    $url = add_query_arg( 'brand', $brand_id, $url );
     
     return $url;
 }

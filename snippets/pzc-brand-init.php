@@ -81,6 +81,80 @@ function pcz_load_brand_core() {
 }
 
 // =============================================================================
+// LOAD BRAND SWITCHER EARLY (za header toggle support)
+// =============================================================================
+
+add_action( 'after_setup_theme', 'pcz_load_brand_switcher_early', 11 );
+function pcz_load_brand_switcher_early() {
+    $paths = pcz_get_brand_paths();
+    $switcher_file = $paths['path'] . 'brand-switcher.php';
+    
+    if ( file_exists( $switcher_file ) ) {
+        require_once $switcher_file;
+    }
+}
+
+// =============================================================================
+// BRAND-AWARE HEADER FILTERS
+// Ovi filteri omogućuju promjenu loga i klasa u headeru po brandu
+// =============================================================================
+
+/**
+ * Override header logo na temelju aktivnog branda
+ * Samo ako je brand_aware_header uključen u ACF postavkama
+ */
+add_filter( 'pcz_header_logo_url', 'pcz_brand_header_logo_filter', 10, 1 );
+function pcz_brand_header_logo_filter( $logo_url ) {
+    // Provjeri je li brand-aware header uključen
+    $brand_aware_header = false;
+    if ( function_exists( 'get_field' ) ) {
+        $brand_aware_header = get_field( 'brand_aware_header', 'option' );
+    }
+    
+    if ( ! $brand_aware_header ) {
+        return $logo_url;
+    }
+    
+    if ( ! function_exists( 'pcz_get_current_brand_id' ) || ! function_exists( 'get_field' ) ) {
+        return $logo_url;
+    }
+    
+    $brand_id = pcz_get_current_brand_id();
+    
+    // Dohvati brand-specifični logo
+    $brand_logo = null;
+    if ( $brand_id === 'plesna-skola' ) {
+        $brand_logo = get_field( 'ps_logo', 'option' );
+    } elseif ( $brand_id === 'sportski-klub' ) {
+        $brand_logo = get_field( 'spk_logo', 'option' );
+    }
+    
+    if ( ! empty( $brand_logo ) ) {
+        if ( is_array( $brand_logo ) && isset( $brand_logo['url'] ) ) {
+            return $brand_logo['url'];
+        } elseif ( is_numeric( $brand_logo ) ) {
+            $url = wp_get_attachment_image_url( $brand_logo, 'full' );
+            return $url ? $url : $logo_url;
+        } elseif ( is_string( $brand_logo ) ) {
+            return $brand_logo;
+        }
+    }
+    
+    return $logo_url;
+}
+
+/**
+ * Dodaj brand klasu na header element
+ */
+add_filter( 'pcz_header_classes', 'pcz_brand_header_classes_filter', 10, 1 );
+function pcz_brand_header_classes_filter( $classes ) {
+    if ( function_exists( 'pcz_get_current_brand_id' ) ) {
+        $classes .= ' brand-' . pcz_get_current_brand_id();
+    }
+    return $classes;
+}
+
+// =============================================================================
 // HOOKS - Body Class & Attribute
 // =============================================================================
 
@@ -177,6 +251,19 @@ function pcz_enqueue_brand_assets() {
 // Brand Switcher shortcode
 add_shortcode( 'pcz_brand_switcher', 'pcz_brand_switcher_shortcode_handler' );
 function pcz_brand_switcher_shortcode_handler( $atts ) {
+    // Dohvati atribute
+    $atts = shortcode_atts( [
+        'force' => false,  // Ako je true, ignoriraj duplicate protection
+    ], $atts, 'pcz_brand_switcher' );
+    
+    // Duplicate protection (osim ako nije force=true)
+    global $pcz_brand_switcher_rendered;
+    if ( ! $atts['force'] && ! empty( $pcz_brand_switcher_rendered ) ) {
+        return current_user_can( 'manage_options' ) 
+            ? '<!-- pcz Brand Switcher: Shortcode preskočen, switcher već renderiran -->' 
+            : '';
+    }
+    
     $paths = pcz_get_brand_paths();
     $switcher_file = $paths['path'] . 'brand-switcher.php';
     
@@ -190,6 +277,7 @@ function pcz_brand_switcher_shortcode_handler( $atts ) {
     require_once $switcher_file;
     
     if ( function_exists( 'pcz_brand_switcher_shortcode' ) ) {
+        $pcz_brand_switcher_rendered = true;  // Označi kao renderiran
         return pcz_brand_switcher_shortcode( $atts );
     }
     

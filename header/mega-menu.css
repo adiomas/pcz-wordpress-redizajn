@@ -39,13 +39,21 @@
 .pcz-header__container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start; /* Sve elemente gura lijevo */
     /* Responsive max-width - matches content sections */
     max-width: 1200px;
     margin: 0 auto;
     /* Responsive padding */
     padding: 0 clamp(16px, 4vw, 40px);
     height: var(--pcz-header-height);
+    gap: 16px; /* Razmak između elemenata */
+}
+
+/* Navigacija - uzima raspoloživi prostor, gura sadržaj desno */
+.pcz-nav {
+    flex: 1; /* Uzmi preostali prostor */
+    display: flex;
+    justify-content: flex-end; /* Menu items DESNO */
 }
 
 /* Accent Line - tanja */
@@ -682,5 +690,212 @@
         background: var(--pcz-primary);
         width: 8px;
     }
+}
+
+/* ==========================================================================
+   BRAND TOGGLE - Mini Switcher u Headeru
+   
+   Kompaktan toggle za prebacivanje između brandova.
+   Desktop: Skroz desno, mali i diskretan
+   Mobile: Lijevo od hamburger ikone
+   ========================================================================== */
+
+/* Desktop: Wrapper za mini toggle - odmah DESNO od navigacije */
+.pcz-header__brand-toggle {
+    display: flex;
+    align-items: center;
+    margin-left: 16px; /* Razmak od menija */
+    flex-shrink: 0;
+}
+
+/* ==========================================================================
+   MINI BRAND TOGGLE - MODERAN DIZAJN
+   
+   Dva kruga u brand bojama povezana linijom
+   Aktivni brand ima veći, sjajniji krug
+   Hover animacija na neaktivnom krugu
+   ========================================================================== */
+
+.pcz-brand-mini-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    padding: 6px 10px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.pcz-brand-mini-toggle:hover {
+    background: rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
+}
+
+/* Dots container */
+.pcz-brand-mini-toggle__dot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 2;
+}
+
+.pcz-brand-mini-toggle__dot svg {
+    width: 100%;
+    height: 100%;
+    color: var(--dot-color);
+    opacity: 0.4;
+    transition: all 0.3s ease;
+}
+
+/* Active state */
+.pcz-brand-mini-toggle__dot.is-active {
+    transform: scale(1.3);
+}
+
+.pcz-brand-mini-toggle__dot.is-active svg {
+    opacity: 1;
+    filter: drop-shadow(0 0 6px var(--dot-color));
+}
+
+/* Hover na neaktivni dot */
+.pcz-brand-mini-toggle:hover .pcz-brand-mini-toggle__dot:not(.is-active) {
+    transform: scale(1.15);
+}
+
+.pcz-brand-mini-toggle:hover .pcz-brand-mini-toggle__dot:not(.is-active) svg {
+    opacity: 0.8;
+}
+
+/* Track između dotova */
+.pcz-brand-mini-toggle__track {
+    width: 16px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 0 2px;
+    border-radius: 1px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Glow efekt na track-u */
+.pcz-brand-mini-toggle__track::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background: var(--pcz-primary);
+    border-radius: 50%;
+    opacity: 0.6;
+    filter: blur(4px);
+    transition: all 0.3s ease;
+}
+
+/* Pulse animacija na aktivnom dotu */
+.pcz-brand-mini-toggle__dot.is-active::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--dot-color);
+    opacity: 0.3;
+    animation: pcz-pulse 2s ease-in-out infinite;
+}
+
+@keyframes pcz-pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+    50% { transform: translate(-50%, -50%) scale(1.8); opacity: 0; }
+}
+
+/* ==========================================================================
+   MOBILE BRAND TOGGLE
+   - Toggle se prikazuje LIJEVO od hamburger ikone
+   - Hamburger ostaje desno
+   ========================================================================== */
+
+@media screen and (max-width: 991px) {
+    /* Header toggle - lijevo od hamburgera */
+    .pcz-header__brand-toggle {
+        display: flex;
+        order: 10; /* Prije hamburgera (hamburger ima order: 11) */
+        margin-left: auto;
+        margin-right: 10px;
+    }
+    
+    /* Hamburger uvijek zadnji */
+    .pcz-nav__toggle {
+        order: 11;
+    }
+    
+    /* Manji mini toggle na mobitelu */
+    .pcz-brand-mini-toggle {
+        padding: 5px 8px;
+    }
+    
+    .pcz-brand-mini-toggle__dot {
+        width: 12px;
+        height: 12px;
+    }
+    
+    .pcz-brand-mini-toggle__track {
+        width: 12px;
+    }
+}
+
+/* Još manji ekrani */
+@media screen and (max-width: 480px) {
+    .pcz-header__brand-toggle {
+        margin-right: 6px;
+    }
+    
+    .pcz-brand-mini-toggle {
+        padding: 4px 6px;
+    }
+    
+    .pcz-brand-mini-toggle__dot {
+        width: 10px;
+        height: 10px;
+    }
+    
+    .pcz-brand-mini-toggle__track {
+        width: 10px;
+        margin: 0 1px;
+    }
+    
+    .pcz-brand-mini-toggle__dot.is-active {
+        transform: scale(1.2);
+    }
+}
+
+/* ==========================================================================
+   BRAND-AWARE ACCENT LINE
+   
+   Accent linija se automatski mijenja prema aktivnom brandu.
+   ========================================================================== */
+
+[data-brand="plesna-skola"] .pcz-header__accent {
+    background: #C71585;
+}
+
+[data-brand="sportski-klub"] .pcz-header__accent {
+    background: #FF6B00;
+}
+
+/* Smooth transition za accent line */
+.pcz-header__accent {
+    transition: background-color 0.3s ease;
 }
 

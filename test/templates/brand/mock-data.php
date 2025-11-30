@@ -19,7 +19,8 @@ return [
         // Opće postavke
         'default_brand'        => 'plesna-skola',
         'brand_aware_header'   => true,
-        'brand_switcher_position' => 'hero',
+        'brand_switcher_enabled' => true,
+        'brand_switcher_position' => 'header', // Prikaži mini toggle u headeru!
         
         // === PLESNA ŠKOLA ===
         'site_logo' => '/header/header-logo.svg',

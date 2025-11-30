@@ -87,15 +87,23 @@ function pcz_brand_header_classes( $classes ) {
 }
 
 /**
- * Dodaj brand switcher u header (opcionalno)
+ * Dodaj MINI brand toggle u header (opcionalno)
+ * 
+ * NAPOMENA: mega-menu.php već ima ugrađenu podršku za ovo,
+ * pa ovaj hook treba samo ako se koristi brand-aware-header.php wrapper
+ * UMJESTO direktnog uključivanja mega-menu.php
  */
 add_action( 'pcz_after_header_nav', 'pcz_inject_brand_switcher_in_header' );
 function pcz_inject_brand_switcher_in_header() {
+    // ONEMOGUĆENO - mega-menu.php već renderira toggle direktno u headeru
+    // Ovo bi uzrokovalo duplikat!
+    return;
+    
+    /* Stari kod - zakomentiran jer uzrokuje probleme
     if ( ! function_exists( 'get_field' ) ) {
         return;
     }
     
-    // Provjeri je li switcher uključen
     $enabled = get_field( 'brand_switcher_enabled', 'option' );
     if ( ! $enabled ) {
         return;
@@ -103,21 +111,12 @@ function pcz_inject_brand_switcher_in_header() {
     
     $position = get_field( 'brand_switcher_position', 'option' );
     
-    if ( $position === 'header' ) {
-        $switcher_file = dirname( __FILE__ ) . '/brand-switcher.php';
-        if ( file_exists( $switcher_file ) ) {
-            require_once $switcher_file;
-            
-            if ( function_exists( 'pcz_render_brand_switcher' ) ) {
-                echo '<div class="pcz-header__brand-switcher">';
-                // U headeru koristi manju verziju bez obzira na ACF postavke
-                pcz_render_brand_switcher([
-                    'size' => 'small',
-                ]);
+    if ( $position === 'header' && function_exists( 'pcz_render_brand_toggle' ) ) {
+        echo '<div class="pcz-header__brand-toggle">';
+        pcz_render_brand_toggle();
                 echo '</div>';
-            }
-        }
     }
+    */
 }
 
 // =============================================================================

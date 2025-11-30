@@ -4,6 +4,43 @@
         "title": "Footer Settings",
         "fields": [
             {
+                "key": "field_footer_tab_logo",
+                "label": "Logo",
+                "name": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "placement": "top"
+            },
+            {
+                "key": "field_footer_logo_height_desktop",
+                "label": "Visina loga - Desktop",
+                "name": "footer_logo_height_desktop",
+                "type": "number",
+                "instructions": "Visina loga u pikselima za desktop. Preporučeno: 40-60px",
+                "required": 0,
+                "default_value": 50,
+                "placeholder": "50",
+                "min": 20,
+                "max": 120,
+                "step": 1,
+                "append": "px"
+            },
+            {
+                "key": "field_footer_logo_height_mobile",
+                "label": "Visina loga - Mobile",
+                "name": "footer_logo_height_mobile",
+                "type": "number",
+                "instructions": "Visina loga u pikselima za mobilne uređaje. Preporučeno: 32-48px",
+                "required": 0,
+                "default_value": 40,
+                "placeholder": "40",
+                "min": 16,
+                "max": 80,
+                "step": 1,
+                "append": "px"
+            },
+            {
                 "key": "field_footer_tab_radno",
                 "label": "Radno Vrijeme",
                 "name": "",

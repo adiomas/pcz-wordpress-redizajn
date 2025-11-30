@@ -75,6 +75,9 @@
         // Handle browser back/forward
         window.addEventListener('popstate', handlePopState);
         
+        // Restore scroll position if coming from reload fallback
+        restoreScrollFromUrl();
+        
         console.log('[pcz Brand] Initialized:', state.currentBrand);
     }
     
@@ -175,6 +178,9 @@
     /**
      * Check if smooth transition should be used
      * (Disable for accessibility, slow connections, etc.)
+     * 
+     * OPTIMIZIRANO: Koristi smooth CSS transition za brže prebacivanje.
+     * CSS varijable se ažuriraju odmah, a page reload samo ako je nužno.
      */
     function shouldUseSmoothTransition() {
         // Check for reduced motion preference
@@ -187,7 +193,34 @@
             return false;
         }
         
+        // OPTIMIZACIJA: Uvijek koristi smooth transition
+        // CSS varijable će se ažurirati odmah, bez reloada
+        // Elementi koji koriste CSS varijable automatski mijenjaju boju
         return true;
+    }
+    
+    /**
+     * Provjeri može li se sadržaj prebaciti samo s CSS-om
+     * Ako ne, potreban je page reload za dohvat novog sadržaja
+     */
+    function canSwitchWithCssOnly() {
+        // Elementi koji se mogu prebaciti samo s CSS-om:
+        // - Sekcije s klasom pcz-poznati (imaju CSS visibility)
+        // - Elementi koji koriste CSS varijable za boje
+        
+        // Elementi koji ZAHTIJEVAJU reload:
+        // - Menu sadržaj (različite stavke za svaki brand)
+        // - Dinamički sadržaj iz ACF-a specifičan za brand
+        
+        // Za sada, ako je samo homepage, može CSS-only
+        const isHomepage = window.location.pathname === '/' || 
+                          window.location.pathname === '/index.php' ||
+                          document.body.classList.contains('home');
+        
+        // Provjeri ima li brand-specific menu sadržaja
+        const hasBrandMenu = document.querySelector('[data-brand-menu]');
+        
+        return isHomepage && !hasBrandMenu;
     }
     
     // =============================================================================
@@ -195,7 +228,13 @@
     // =============================================================================
     
     /**
-     * Switch to a new brand
+     * Switch to a new brand - OPTIMIZED for speed
+     * 
+     * OPTIMIZACIJA:
+     * 1. CSS varijable se ažuriraju ODMAH (instant color change)
+     * 2. Overlay se prikazuje kratko (samo 150ms)
+     * 3. Cookie se postavlja za persistence
+     * 4. Page reload SAMO ako je potreban za sadržaj koji ovisi o brandu
      */
     async function switchBrand(newBrand, url) {
         if (state.isTransitioning) return;
@@ -204,47 +243,100 @@
         state.isTransitioning = true;
         const oldBrand = state.currentBrand;
         
-        // Show transition overlay
-        showTransitionOverlay();
+        // Sačuvaj scroll poziciju PRIJE tranzicije
+        const scrollPosition = window.scrollY;
         
-        try {
-            // Update CSS variables immediately
-            updateCssVariables(newBrand);
+        // OPTIMIZACIJA: Odmah ažuriraj CSS - korisnik vidi promjenu INSTANT
+        updateCssVariables(newBrand);
+        
+        // Update body attribute - CSS selektori reagiraju odmah
+        document.body.dataset.brand = newBrand;
+        document.body.classList.remove(`pcz-brand-${oldBrand}`);
+        document.body.classList.add(`pcz-brand-${newBrand}`);
+        
+        // Save to storage ODMAH (prije bilo čega drugog)
+        saveBrandToStorage(newBrand);
+        
+        // Update switcher UI
+        updateSwitcherUI(newBrand);
+        
+        // Update state
+        state.currentBrand = newBrand;
+        
+        // Trigger custom event (za ostale komponente koje slušaju)
+        dispatchBrandChangeEvent(newBrand, oldBrand);
+        
+        // Provjeri treba li page reload (za sadržaj koji ovisi o brandu)
+        const needsContentReload = checkIfContentReloadNeeded();
+        
+        if (needsContentReload && url) {
+            // Kratki overlay za smooth vizualni prijelaz
+            showTransitionOverlay(newBrand);
+            await delay(100); // Kratka pauza da korisnik vidi promjenu boje
             
-            // Update body attribute
-            document.body.dataset.brand = newBrand;
-            document.body.classList.remove(`pcz-brand-${oldBrand}`);
-            document.body.classList.add(`pcz-brand-${newBrand}`);
-            
-            // Update switcher UI
-            updateSwitcherUI(newBrand);
-            
-            // Update URL without reload
-            if (url) {
-                history.pushState({ brand: newBrand }, '', url);
-            }
-            
-            // Save to storage
-            saveBrandToStorage(newBrand);
-            
-            // Update state
-            state.currentBrand = newBrand;
-            
-            // Trigger custom event
-            dispatchBrandChangeEvent(newBrand, oldBrand);
-            
-            // Wait for CSS transition
-            await delay(CONFIG.animation.duration);
-            
-        } catch (error) {
-            console.error('[pcz Brand] Switch failed:', error);
-            // Fallback: reload page
-            if (url) {
-                window.location.href = url;
-            }
-        } finally {
-            hideTransitionOverlay();
-            state.isTransitioning = false;
+            // Dodaj scroll parameter za restore nakon reload-a
+            const separator = url.includes('?') ? '&' : '?';
+            window.location.href = `${url}${separator}_scrollY=${scrollPosition}`;
+            return;
+        }
+        
+        // SMOOTH TRANSITION - bez reload-a
+        // Update URL without reload
+        if (url) {
+            history.pushState({ brand: newBrand, scrollY: scrollPosition }, '', url);
+        }
+        
+        // Kratka animacija za vizualni feedback
+        await delay(50);
+        
+        state.isTransitioning = false;
+    }
+    
+    /**
+     * Provjeri trebaju li elementi page reload za novi sadržaj
+     * 
+     * NAPOMENA: Hero, Poznati, Footer koriste CSS varijable - ne trebaju reload.
+     * Menu može imati brand-specific sadržaj - treba reload.
+     */
+    function checkIfContentReloadNeeded() {
+        // Elementi koji ZAHTIJEVAJU reload (imaju brand-specific sadržaj)
+        const needsReload = document.querySelectorAll('[data-brand-content-needs-reload]');
+        if (needsReload.length > 0) {
+            return true;
+        }
+        
+        // Mega menu - provjeri ima li brand-specific stavke
+        const megaMenu = document.querySelector('.pcz-mega-dropdown');
+        if (megaMenu && megaMenu.hasAttribute('data-brand-menu')) {
+            return true;
+        }
+        
+        // Default: ne treba reload, CSS je dovoljan
+        return false;
+    }
+    
+    /**
+     * Restore scroll position from URL parameter (after page reload fallback)
+     */
+    function restoreScrollFromUrl() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const scrollY = urlParams.get('_scrollY');
+        
+        if (scrollY && !isNaN(parseInt(scrollY))) {
+            // Kratka odgoda da se stranica renderira
+            setTimeout(() => {
+                window.scrollTo({
+                    top: parseInt(scrollY),
+                    behavior: 'instant'
+                });
+                
+                // Očisti URL parameter
+                urlParams.delete('_scrollY');
+                const newUrl = urlParams.toString() 
+                    ? `${window.location.pathname}?${urlParams.toString()}`
+                    : window.location.pathname;
+                history.replaceState(null, '', newUrl);
+            }, 100);
         }
     }
     
@@ -335,7 +427,8 @@
                 currentSpan.textContent = currentBrand.shortName;
                 otherSpan.textContent = otherBrand.shortName;
                 toggle.dataset.brand = otherBrandId;
-                toggle.href = `?brand=${otherBrandId}`;
+                // UVIJEK koristi brand parameter - za oba branda
+                toggle.href = `${window.location.pathname}?brand=${otherBrandId}`;
             }
         });
     }
@@ -344,13 +437,73 @@
     // TRANSITION OVERLAY
     // =============================================================================
     
-    function showTransitionOverlay() {
+    /**
+     * Show lightweight transition overlay - OPTIMIZED
+     * 
+     * Koristi lagani fade umjesto blur efekta za bolju performansu.
+     * Kraći duration za bržu percepciju.
+     */
+    function showTransitionOverlay(targetBrand) {
         let overlay = document.querySelector('.pcz-brand-transition-overlay');
         
         if (!overlay) {
             overlay = document.createElement('div');
             overlay.className = 'pcz-brand-transition-overlay';
+            overlay.innerHTML = `
+                <div class="pcz-brand-transition-overlay__content">
+                    <div class="pcz-brand-transition-overlay__spinner"></div>
+                </div>
+            `;
             document.body.appendChild(overlay);
+            
+            // Inject CSS for overlay if not exists - OPTIMIZED styles
+            if (!document.querySelector('#pcz-brand-overlay-styles')) {
+                const style = document.createElement('style');
+                style.id = 'pcz-brand-overlay-styles';
+                style.textContent = `
+                    .pcz-brand-transition-overlay {
+                        position: fixed;
+                        inset: 0;
+                        background: rgba(255, 255, 255, 0.85);
+                        z-index: 99999;
+                        opacity: 0;
+                        visibility: hidden;
+                        transition: opacity 0.1s ease-out, visibility 0.1s ease-out;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        will-change: opacity;
+                    }
+                    .pcz-brand-transition-overlay.is-active {
+                        opacity: 1;
+                        visibility: visible;
+                    }
+                    .pcz-brand-transition-overlay__content {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    .pcz-brand-transition-overlay__spinner {
+                        width: 32px;
+                        height: 32px;
+                        border: 3px solid rgba(0, 0, 0, 0.1);
+                        border-top-color: var(--pcz-primary, #C71585);
+                        border-radius: 50%;
+                        animation: pcz-spin 0.6s linear infinite;
+                        will-change: transform;
+                    }
+                    @keyframes pcz-spin {
+                        to { transform: rotate(360deg); }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        }
+        
+        // Odmah ažuriraj boju spinnera za novi brand
+        const spinner = overlay.querySelector('.pcz-brand-transition-overlay__spinner');
+        if (spinner && targetBrand && state.brands[targetBrand]) {
+            spinner.style.borderTopColor = state.brands[targetBrand].primaryColor;
         }
         
         // Force reflow
@@ -465,9 +618,9 @@
          */
         switchTo: function(brandId) {
             if (state.brands[brandId]) {
-                const url = brandId === 'plesna-skola' 
-                    ? window.location.pathname 
-                    : `${window.location.pathname}?brand=${brandId}`;
+                // UVIJEK koristi brand parameter u URL-u
+                // Ovo osigurava da se cookie postavi ispravno
+                const url = `${window.location.pathname}?brand=${brandId}`;
                 switchBrand(brandId, url);
             }
         },

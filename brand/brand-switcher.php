@@ -256,6 +256,9 @@ function pcz_get_brand_icon( $brand_id ) {
 /**
  * Render compact brand toggle (za header)
  * 
+ * DIZAJN: Moderan pill toggle s dva kruga u brand bojama
+ * Aktivni brand ima veći krug, klik prebacuje na drugi brand
+ * 
  * @return void
  */
 function pcz_render_brand_toggle() {
@@ -276,14 +279,25 @@ function pcz_render_brand_toggle() {
     }
     
     $other_brand = $brands[ $other_brand_id ];
+    $is_ps_active = ( $current['id'] === 'plesna-skola' );
     ?>
     <a href="<?php echo esc_url( pcz_get_brand_url( $other_brand_id ) ); ?>"
-       class="pcz-brand-toggle"
+       class="pcz-brand-mini-toggle"
        title="Prebaci na <?php echo esc_attr( $other_brand['name'] ); ?>"
-       data-brand="<?php echo esc_attr( $other_brand_id ); ?>">
-        <span class="pcz-brand-toggle__current"><?php echo esc_html( $current['short_name'] ); ?></span>
-        <span class="pcz-brand-toggle__separator">/</span>
-        <span class="pcz-brand-toggle__other"><?php echo esc_html( $other_brand['short_name'] ); ?></span>
+       data-brand="<?php echo esc_attr( $other_brand_id ); ?>"
+       data-current="<?php echo esc_attr( $current['id'] ); ?>">
+        <!-- Plesna Škola dot -->
+        <span class="pcz-brand-mini-toggle__dot pcz-brand-mini-toggle__dot--ps <?php echo $is_ps_active ? 'is-active' : ''; ?>"
+              style="--dot-color: #C71585;">
+            <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+        </span>
+        <!-- Slider track -->
+        <span class="pcz-brand-mini-toggle__track"></span>
+        <!-- Sportski Klub dot -->
+        <span class="pcz-brand-mini-toggle__dot pcz-brand-mini-toggle__dot--spk <?php echo !$is_ps_active ? 'is-active' : ''; ?>"
+              style="--dot-color: #FF6B00;">
+            <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+        </span>
     </a>
     <?php
 }

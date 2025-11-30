@@ -98,13 +98,14 @@
 .pcz-hero__tagline {
     font-family: 'Dancing Script', 'Pacifico', 'Brush Script MT', cursive;
     font-size: clamp(1.5rem, 3vw, 2.2rem);
-    color: var(--pcz-primary);
+    color: var(--pcz-primary, #C71585);
     margin: 0 0 10px;
     font-weight: 400;
     line-height: 1.2;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     transform: rotate(-3deg);
     transform-origin: left center;
+    transition: color 0.3s ease;
 }
 
 /* ==========================================================================
@@ -144,8 +145,8 @@
 .pcz-hero__cta {
     display: inline-block;
     padding: 16px 36px;
-    background: var(--pcz-primary);
-    color: var(--pcz-light);
+    background: var(--pcz-primary, #C71585);
+    color: var(--pcz-light, #ffffff);
     font-family: inherit;
     font-size: 0.95rem;
     font-weight: 700;
@@ -153,14 +154,14 @@
     letter-spacing: 1.5px;
     text-decoration: none;
     border-radius: 30px;
-    transition: all var(--pcz-transition);
-    box-shadow: 0 4px 15px rgba(199, 21, 133, 0.4);
+    transition: all var(--pcz-transition, 0.25s ease);
+    box-shadow: var(--pcz-shadow-brand, 0 4px 15px rgba(199, 21, 133, 0.4));
 }
 
 .pcz-hero__cta:hover {
-    background: var(--pcz-primary-hover);
+    background: var(--pcz-primary-hover, #a01269);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(199, 21, 133, 0.5);
+    box-shadow: var(--pcz-shadow-brand-hover, 0 6px 20px rgba(199, 21, 133, 0.5));
 }
 
 .pcz-hero__cta:active {
@@ -242,7 +243,7 @@
 }
 
 .pcz-hero__social-link:hover {
-    color: var(--pcz-primary);
+    color: var(--pcz-primary, #C71585);
 }
 
 .pcz-hero__social-link:hover svg {

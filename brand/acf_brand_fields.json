@@ -63,6 +63,20 @@
                 "conditional_logic": [[{"field": "field_brand_switcher_enabled", "operator": "==", "value": "1"}]]
             },
             {
+                "key": "field_brand_switcher_position",
+                "label": "Pozicija",
+                "name": "brand_switcher_position",
+                "type": "select",
+                "instructions": "Gdje se switcher automatski prikazuje. Odaberi 'Ručno' ako želiš koristiti [pcz_brand_switcher] shortcode.",
+                "choices": {
+                    "hero": "Ispod Hero sekcije (automatski)",
+                    "header": "U headeru (mini toggle)",
+                    "manual": "Ručno (shortcode)"
+                },
+                "default_value": "hero",
+                "conditional_logic": [[{"field": "field_brand_switcher_enabled", "operator": "==", "value": "1"}]]
+            },
+            {
                 "key": "field_brand_switcher_size",
                 "label": "Veličina",
                 "name": "brand_switcher_size",

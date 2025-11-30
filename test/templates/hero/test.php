@@ -4,6 +4,7 @@
  * 
  * Testira hero/hero.php komponentu s mock podacima
  * Uključuje pravi header komponent za realan kontekst
+ * BRAND-AWARE: Podržava prebacivanje između brandova
  * 
  * @package pcz_Test_Environment
  * @since 1.0.0
@@ -16,8 +17,11 @@
 require_once __DIR__ . '/../../core/bootstrap.php';
 
 // =============================================================================
-// LOAD MOCK DATA - Header + Hero
+// LOAD MOCK DATA - Header + Hero + Brand
 // =============================================================================
+
+// Učitaj brand mock data (za brand konfiguraciju)
+$brand_mock_data = require __DIR__ . '/../brand/mock-data.php';
 
 // Prvo učitaj header mock data (za navigaciju)
 $header_mock_data = require __DIR__ . '/../header/mock-data.php';
@@ -34,6 +38,26 @@ if (isset($hero_mock_data['acf_fields'])) {
     );
     $GLOBALS['pcz_mock_data']['acf_options'] = $GLOBALS['pcz_mock_data']['acf_fields'];
 }
+
+// =============================================================================
+// BRAND DETECTION & CONFIGURATION
+// =============================================================================
+
+// Dohvati brand iz URL parametra
+$current_brand = $_GET['brand'] ?? 'plesna-skola';
+if (!isset($brand_mock_data['brands'][$current_brand])) {
+    $current_brand = 'plesna-skola';
+}
+
+$brand_config = $brand_mock_data['brands'][$current_brand];
+$all_brands = $brand_mock_data['brands'];
+
+// Učitaj brand funkcije - BITNO za pcz_get_current_brand_id()!
+require_once pcz_BRAND_PATH . '/brand.php';
+require_once pcz_BRAND_PATH . '/brand-switcher.php';
+
+// Simuliraj cookie za brand (jer nemamo pravi cookie u testu)
+$_COOKIE['pcz_brand'] = $current_brand;
 
 // =============================================================================
 // APPLY SCENARIO
@@ -72,8 +96,23 @@ $header_path = pcz_HEADER_PATH . '/mega-menu.php';
     <!-- Header CSS -->
     <link rel="stylesheet" href="/header/mega-menu.css">
     
-    <!-- Hero CSS -->
+    <!-- Hero CSS (BASE stilovi - učitaj PRVO) -->
     <link rel="stylesheet" href="/hero/hero.css">
+    
+    <!-- Brand CSS (OVERRIDE stilovi - učitaj POSLJEDNJE!) -->
+    <link rel="stylesheet" href="/brand/brand.css">
+    
+    <!-- Brand CSS Variables - dinamički za trenutni brand -->
+    <style id="pcz-brand-css">
+    :root {
+        /* Brand: <?php echo esc_html($brand_config['name']); ?> */
+        --pcz-primary: <?php echo esc_html($brand_config['primary_color']); ?>;
+        --pcz-primary-hover: <?php echo esc_html($brand_config['primary_hover']); ?>;
+        --pcz-secondary: <?php echo esc_html($brand_config['secondary_color']); ?>;
+        --pcz-accent: <?php echo esc_html($brand_config['accent_color']); ?>;
+        --pcz-gradient: <?php echo esc_html($brand_config['gradient']); ?>;
+    }
+    </style>
     
     <style>
         /* ==========================================================================
@@ -192,7 +231,7 @@ $header_path = pcz_HEADER_PATH . '/mega-menu.php';
         }
     </style>
 </head>
-<body>
+<body class="pcz-brand-<?php echo esc_attr($current_brand); ?>" data-brand="<?php echo esc_attr($current_brand); ?>">
 
 <div class="test-preview" id="test-preview">
     
@@ -249,10 +288,23 @@ $header_path = pcz_HEADER_PATH . '/mega-menu.php';
     </div>
     
     <div class="test-panel__section">
+        <span class="test-panel__label">Brand:</span>
+        <select class="test-panel__select" onchange="window.location.href=this.value" style="min-width: 140px;">
+            <?php foreach ($all_brands as $brand_id => $brand): ?>
+                <option value="?template=hero&brand=<?php echo esc_attr($brand_id); ?>&scenario=<?php echo esc_attr($current_scenario); ?>"
+                    <?php echo ($brand_id === $current_brand) ? ' selected' : ''; ?>
+                    style="color: <?php echo esc_attr($brand['primary_color']); ?>">
+                    <?php echo esc_html($brand['name']); ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+    </div>
+    
+    <div class="test-panel__section">
         <span class="test-panel__label">Scenario:</span>
         <select class="test-panel__select" onchange="window.location.href=this.value">
             <?php foreach ($available_scenarios as $scenario): ?>
-                <option value="<?php echo esc_attr(get_test_url($current_template, $scenario)); ?>"
+                <option value="?template=hero&brand=<?php echo esc_attr($current_brand); ?>&scenario=<?php echo esc_attr($scenario); ?>"
                     <?php echo ($scenario === $current_scenario) ? ' selected' : ''; ?>>
                     <?php echo esc_html(ucfirst(str_replace(['_', '-'], ' ', $scenario))); ?>
                 </option>
@@ -271,8 +323,19 @@ $header_path = pcz_HEADER_PATH . '/mega-menu.php';
     </div>
 </div>
 
+<!-- Brand JSON Data (za JavaScript) -->
+<script id="pcz-brand-data" type="application/json">
+<?php echo json_encode([
+    'current' => $current_brand,
+    'brands'  => $all_brands,
+], JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP); ?>
+</script>
+
 <!-- Header JS -->
 <script src="/header/mega-menu.js"></script>
+
+<!-- Brand JS -->
+<script src="/brand/brand.js"></script>
 
 <!-- Test Environment JS -->
 <script>
@@ -310,6 +373,7 @@ $header_path = pcz_HEADER_PATH . '/mega-menu.php';
     console.log('%c🧪 pcz Test Environment', 'font-size: 16px; font-weight: bold; color: #C71585;');
     console.log('Current template: hero');
     console.log('Current scenario: <?php echo esc_js($current_scenario); ?>');
+    console.log('Current brand: <?php echo esc_js($current_brand); ?>');
     console.log('Press 1-4 to change viewport size');
 })();
 </script>
