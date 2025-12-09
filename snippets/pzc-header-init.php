@@ -273,14 +273,14 @@ function pcz_enqueue_header_assets() {
     }
     
     // Mobile Menu V2 CSS (override stilovi za mobile)
-    if ( file_exists( $paths['path'] . 'mega-menu-mobile-v2.css' ) ) {
-        wp_enqueue_style( 
-            'pcz-mega-menu-mobile-v2', 
-            $paths['url'] . 'mega-menu-mobile-v2.css', 
-            array( 'pcz-mega-menu' ), // Dependency - mora se učitati NAKON glavnog CSS-a
-            filemtime( $paths['path'] . 'mega-menu-mobile-v2.css' )
-        );
-    }
+    // if ( file_exists( $paths['path'] . 'mega-menu-mobile-v2.css' ) ) {
+    //     wp_enqueue_style( 
+    //         'pcz-mega-menu-mobile-v2', 
+    //         $paths['url'] . 'mega-menu-mobile-v2.css', 
+    //         array( 'pcz-mega-menu' ), // Dependency - mora se učitati NAKON glavnog CSS-a
+    //         filemtime( $paths['path'] . 'mega-menu-mobile-v2.css' )
+    //     );
+    // }
     
     // JavaScript
     if ( file_exists( $paths['path'] . 'mega-menu.js' ) ) {

@@ -61,11 +61,11 @@ if ( file_exists( $css ) ) {
 }
 
 // Mobile Menu V2 CSS (override stilovi za mobile)
-$mobile_css = dirname( $header_path ) . '/mega-menu-mobile-v2.css';
-if ( file_exists( $mobile_css ) ) {
-    $mobile_css_version = $cache_bust . '-' . filemtime( $mobile_css );
-    echo '<link rel="stylesheet" href="' . esc_url( $header_url . 'mega-menu-mobile-v2.css?v=' . $mobile_css_version ) . '">';
-}
+// $mobile_css = dirname( $header_path ) . '/mega-menu-mobile-v2.css';
+// if ( file_exists( $mobile_css ) ) {
+//     $mobile_css_version = $cache_bust . '-' . filemtime( $mobile_css );
+//     echo '<link rel="stylesheet" href="' . esc_url( $header_url . 'mega-menu-mobile-v2.css?v=' . $mobile_css_version ) . '">';
+// }
 
 // =============================================================================
 // UČITAJ PHP TEMPLATE
