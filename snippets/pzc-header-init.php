@@ -272,6 +272,16 @@ function pcz_enqueue_header_assets() {
         );
     }
     
+    // Mobile Menu V2 CSS (override stilovi za mobile)
+    if ( file_exists( $paths['path'] . 'mega-menu-mobile-v2.css' ) ) {
+        wp_enqueue_style( 
+            'pcz-mega-menu-mobile-v2', 
+            $paths['url'] . 'mega-menu-mobile-v2.css', 
+            array( 'pcz-mega-menu' ), // Dependency - mora se učitati NAKON glavnog CSS-a
+            filemtime( $paths['path'] . 'mega-menu-mobile-v2.css' )
+        );
+    }
+    
     // JavaScript
     if ( file_exists( $paths['path'] . 'mega-menu.js' ) ) {
         wp_enqueue_script( 
@@ -312,7 +322,7 @@ function pcz_header_admin_notice() {
     $paths = pcz_get_header_paths();
     $missing_files = array();
     
-    $required_files = array( 'mega-menu.php', 'mega-menu.css', 'mega-menu.js' );
+    $required_files = array( 'mega-menu.php', 'mega-menu.css', 'mega-menu-mobile-v2.css', 'mega-menu.js' );
     foreach ( $required_files as $file ) {
         if ( ! file_exists( $paths['path'] . $file ) ) {
             $missing_files[] = $file;
