@@ -1,0 +1,186 @@
+[
+    {
+        "key": "group_upoznajte_settings",
+        "title": "Upoznajte nas",
+        "fields": [
+            {
+                "key": "field_upoznajte_info",
+                "label": "",
+                "name": "",
+                "type": "message",
+                "instructions": "",
+                "required": 0,
+                "message": "<strong>Upoznajte nas</strong><br>Sekcija za upoznavanje s plesnom školom - vlasnici, misija, vizija. Prikazuje se SAMO za brand \"Plesna Škola\" (ne za Sportski Klub).<br><br><strong>Pozadinska slika:</strong> Slika se prikazuje preko cijele sekcije s niskim opacityem. Možete postaviti različite slike za desktop i mobile.",
+                "new_lines": "wpautop",
+                "esc_html": 0
+            },
+            {
+                "key": "field_upoznajte_naslov",
+                "label": "Naslov Sekcije",
+                "name": "upoznajte_naslov",
+                "type": "text",
+                "instructions": "Glavni naslov sekcije (prikazuje se VELIKIM SLOVIMA u magenta boji).",
+                "required": 0,
+                "default_value": "UPOZNAJTE NAS",
+                "placeholder": "UPOZNAJTE NAS"
+            },
+            {
+                "key": "field_upoznajte_slogan_tab",
+                "label": "Slogan",
+                "name": "",
+                "type": "tab",
+                "placement": "top"
+            },
+            {
+                "key": "field_upoznajte_slogan",
+                "label": "Slogan (rukopisni tekst)",
+                "name": "upoznajte_slogan",
+                "type": "text",
+                "instructions": "Kratki slogan koji se prikazuje u rukopisnom fontu desno od naslova.",
+                "required": 0,
+                "default_value": "Za trapave noge i vesele duše",
+                "placeholder": "Za trapave noge i vesele duše"
+            },
+            {
+                "key": "field_upoznajte_slogan_highlight_1",
+                "label": "Istaknuta riječ 1",
+                "name": "upoznajte_slogan_highlight_1",
+                "type": "text",
+                "instructions": "Prva riječ u sloganu koja će biti prikazana u magenta boji.",
+                "required": 0,
+                "default_value": "trapave",
+                "placeholder": "trapave",
+                "wrapper": {
+                    "width": "50%"
+                }
+            },
+            {
+                "key": "field_upoznajte_slogan_highlight_2",
+                "label": "Istaknuta riječ 2",
+                "name": "upoznajte_slogan_highlight_2",
+                "type": "text",
+                "instructions": "Druga riječ u sloganu koja će biti prikazana u magenta boji.",
+                "required": 0,
+                "default_value": "vesele",
+                "placeholder": "vesele",
+                "wrapper": {
+                    "width": "50%"
+                }
+            },
+            {
+                "key": "field_upoznajte_slike_tab",
+                "label": "Pozadinske slike",
+                "name": "",
+                "type": "tab",
+                "placement": "top"
+            },
+            {
+                "key": "field_upoznajte_slika",
+                "label": "Pozadinska slika (Desktop)",
+                "name": "upoznajte_slika",
+                "type": "image",
+                "instructions": "Fotografija vlasnika/instruktora za desktop prikaz. Preporučena dimenzija: 1920x1080px ili veće. Slika se prikazuje preko cijele sekcije s niskim opacityem.",
+                "required": 0,
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "min_width": 1200,
+                "min_height": 600,
+                "mime_types": "jpg, jpeg, png, webp"
+            },
+            {
+                "key": "field_upoznajte_slika_mobile",
+                "label": "Pozadinska slika (Mobile)",
+                "name": "upoznajte_slika_mobile",
+                "type": "image",
+                "instructions": "Opcionalna fotografija za mobilne uređaje. Ako nije postavljena, koristi se desktop slika. Preporučena dimenzija: 800x1200px (portrait format).",
+                "required": 0,
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "min_width": 600,
+                "min_height": 400,
+                "mime_types": "jpg, jpeg, png, webp"
+            },
+            {
+                "key": "field_upoznajte_opacity",
+                "label": "Opacity pozadinske slike",
+                "name": "upoznajte_opacity",
+                "type": "range",
+                "instructions": "Kontrolira koliko je pozadinska slika vidljiva. Niža vrijednost = slika je više vidljiva (manje bijelog overlay-a). Viša vrijednost = slika je manje vidljiva (više bijelog overlay-a). Preporučeno: 30-50.",
+                "required": 0,
+                "default_value": 40,
+                "min": 0,
+                "max": 100,
+                "step": 5,
+                "append": "%"
+            },
+            {
+                "key": "field_upoznajte_tekst_tab",
+                "label": "Sadržaj",
+                "name": "",
+                "type": "tab",
+                "placement": "top"
+            },
+            {
+                "key": "field_upoznajte_podnaslov",
+                "label": "Podnaslov",
+                "name": "upoznajte_podnaslov",
+                "type": "text",
+                "instructions": "Podnaslov koji se prikazuje iznad glavnog teksta.",
+                "required": 0,
+                "default_value": "Prvi korak je Vaš ostali su naši",
+                "placeholder": "Prvi korak je Vaš ostali su naši"
+            },
+            {
+                "key": "field_upoznajte_tekst",
+                "label": "Glavni tekst",
+                "name": "upoznajte_tekst",
+                "type": "textarea",
+                "instructions": "Uvodni paragraf o plesnoj školi.",
+                "required": 0,
+                "rows": 4,
+                "placeholder": "U današnjem vremenu stalnih promjena, brojnih ponuda i odluka, dobro je imati jednu konstantu – nešto sigurno, pouzdano dobro, provjereno, svoje...",
+                "new_lines": ""
+            },
+            {
+                "key": "field_upoznajte_istaknut_tekst",
+                "label": "Istaknut tekst (bold)",
+                "name": "upoznajte_istaknut_tekst",
+                "type": "text",
+                "instructions": "Tekst koji će biti prikazan podebljanim slovima u magenta boji (npr. naziv škole).",
+                "required": 0,
+                "default_value": "Plesni centar Zagreb by Nicolas",
+                "placeholder": "Plesni centar Zagreb by Nicolas"
+            },
+            {
+                "key": "field_upoznajte_nastavak_teksta",
+                "label": "Nastavak teksta",
+                "name": "upoznajte_nastavak_teksta",
+                "type": "textarea",
+                "instructions": "Tekst koji dolazi nakon istaknutog dijela.",
+                "required": 0,
+                "rows": 3,
+                "placeholder": "– najprepoznatljiviji, najprisutniji i najraznolikiji je Plesni centar u Hrvatskoj! Već više godina smo na samom vrhu, zajedno s vama! Veselimo se Vašem posjetu",
+                "new_lines": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "options_page",
+                    "operator": "==",
+                    "value": "site-settings"
+                }
+            ]
+        ],
+        "menu_order": 12,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "Sekcija za upoznavanje s plesnom školom - vlasnici, misija, vizija"
+    }
+]

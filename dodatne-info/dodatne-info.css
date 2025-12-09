@@ -1,0 +1,474 @@
+/**
+ * pcz "Dodatne Informacije" - Kompletni Stilovi
+ * 
+ * Grid ikona s linkovima na dodatne informacije
+ * SAMO za Sportski Klub brand - narančasta tema (#FF6B00)
+ * 
+ * @package pcz_Redizajn
+ * @since 1.0.0
+ */
+
+/* ==========================================================================
+   CSS Variables (Sportski Klub - Narančasta tema)
+   ========================================================================== */
+
+:root {
+    --pcz-di-primary: #FF6B00;
+    --pcz-di-primary-light: #ff8533;
+    --pcz-di-primary-lighter: #ffa366;
+    --pcz-di-primary-pale: #ffcc99;
+    --pcz-di-dark: #3d3d3d;
+    --pcz-di-light: #ffffff;
+    --pcz-di-bg-end: #f5f5f5;
+    --pcz-di-transition: 0.3s ease;
+    /* Jača pozadina za bolje isticanje kutija */
+    --pcz-di-icon-bg: rgba(255, 255, 255, 0.92);
+    --pcz-di-icon-bg-hover: rgba(255, 255, 255, 1);
+}
+
+/* ==========================================================================
+   DODATNE INFO SECTION - Main Container
+   ========================================================================== */
+
+.pcz-dodatne-info {
+    /* Gradient: narančasta gore → glatki prijelaz → neutralna pozadina */
+    background: linear-gradient(
+        180deg,
+        var(--pcz-di-primary) 0%,
+        var(--pcz-di-primary-light) 20%,
+        var(--pcz-di-primary-lighter) 40%,
+        var(--pcz-di-primary-pale) 60%,
+        #ffe6cc 75%,
+        #fff0e6 85%,
+        var(--pcz-di-bg-end) 100%
+    );
+    padding: 55px 20px 100px;
+    position: relative;
+    overflow: visible;
+}
+
+.pcz-dodatne-info__container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   HEADER / TITLE
+   ========================================================================== */
+
+.pcz-dodatne-info__header {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.pcz-dodatne-info__title {
+    font-family: inherit;
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    font-weight: 800;
+    color: var(--pcz-di-light);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* ==========================================================================
+   GRID - Icon Items
+   ========================================================================== */
+
+.pcz-dodatne-info__grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   INDIVIDUAL ITEM
+   ========================================================================== */
+
+.pcz-dodatne-info__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    min-width: 90px;
+    max-width: 110px;
+    flex: 0 0 auto;
+    opacity: 0;
+    transform: translateY(15px);
+    animation: pcz-di-fadeInUp 0.4s ease forwards;
+    transition: transform var(--pcz-di-transition);
+}
+
+/* Staggered animation */
+.pcz-dodatne-info__item:nth-child(1) { animation-delay: 0.05s; }
+.pcz-dodatne-info__item:nth-child(2) { animation-delay: 0.1s; }
+.pcz-dodatne-info__item:nth-child(3) { animation-delay: 0.15s; }
+.pcz-dodatne-info__item:nth-child(4) { animation-delay: 0.2s; }
+.pcz-dodatne-info__item:nth-child(5) { animation-delay: 0.25s; }
+.pcz-dodatne-info__item:nth-child(6) { animation-delay: 0.3s; }
+.pcz-dodatne-info__item:nth-child(7) { animation-delay: 0.35s; }
+.pcz-dodatne-info__item:nth-child(8) { animation-delay: 0.4s; }
+.pcz-dodatne-info__item:nth-child(9) { animation-delay: 0.45s; }
+.pcz-dodatne-info__item:nth-child(10) { animation-delay: 0.5s; }
+
+@keyframes pcz-di-fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.pcz-dodatne-info__item:hover {
+    transform: translateY(-5px);
+}
+
+/* ==========================================================================
+   ICON WRAPPER - Rounded Square Box
+   ========================================================================== */
+
+.pcz-dodatne-info__icon-wrapper {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--pcz-di-icon-bg);
+    border-radius: 14px;
+    margin-bottom: 12px;
+    transition: all var(--pcz-di-transition);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+}
+
+.pcz-dodatne-info__item:hover .pcz-dodatne-info__icon-wrapper {
+    background: var(--pcz-di-icon-bg-hover);
+    transform: scale(1.08);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
+}
+
+/* SVG Icons - narančasta boja za kontrast na bijeloj pozadini */
+.pcz-dodatne-info__icon-wrapper svg {
+    width: 34px;
+    height: 34px;
+    color: var(--pcz-di-primary);
+    stroke: var(--pcz-di-primary);
+    transition: transform var(--pcz-di-transition), color var(--pcz-di-transition);
+}
+
+.pcz-dodatne-info__item:hover .pcz-dodatne-info__icon-wrapper svg {
+    transform: scale(1.1);
+    color: var(--pcz-di-primary-light);
+    stroke: var(--pcz-di-primary-light);
+}
+
+/* Text/Emoji Icons */
+.pcz-dodatne-info__icon-text {
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--pcz-di-primary);
+}
+
+/* ==========================================================================
+   LABEL - Text Below Icon
+   ========================================================================== */
+
+.pcz-dodatne-info__label {
+    font-family: inherit;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--pcz-di-light);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: center;
+    line-height: 1.3;
+    transition: color var(--pcz-di-transition);
+    /* Suptilna sjena za bolju čitljivost na gradientu */
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+.pcz-dodatne-info__item:hover .pcz-dodatne-info__label {
+    color: var(--pcz-di-light);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
+}
+
+/* ==========================================================================
+   EMPTY STATE
+   ========================================================================== */
+
+.pcz-dodatne-info--empty {
+    text-align: center;
+}
+
+.pcz-dodatne-info--empty a {
+    color: var(--pcz-di-light);
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   RESPONSIVE - Tablet
+   ========================================================================== */
+
+@media screen and (max-width: 1024px) {
+    .pcz-dodatne-info {
+        padding: 50px 20px 90px;
+    }
+    
+    .pcz-dodatne-info__grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px 15px;
+        max-width: 100%;
+    }
+    
+    .pcz-dodatne-info__item {
+        min-width: auto;
+        max-width: none;
+        width: 100%;
+    }
+    
+    .pcz-dodatne-info__icon-wrapper {
+        width: 65px;
+        height: 65px;
+        border-radius: 12px;
+        margin: 0 auto 12px;
+    }
+    
+    .pcz-dodatne-info__icon-wrapper svg {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVE - Mobile
+   ========================================================================== */
+
+@media screen and (max-width: 768px) {
+    .pcz-dodatne-info {
+        padding: 45px 15px 80px;
+    }
+    
+    .pcz-dodatne-info__header {
+        margin-bottom: 35px;
+    }
+    
+    .pcz-dodatne-info__title {
+        letter-spacing: 2px;
+        font-size: 1.4rem;
+    }
+    
+    /* Grid layout - 3 kolone za bolju strukturu */
+    .pcz-dodatne-info__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 28px 12px;
+        max-width: 100%;
+        justify-items: center;
+    }
+    
+    .pcz-dodatne-info__item {
+        min-width: auto;
+        max-width: none;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .pcz-dodatne-info__icon-wrapper {
+        width: 64px;
+        height: 64px;
+        border-radius: 12px;
+        margin-bottom: 12px;
+    }
+    
+    .pcz-dodatne-info__icon-wrapper svg {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .pcz-dodatne-info__label {
+        font-size: 0.65rem;
+        letter-spacing: 0.3px;
+        text-align: center;
+        line-height: 1.3;
+        padding: 0 4px;
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVE - Small Mobile
+   ========================================================================== */
+
+@media screen and (max-width: 480px) {
+    .pcz-dodatne-info {
+        padding: 40px 12px 70px;
+    }
+    
+    /* Grid layout - 3 kolone, manji gap */
+    .pcz-dodatne-info__grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px 8px;
+    }
+    
+    .pcz-dodatne-info__item {
+        width: 100%;
+    }
+    
+    .pcz-dodatne-info__icon-wrapper {
+        width: 56px;
+        height: 56px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .pcz-dodatne-info__icon-wrapper svg {
+        width: 26px;
+        height: 26px;
+    }
+    
+    .pcz-dodatne-info__icon-text {
+        font-size: 1.5rem;
+    }
+    
+    .pcz-dodatne-info__label {
+        font-size: 0.6rem;
+        letter-spacing: 0.2px;
+        padding: 0 2px;
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVE - Very Small Mobile (< 360px)
+   ========================================================================== */
+
+@media screen and (max-width: 360px) {
+    .pcz-dodatne-info {
+        padding: 35px 10px 60px;
+    }
+    
+    /* Grid layout - 2 kolone za vrlo male ekrane */
+    .pcz-dodatne-info__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 28px 16px;
+    }
+    
+    .pcz-dodatne-info__icon-wrapper {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .pcz-dodatne-info__icon-wrapper svg {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .pcz-dodatne-info__label {
+        font-size: 0.65rem;
+    }
+}
+
+/* ==========================================================================
+   BRAND VISIBILITY - Smooth Transitions
+   
+   Omogućuje glatko sakrivanje/prikazivanje sekcije pri brand switchingu.
+   Koristi CSS umjesto PHP za smooth transitions bez page reload-a.
+   ========================================================================== */
+
+/* Default: Vidljivo */
+.pcz-dodatne-info--visible {
+    opacity: 1;
+    max-height: 1500px;
+    overflow: visible;
+    transition: opacity 0.4s ease, max-height 0.5s ease;
+}
+
+/* Skriveno za druge brandove */
+.pcz-dodatne-info--hidden {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin: 0 !important;
+    transition: opacity 0.3s ease, max-height 0.4s ease 0.1s, padding 0.4s ease;
+    pointer-events: none;
+}
+
+/* Sakrivanje za Plesna Škola brand (default) - ova sekcija je SAMO za Sportski Klub */
+[data-brand="plesna-skola"] .pcz-dodatne-info:not(.pcz-dodatne-info--force-show) {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin: 0 !important;
+    transition: opacity 0.3s ease, max-height 0.4s ease 0.1s, padding 0.4s ease;
+    pointer-events: none;
+}
+
+/* Klasa za prisilno prikazivanje */
+.pcz-dodatne-info--force-show {
+    opacity: 1 !important;
+    max-height: 1500px !important;
+    overflow: visible !important;
+}
+
+/* ==========================================================================
+   ACCESSIBILITY - Focus States
+   ========================================================================== */
+
+.pcz-dodatne-info__item:focus {
+    outline: 2px solid var(--pcz-di-light);
+    outline-offset: 4px;
+    border-radius: 8px;
+}
+
+.pcz-dodatne-info__item:focus:not(:focus-visible) {
+    outline: none;
+}
+
+.pcz-dodatne-info__item:focus-visible {
+    outline: 2px solid var(--pcz-di-light);
+    outline-offset: 4px;
+    border-radius: 8px;
+}
+
+/* ==========================================================================
+   PRINT STYLES
+   ========================================================================== */
+
+@media print {
+    .pcz-dodatne-info {
+        background: white !important;
+        padding: 40px 20px;
+        page-break-inside: avoid;
+    }
+    
+    .pcz-dodatne-info__title {
+        color: black !important;
+    }
+    
+    .pcz-dodatne-info__icon-wrapper {
+        background: #ddd !important;
+        box-shadow: none;
+    }
+    
+    .pcz-dodatne-info__icon-wrapper svg {
+        color: black !important;
+    }
+    
+    .pcz-dodatne-info__label {
+        color: black !important;
+    }
+    
+    .pcz-dodatne-info__item {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+}
+

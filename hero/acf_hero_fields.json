@@ -55,9 +55,9 @@
             "label": "CTA Gumb - Link",
             "name": "hero_cta_link",
             "type": "text",
-            "instructions": "URL na koji vodi CTA gumb. Za sekciju na istoj stranici koristi # (npr. #kontakt). Za druge stranice koristi puni URL.",
-            "default_value": "#kontakt",
-            "placeholder": "#kontakt ili https://pcz.hr/kontakt"
+            "instructions": "URL na koji vodi CTA gumb.\n\n<strong>Za scroll na sekciju na istoj stranici:</strong>\n• #prijava - Prijava forma\n• #forma - Alternativa za prijavu\n• #kontakt - Kontakt sekcija\n\n<strong>Za druge stranice:</strong> koristi puni URL (https://pcz.hr/kontakt)",
+            "default_value": "#prijava",
+            "placeholder": "#prijava ili https://pcz.hr/kontakt"
         },
         {
             "key": "field_hero_intro_tab",

@@ -77,6 +77,7 @@ function pcz_get_brand_defaults() {
  * 
  * @return string Brand ID
  */
+if ( ! function_exists( 'pcz_get_current_brand_id' ) ) {
 function pcz_get_current_brand_id() {
     $brands = pcz_get_brand_defaults();
     $valid_brands = array_keys( $brands );
@@ -118,15 +119,18 @@ function pcz_get_current_brand_id() {
     // 5. Hardcoded default
     return 'plesna-skola';
 }
+}
 
 /**
  * Dohvati kompletne podatke trenutnog branda
  * 
  * @return array Brand konfiguracija + ACF override
  */
+if ( ! function_exists( 'pcz_get_current_brand' ) ) {
 function pcz_get_current_brand() {
     $brand_id = pcz_get_current_brand_id();
     return pcz_get_brand_data( $brand_id );
+}
 }
 
 /**
@@ -135,6 +139,7 @@ function pcz_get_current_brand() {
  * @param string $brand_id Brand ID
  * @return array
  */
+if ( ! function_exists( 'pcz_get_brand_data' ) ) {
 function pcz_get_brand_data( $brand_id ) {
     $defaults = pcz_get_brand_defaults();
     
@@ -173,12 +178,14 @@ function pcz_get_brand_data( $brand_id ) {
     
     return $brand;
 }
+}
 
 /**
  * Dohvati socijalne mreže za trenutni brand
  * 
  * @return array
  */
+if ( ! function_exists( 'pcz_get_brand_social_links' ) ) {
 function pcz_get_brand_social_links() {
     $brand = pcz_get_current_brand();
     
@@ -187,6 +194,7 @@ function pcz_get_brand_social_links() {
     }
     
     return [];
+}
 }
 
 // =============================================================================
@@ -199,6 +207,7 @@ function pcz_get_brand_social_links() {
  * @param string $brand_id Brand ID
  * @return void
  */
+if ( ! function_exists( 'pcz_set_brand_cookie' ) ) {
 function pcz_set_brand_cookie( $brand_id ) {
     if ( ! headers_sent() && ! defined( 'pcz_TEST_ENVIRONMENT' ) ) {
         setcookie( 
@@ -212,6 +221,7 @@ function pcz_set_brand_cookie( $brand_id ) {
         );
     }
 }
+}
 
 // =============================================================================
 // CSS VARIABLES OUTPUT
@@ -222,6 +232,7 @@ function pcz_set_brand_cookie( $brand_id ) {
  * 
  * @return string CSS
  */
+if ( ! function_exists( 'pcz_get_brand_css_variables' ) ) {
 function pcz_get_brand_css_variables() {
     $brand = pcz_get_current_brand();
     
@@ -244,15 +255,18 @@ function pcz_get_brand_css_variables() {
     
     return $css;
 }
+}
 
 /**
  * Ispiši CSS varijable u <head>
  */
+if ( ! function_exists( 'pcz_output_brand_css' ) ) {
 function pcz_output_brand_css() {
     $brand = pcz_get_current_brand();
     echo '<style id="pcz-brand-css">' . "\n";
     echo pcz_get_brand_css_variables();
     echo '</style>' . "\n";
+}
 }
 
 // =============================================================================
@@ -265,18 +279,22 @@ function pcz_output_brand_css() {
  * @param array $classes
  * @return array
  */
+if ( ! function_exists( 'pcz_body_brand_class' ) ) {
 function pcz_body_brand_class( $classes ) {
     $brand = pcz_get_current_brand();
     $classes[] = 'pcz-brand-' . $brand['id'];
     return $classes;
 }
+}
 
 /**
  * Dodaj data-brand attribute na body tag (za JS/CSS)
  */
+if ( ! function_exists( 'pcz_body_brand_attribute' ) ) {
 function pcz_body_brand_attribute() {
     $brand = pcz_get_current_brand();
     echo ' data-brand="' . esc_attr( $brand['id'] ) . '"';
+}
 }
 
 // =============================================================================

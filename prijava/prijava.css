@@ -1,0 +1,872 @@
+/**
+ * PCZ "Želim plesati!" - Prijava Sekcija Stilovi
+ * 
+ * Elegantna forma za prijavu s brand-aware bojama.
+ * Koristi Gravity Forms CSS klase gdje je moguće.
+ * 
+ * @package PCZ_Redizajn
+ * @since 1.0.0
+ */
+
+/* ==========================================================================
+   CSS Variables
+   ========================================================================== */
+
+:root {
+    --prijava-bg: #f5f5f5;
+    --prijava-bg-gradient: linear-gradient(180deg, #f5f5f5 0%, #ffffff 100%);
+    --prijava-text: #333333;
+    --prijava-text-muted: #666666;
+    --prijava-accent: var(--brand-primary, #CB007C);
+    --prijava-accent-hover: var(--brand-primary-hover, #a00063);
+    --prijava-border: #CB007C;
+    --prijava-border-light: rgba(203, 0, 124, 0.3);
+    --prijava-input-bg: #ffffff;
+    --prijava-input-border: 2px solid var(--prijava-border);
+    --prijava-radius: 30px;
+    --prijava-radius-sm: 8px;
+    --prijava-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --prijava-shadow: 0 4px 20px rgba(203, 0, 124, 0.15);
+    --prijava-shadow-focus: 0 0 0 4px rgba(203, 0, 124, 0.15);
+    --prijava-max-width: 680px;
+}
+
+/* Brand Override za Sportski Klub */
+[data-brand="sportski-klub"] .pcz-prijava,
+.pcz-prijava--brand-sportski-klub {
+    --prijava-accent: var(--brand-primary, #FF6B00);
+    --prijava-accent-hover: var(--brand-primary-hover, #e05f00);
+    --prijava-border: #FF6B00;
+    --prijava-border-light: rgba(255, 107, 0, 0.3);
+    --prijava-shadow: 0 4px 20px rgba(255, 107, 0, 0.15);
+    --prijava-shadow-focus: 0 0 0 4px rgba(255, 107, 0, 0.15);
+}
+
+/* ==========================================================================
+   MAIN SECTION
+   ========================================================================== */
+
+.pcz-prijava {
+    background: var(--prijava-bg);
+    padding: 80px 24px;
+    position: relative;
+    overflow: hidden;
+}
+
+.pcz-prijava--gradient {
+    background: var(--prijava-bg-gradient);
+}
+
+/* Anchor za smooth scroll */
+.pcz-prijava__anchor {
+    position: absolute;
+    top: -100px; /* Offset za header */
+    visibility: hidden;
+}
+
+.pcz-prijava__container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
+
+.pcz-prijava__header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.pcz-prijava__title {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--prijava-accent);
+    letter-spacing: 1px;
+    margin: 0 0 16px 0;
+    line-height: 1.2;
+}
+
+.pcz-prijava__subtitle {
+    font-family: inherit;
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    font-weight: 400;
+    color: var(--prijava-text);
+    line-height: 1.6;
+    margin: 0;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ==========================================================================
+   FORM WRAPPER
+   ========================================================================== */
+
+.pcz-prijava__form-wrapper {
+    max-width: var(--prijava-max-width);
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   GRAVITY FORMS OVERRIDES
+   ========================================================================== */
+
+/* Container */
+.pcz-prijava .gform_wrapper {
+    margin: 0;
+    padding: 0;
+}
+
+.pcz-prijava .gform_wrapper.gravity-theme {
+    --gf-color-primary: var(--prijava-accent);
+    --gf-color-in-ctrl-primary: var(--prijava-accent);
+    --gf-ctrl-border-color: var(--prijava-border);
+    --gf-ctrl-border-radius: var(--prijava-radius);
+}
+
+/* Form Body */
+.pcz-prijava .gform_body {
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+/* Field Containers */
+.pcz-prijava .gfield {
+    margin-bottom: 14px !important;
+}
+
+/* Labels - hidden for cleaner look (placeholders will show) */
+.pcz-prijava .gfield_label,
+.pcz-prijava .gform_wrapper .gfield_label {
+    display: none !important;
+}
+
+
+/* Input Fields - Pill Shape with Brand Border */
+.pcz-prijava .ginput_container input[type="text"],
+.pcz-prijava .ginput_container input[type="email"],
+.pcz-prijava .ginput_container input[type="tel"],
+.pcz-prijava .ginput_container input[type="number"],
+.pcz-prijava .ginput_container textarea,
+.pcz-prijava .ginput_container select,
+.pcz-prijava .gform_wrapper input:not([type="radio"]):not([type="checkbox"]):not([type="submit"]):not([type="button"]):not([type="image"]):not([type="file"]),
+.pcz-prijava .gform_wrapper select,
+.pcz-prijava .gform_wrapper textarea {
+    width: 100% !important;
+    padding: 14px 24px !important;
+    font-family: inherit !important;
+    font-size: 1rem !important;
+    color: var(--prijava-text) !important;
+    background: var(--prijava-input-bg) !important;
+    border: 2px solid var(--prijava-border) !important;
+    border-radius: var(--prijava-radius) !important;
+    outline: none !important;
+    box-shadow: none !important;
+    transition: 
+        border-color var(--prijava-transition),
+        box-shadow var(--prijava-transition),
+        background var(--prijava-transition) !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    height: auto !important;
+    line-height: 1.4 !important;
+}
+
+.pcz-prijava .ginput_container input::placeholder,
+.pcz-prijava .ginput_container textarea::placeholder,
+.pcz-prijava .gform_wrapper input::placeholder {
+    color: var(--prijava-text-muted) !important;
+    opacity: 0.7 !important;
+}
+
+/* Focus State */
+.pcz-prijava .ginput_container input:focus,
+.pcz-prijava .ginput_container textarea:focus,
+.pcz-prijava .ginput_container select:focus,
+.pcz-prijava .gform_wrapper input:focus,
+.pcz-prijava .gform_wrapper select:focus {
+    border-color: var(--prijava-accent) !important;
+    box-shadow: 0 0 0 3px rgba(203, 0, 124, 0.15) !important;
+    background: #fff !important;
+}
+
+/* Select Dropdown - sakrij native arrow i prikaži samo custom */
+.pcz-prijava .ginput_container select,
+.pcz-prijava .gform_wrapper select {
+    cursor: pointer !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23CB007C'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 18px center !important;
+    background-size: 18px !important;
+    background-color: #fff !important;
+    padding-right: 50px !important;
+    /* Sakrij native dropdown arrow */
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+}
+
+/* Sakrij native arrow za Firefox */
+.pcz-prijava .ginput_container select::-moz-focus-inner,
+.pcz-prijava .gform_wrapper select::-moz-focus-inner {
+    border: 0 !important;
+}
+
+.pcz-prijava .ginput_container select::-ms-expand,
+.pcz-prijava .gform_wrapper select::-ms-expand {
+    display: none !important;
+}
+
+[data-brand="sportski-klub"] .pcz-prijava .ginput_container select,
+[data-brand="sportski-klub"] .pcz-prijava .gform_wrapper select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23FF6B00'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 18px center !important;
+    background-size: 18px !important;
+    background-color: #fff !important;
+}
+
+/* ==========================================================================
+   CHECKBOX & CONSENT - ISPRAVLJENI STILOVI
+   Koriste se TOČNI Gravity Forms selektori iz dokumentacije
+   Override globalnih stilova iz custom.css
+   ========================================================================== */
+
+/* 1. GFIELD WRAPPER - poravnaj s input poljima (input ima padding-left: 24px) */
+body .pcz-prijava .gform_wrapper .gform_body .gform_fields .gfield.gfield--type-checkbox,
+body .pcz-prijava .gform_wrapper .gform_body .gform_fields .gfield.gfield--type-consent {
+    padding: 0 !important;
+    margin-bottom: 12px !important;
+    /* Poravnaj lijevi rub checkboxa s lijevim rubom input polja */
+    padding-left: 0 !important;
+}
+
+/* 2. CHECKBOX CONTAINERS - svi nivoi, ukloni padding i margin */
+body .pcz-prijava .gform_wrapper .gform_body .gform_fields .gfield .ginput_container_checkbox,
+body .pcz-prijava .gform_wrapper .gform_body .gform_fields .gfield .gfield_checkbox,
+body .pcz-prijava .gform_wrapper .gform_body .gform_fields .gfield ul.gfield_checkbox {
+    padding: 0 !important;
+    margin: 0 !important;
+    list-style: none !important;
+}
+
+/* 3. GCHOICE ROW (checkbox) - HORIZONTALNI FLEX, poravnaj s input poljima */
+body .pcz-prijava .gform_wrapper .gform_body .gform_fields .gfield .gfield_checkbox .gchoice,
+body .pcz-prijava .gform_wrapper .gform_body .gform_fields .gfield ul.gfield_checkbox li {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    gap: 12px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    /* Poravnaj lijevi rub checkboxa s lijevim rubom input polja (input ima padding-left: 24px) */
+    padding-left: 24px !important;
+}
+
+/* 4. CONSENT CONTAINER - HORIZONTALNI FLEX, poravnaj s input poljima */
+body .pcz-prijava .gform_wrapper .gform_body .gform_fields .gfield .ginput_container.ginput_container_consent,
+body .pcz-prijava .gform_wrapper .gform_body .gform_fields .ginput_container_consent {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    gap: 12px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    position: static !important; /* Override position: relative iz custom.css */
+    /* Poravnaj lijevi rub s input poljima - input ima padding-left: 24px */
+    padding-left: 24px !important;
+}
+
+/* 5. CHECKBOX INPUT - oba tipa, override globalnih stilova */
+body .pcz-prijava .gform_wrapper .gform_body .gform_fields .gfield .gfield_checkbox input[type=checkbox],
+body .pcz-prijava .gform_wrapper .gform_body .gform_fields .gfield ul.gfield_checkbox li input[type=checkbox],
+body .pcz-prijava .gform_wrapper .gform_body .gform_fields .ginput_container_consent input[type=checkbox] {
+    width: 20px !important;
+    height: 20px !important;
+    min-width: 20px !important;
+    flex-shrink: 0 !important;
+    margin: 0 !important;
+    cursor: pointer !important;
+    accent-color: var(--prijava-accent) !important;
+    /* Override globalnih stilova iz custom.css */
+    opacity: 1 !important; /* Override opacity: 0 */
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+/* 6. LABEL - oba tipa - moraju biti flex itemi, override globalnih stilova */
+body .pcz-prijava .gform_wrapper .gform_body .gform_fields .gfield .gfield_checkbox .gchoice label,
+body .pcz-prijava .gform_wrapper .gform_body .gform_fields .gfield ul.gfield_checkbox li label,
+body .pcz-prijava .gform_wrapper .gform_body .gform_fields .ginput_container_consent label {
+    display: inline !important; /* Override display: inline-block iz custom.css - NE flex jer uzrokuje gubitak razmaka */
+    flex: 1 1 auto !important; /* Flex item unutar parent containera */
+    font-size: 0.9375rem !important;
+    color: var(--prijava-text-muted) !important;
+    cursor: pointer !important;
+    margin: 0 !important;
+    padding: 0 !important; /* Override padding-left: 35px iz custom.css */
+    line-height: 1.5 !important;
+    position: static !important; /* Override position: relative iz custom.css */
+    white-space: normal !important; /* Osiguraj da se razmaci prikazuju */
+    word-spacing: normal !important; /* Osiguraj normalne razmake između riječi */
+}
+
+/* 7. Ukloni custom checkbox pseudo-elemente iz globalnih stilova */
+body .pcz-prijava .gform_wrapper .gform_body .gform_fields .gfield .gfield_checkbox .gchoice label::before,
+body .pcz-prijava .gform_wrapper .gform_body .gform_fields .gfield ul.gfield_checkbox li label::before,
+body .pcz-prijava .gform_wrapper .gform_body .gform_fields .ginput_container_consent label::before {
+    content: none !important;
+    display: none !important;
+}
+
+body .pcz-prijava .gform_wrapper .gform_body .gform_fields .gfield .gfield_checkbox .gchoice label::after,
+body .pcz-prijava .gform_wrapper .gform_body .gform_fields .gfield ul.gfield_checkbox li label::after,
+body .pcz-prijava .gform_wrapper .gform_body .gform_fields .ginput_container_consent label::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* 7. LINK u labelu - osiguraj razmake oko linka */
+body .pcz-prijava .gform_wrapper .gfield_checkbox label a,
+body .pcz-prijava .gform_wrapper .ginput_container_consent label a {
+    color: var(--prijava-accent) !important;
+    text-decoration: underline !important;
+    white-space: normal !important; /* Osiguraj razmake */
+    display: inline !important; /* Link mora biti inline da zadrži razmake */
+}
+
+body .pcz-prijava .gform_wrapper .gfield_checkbox label a:hover,
+body .pcz-prijava .gform_wrapper .ginput_container_consent label a:hover {
+    text-decoration: none !important;
+}
+
+/* reCAPTCHA Container - CENTERED */
+.pcz-prijava .gfield--type-captcha,
+.pcz-prijava .gfield_captcha_container,
+.pcz-prijava .ginput_recaptcha,
+.pcz-prijava .gfield_captcha {
+    margin-top: 20px !important;
+    margin-bottom: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    padding: 0 !important;
+}
+
+.pcz-prijava .ginput_recaptcha > div,
+.pcz-prijava .g-recaptcha {
+    transform-origin: center top !important;
+    margin: 0 auto !important;
+}
+
+/* reCAPTCHA error message - centered below */
+.pcz-prijava .gfield--type-captcha .validation_message,
+.pcz-prijava .gfield_captcha .validation_message {
+    text-align: center !important;
+    margin-top: 8px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* Submit Button - Full width like fields */
+.pcz-prijava .gform_button,
+.pcz-prijava .gform_footer input[type="submit"],
+.pcz-prijava .gform_wrapper input[type="submit"] {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 16px 48px !important;
+    margin: 0 !important;
+    font-family: inherit !important;
+    font-size: 0.95rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 2px !important;
+    color: #ffffff !important;
+    background: var(--prijava-accent) !important;
+    border: none !important;
+    border-radius: var(--prijava-radius) !important;
+    cursor: pointer !important;
+    transition: 
+        background var(--prijava-transition),
+        transform var(--prijava-transition),
+        box-shadow var(--prijava-transition) !important;
+    box-shadow: 0 4px 15px rgba(203, 0, 124, 0.3) !important;
+}
+
+.pcz-prijava .gform_footer {
+    text-align: left !important;
+    margin-top: 24px !important;
+    padding: 0 !important;
+}
+
+.pcz-prijava .gform_button:hover,
+.pcz-prijava .gform_footer input[type="submit"]:hover,
+.pcz-prijava .gform_wrapper input[type="submit"]:hover {
+    background: var(--prijava-accent-hover) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(203, 0, 124, 0.4) !important;
+}
+
+.pcz-prijava .gform_button:active,
+.pcz-prijava .gform_footer input[type="submit"]:active {
+    transform: translateY(0) !important;
+}
+
+/* Validation Errors - Input Border */
+.pcz-prijava .gfield_error .ginput_container input,
+.pcz-prijava .gfield_error .ginput_container select,
+.pcz-prijava .gfield_error .ginput_container textarea,
+.pcz-prijava .gfield_error input,
+.pcz-prijava .gfield_error select,
+.pcz-prijava .gfield_error textarea {
+    border-color: #dc3545 !important;
+    border-width: 2px !important;
+}
+
+/* Validation Error Messages - Always below field */
+.pcz-prijava .validation_message,
+.pcz-prijava .gfield_description.validation_message,
+.pcz-prijava .gfield_error .validation_message,
+.pcz-prijava .gfield_error .gfield_description {
+    display: block !important;
+    color: var(--prijava-accent) !important;
+    font-size: 0.875rem !important;
+    font-weight: 500 !important;
+    margin-top: 8px !important;
+    margin-bottom: 0 !important;
+    margin-left: 0 !important;
+    padding: 0 !important;
+    line-height: 1.4 !important;
+    width: 100% !important;
+    position: relative !important;
+    order: 999 !important; /* Always at bottom */
+}
+
+/* Error messages for checkbox/consent fields */
+.pcz-prijava .gfield--type-checkbox .validation_message,
+.pcz-prijava .gfield--type-consent .validation_message,
+.pcz-prijava .gfield--type-checkbox .gfield_description.validation_message,
+.pcz-prijava .gfield--type-consent .gfield_description.validation_message {
+    margin-top: 8px !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+}
+
+/* Error container styling */
+.pcz-prijava .gfield_error {
+    margin-bottom: 0 !important;
+}
+
+.pcz-prijava .gfield_error .ginput_container {
+    margin-bottom: 0 !important;
+}
+
+/* Ensure error messages appear after inputs, not before */
+.pcz-prijava .gfield_error .ginput_container::after {
+    content: none !important;
+}
+
+/* Error message icon/formatting */
+.pcz-prijava .validation_message::before {
+    content: "⚠ " !important;
+    margin-right: 4px !important;
+}
+
+/* Hide asterisks (required indicator) - cleaner look */
+.pcz-prijava .gfield_required {
+    display: none !important;
+}
+
+/* Confirmation Message */
+.pcz-prijava .gform_confirmation_message {
+    text-align: center !important;
+    padding: 40px 20px !important;
+    font-size: 1.125rem !important;
+    color: var(--prijava-text) !important;
+    background: rgba(203, 0, 124, 0.05) !important;
+    border-radius: var(--prijava-radius-sm) !important;
+}
+
+/* Fix Gravity Forms default overrides */
+.pcz-prijava .gform_wrapper.gravity-theme .gfield input.large,
+.pcz-prijava .gform_wrapper.gravity-theme .gfield select.large {
+    width: 100% !important;
+}
+
+.pcz-prijava .gform_wrapper.gravity-theme .gform_fields {
+    grid-row-gap: 14px !important;
+}
+
+/* reCAPTCHA - CENTERED */
+.pcz-prijava .gfield--type-captcha,
+.pcz-prijava .gfield_captcha_container {
+    display: flex !important;
+    justify-content: center !important;
+    margin-top: 16px !important;
+}
+
+.pcz-prijava .ginput_recaptcha {
+    display: flex !important;
+    justify-content: center !important;
+}
+
+/* ==========================================================================
+   MOCK FORM (Test Environment)
+   ========================================================================== */
+
+.pcz-prijava__mock-form {
+    width: 100%;
+}
+
+.pcz-prijava__field {
+    margin-bottom: 16px;
+    position: relative;
+}
+
+.pcz-prijava__input,
+.pcz-prijava__select {
+    width: 100%;
+    padding: 16px 24px;
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--prijava-text);
+    background: var(--prijava-input-bg);
+    border: var(--prijava-input-border);
+    border-radius: var(--prijava-radius);
+    outline: none;
+    transition: 
+        border-color var(--prijava-transition),
+        box-shadow var(--prijava-transition);
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.pcz-prijava__input::placeholder {
+    color: var(--prijava-text-muted);
+    opacity: 0.7;
+}
+
+.pcz-prijava__input:focus,
+.pcz-prijava__select:focus {
+    border-color: var(--prijava-accent);
+    box-shadow: var(--prijava-shadow-focus);
+}
+
+.pcz-prijava__select {
+    cursor: pointer;
+    padding-right: 50px;
+}
+
+.pcz-prijava__select-arrow {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    color: var(--prijava-accent);
+    pointer-events: none;
+}
+
+.pcz-prijava__select-arrow svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Checkboxes - vertikalno poredani, lijevo poravnati */
+.pcz-prijava__checkboxes {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    margin: 24px 0;
+    padding: 0;
+}
+
+.pcz-prijava__checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    font-size: 0.9375rem;
+    color: var(--prijava-text-muted);
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+}
+
+.pcz-prijava__checkbox {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.pcz-prijava__checkbox-custom {
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    border: 2px solid var(--prijava-text-muted);
+    border-radius: 4px;
+    background: #fff;
+    transition: all var(--prijava-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pcz-prijava__checkbox:checked + .pcz-prijava__checkbox-custom {
+    background: var(--prijava-accent);
+    border-color: var(--prijava-accent);
+}
+
+.pcz-prijava__checkbox:checked + .pcz-prijava__checkbox-custom::after {
+    content: '✓';
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.pcz-prijava__checkbox:focus + .pcz-prijava__checkbox-custom {
+    box-shadow: var(--prijava-shadow-focus);
+}
+
+.pcz-prijava__checkbox-text a {
+    color: var(--prijava-accent);
+    text-decoration: underline;
+}
+
+.pcz-prijava__checkbox-text a:hover {
+    text-decoration: none;
+}
+
+/* Captcha Wrapper - centrira reCAPTCHA */
+.pcz-prijava__captcha-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 24px 0;
+}
+
+/* Captcha Placeholder - stiliziran kao reCAPTCHA box */
+.pcz-prijava__captcha-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 304px; /* Standard reCAPTCHA width */
+    padding: 12px 16px;
+    background: #fafafa;
+    border: 1px solid #d3d3d3;
+    border-radius: 3px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+
+.pcz-prijava__captcha-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    margin-left: auto;
+}
+
+.pcz-prijava__captcha-badge img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+}
+
+.pcz-prijava__captcha-badge small {
+    font-size: 10px;
+    font-weight: 500;
+    color: #555d72;
+    letter-spacing: 0.3px;
+}
+
+.pcz-prijava__captcha-badge .captcha-links {
+    font-size: 8px;
+    color: #999;
+}
+
+.pcz-prijava__captcha-badge .captcha-links a {
+    color: #999;
+    text-decoration: none;
+}
+
+.pcz-prijava__captcha-badge .captcha-links a:hover {
+    text-decoration: underline;
+}
+
+/* Checkbox unutar captcha - prilagođeni stilovi */
+.pcz-prijava__captcha-placeholder .pcz-prijava__checkbox-label {
+    flex: 1;
+    font-size: 0.875rem;
+}
+
+.pcz-prijava__captcha-placeholder .pcz-prijava__checkbox-custom {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    border-radius: 2px;
+    border-width: 2px;
+    border-color: #c1c1c1;
+}
+
+/* Submit */
+.pcz-prijava__submit-wrapper {
+    text-align: center;
+    margin-top: 24px;
+}
+
+.pcz-prijava__submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 200px;
+    padding: 16px 48px;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #ffffff;
+    background: var(--prijava-accent);
+    border: none;
+    border-radius: var(--prijava-radius);
+    cursor: pointer;
+    transition: 
+        background var(--prijava-transition),
+        transform var(--prijava-transition),
+        box-shadow var(--prijava-transition);
+    box-shadow: var(--prijava-shadow);
+}
+
+.pcz-prijava__submit:hover {
+    background: var(--prijava-accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(203, 0, 124, 0.3);
+}
+
+.pcz-prijava__submit:active {
+    transform: translateY(0);
+}
+
+/* No Form Message */
+.pcz-prijava__no-form {
+    text-align: center;
+    padding: 40px 20px;
+    background: #fff3cd;
+    border-radius: var(--prijava-radius-sm);
+}
+
+.pcz-prijava__no-form p {
+    margin: 0 0 10px;
+    color: #856404;
+}
+
+.pcz-prijava__no-form a {
+    color: var(--prijava-accent);
+}
+
+/* ==========================================================================
+   RESPONSIVE - Tablet
+   ========================================================================== */
+
+@media screen and (max-width: 1024px) {
+    .pcz-prijava {
+        padding: 60px 20px;
+    }
+    
+    .pcz-prijava__header {
+        margin-bottom: 32px;
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVE - Mobile
+   ========================================================================== */
+
+@media screen and (max-width: 640px) {
+    .pcz-prijava {
+        padding: 50px 16px;
+    }
+    
+    .pcz-prijava__title {
+        font-size: 1.75rem;
+    }
+    
+    .pcz-prijava__subtitle {
+        font-size: 0.95rem;
+    }
+    
+    .pcz-prijava__input,
+    .pcz-prijava__select,
+    .pcz-prijava .ginput_container input,
+    .pcz-prijava .ginput_container select {
+        padding: 14px 20px;
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+    
+    .pcz-prijava__checkboxes {
+        gap: 14px;
+    }
+    
+    .pcz-prijava__captcha-wrapper {
+        margin: 20px 0;
+    }
+    
+    .pcz-prijava__captcha-placeholder {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .pcz-prijava__submit,
+    .pcz-prijava .gform_button {
+        width: 100%;
+        max-width: none;
+    }
+}
+
+/* ==========================================================================
+   PRINT STYLES
+   ========================================================================== */
+
+@media print {
+    .pcz-prijava {
+        display: none; /* Hide form in print */
+    }
+}
+
+/* ==========================================================================
+   ANIMATIONS
+   ========================================================================== */
+
+@keyframes prijava-fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.pcz-prijava__header,
+.pcz-prijava__form-wrapper {
+    animation: prijava-fadeInUp 0.6s ease forwards;
+}
+
+.pcz-prijava__form-wrapper {
+    animation-delay: 0.15s;
+    opacity: 0;
+}
+

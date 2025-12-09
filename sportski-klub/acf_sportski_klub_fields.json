@@ -1,0 +1,117 @@
+[
+    {
+        "key": "group_sportski_klub_settings",
+        "title": "Sportski Klub",
+        "fields": [
+            {
+                "key": "field_spk_info",
+                "label": "",
+                "name": "",
+                "type": "message",
+                "instructions": "",
+                "required": 0,
+                "message": "<strong>Sportski Klub Sekcija</strong><br>Predstavljanje Sportskog kluba Plesnog centra Zagreb. Prikazuje se SAMO za brand \"Sportski Klub\".<br><br>Sekcija sadrži naslov, opis i navigacijske linkove na podstranice.",
+                "new_lines": "wpautop",
+                "esc_html": 0
+            },
+            {
+                "key": "field_spk_naslov",
+                "label": "Naslov Sekcije",
+                "name": "spk_naslov",
+                "type": "text",
+                "instructions": "Glavni naslov sekcije (prikazuje se VELIKIM SLOVIMA).",
+                "required": 0,
+                "default_value": "SPORTSKI KLUB",
+                "placeholder": "SPORTSKI KLUB"
+            },
+            {
+                "key": "field_spk_podnaslov",
+                "label": "Podnaslov",
+                "name": "spk_podnaslov",
+                "type": "text",
+                "instructions": "Kratki podnaslov koji se prikazuje bold na početku opisa.",
+                "required": 0,
+                "default_value": "Sportski klub Plesnog centra Zagreb",
+                "placeholder": "Sportski klub Plesnog centra Zagreb"
+            },
+            {
+                "key": "field_spk_opis",
+                "label": "Opis (prvi paragraf)",
+                "name": "spk_opis",
+                "type": "textarea",
+                "instructions": "Glavni opis sekcije. Nastavlja se na podnaslov u istom paragrafu.",
+                "required": 0,
+                "rows": 3,
+                "placeholder": "uči, istražuje, stvara i svakodnevno pruža zadovoljstvo svakom našem plesaču – učeniku i njihovim roditeljima.",
+                "new_lines": ""
+            },
+            {
+                "key": "field_spk_nastavak_opisa",
+                "label": "Nastavak opisa (drugi paragraf)",
+                "name": "spk_nastavak_opisa",
+                "type": "textarea",
+                "instructions": "Drugi paragraf opisa (opcionalno).",
+                "required": 0,
+                "rows": 4,
+                "placeholder": "Stvaramo sportske plesne parove s najnovijim plesnim stilom latinsko-američkih i standardnih plesova...",
+                "new_lines": ""
+            },
+            {
+                "key": "field_spk_linkovi",
+                "label": "Navigacijski linkovi",
+                "name": "spk_linkovi",
+                "type": "repeater",
+                "instructions": "Dodajte linkove na podstranice. Preporučeno: 5-6 linkova za optimalan prikaz.",
+                "required": 0,
+                "min": 0,
+                "max": 10,
+                "layout": "table",
+                "button_label": "Dodaj Link",
+                "sub_fields": [
+                    {
+                        "key": "field_spk_link_tekst",
+                        "label": "Tekst linka",
+                        "name": "tekst",
+                        "type": "text",
+                        "instructions": "Tekst koji će se prikazati (npr. \"RASPORED TRENINGA\").",
+                        "required": 1,
+                        "placeholder": "RASPORED TRENINGA"
+                    },
+                    {
+                        "key": "field_spk_link_stranica",
+                        "label": "Stranica",
+                        "name": "stranica",
+                        "type": "page_link",
+                        "instructions": "Odaberite stranicu na koju link vodi.",
+                        "required": 1,
+                        "post_type": [
+                            "page"
+                        ],
+                        "taxonomy": "",
+                        "allow_null": 0,
+                        "allow_archives": 0,
+                        "multiple": 0
+                    }
+                ]
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "options_page",
+                    "operator": "==",
+                    "value": "site-settings"
+                }
+            ]
+        ],
+        "menu_order": 16,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "Sekcija za predstavljanje Sportskog kluba Plesnog centra Zagreb"
+    }
+]
+

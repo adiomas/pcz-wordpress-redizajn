@@ -1,0 +1,536 @@
+/**
+ * pcz "Izdvojeno iz ponude" - Stilovi
+ * 
+ * Highlights sekcija s karticama kategorija tečajeva
+ * Elegantni tamni dizajn s magenta akcentima
+ * 
+ * @package pcz_Redizajn
+ * @since 1.0.0
+ */
+
+/* ==========================================================================
+   CSS Variables
+   ========================================================================== */
+
+:root {
+    --izdvojeno-bg: #4a4a4a;
+    --izdvojeno-bg-darker: #3d3d3d;
+    --izdvojeno-text: #ffffff;
+    --izdvojeno-text-muted: rgba(255, 255, 255, 0.85);
+    --izdvojeno-accent: #CB007C;
+    --izdvojeno-accent-hover: #a00063;
+    --izdvojeno-card-bg: #ffffff;
+    --izdvojeno-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --izdvojeno-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    --izdvojeno-shadow-hover: 0 16px 48px rgba(0, 0, 0, 0.25);
+}
+
+/* ==========================================================================
+   MAIN SECTION
+   ========================================================================== */
+
+.pcz-izdvojeno {
+    background: var(--izdvojeno-bg);
+    padding: 64px 24px 72px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle texture overlay */
+.pcz-izdvojeno::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(203, 0, 124, 0.04) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(203, 0, 124, 0.02) 0%, transparent 40%);
+    pointer-events: none;
+}
+
+.pcz-izdvojeno__container {
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* ==========================================================================
+   HEADER / TITLE
+   ========================================================================== */
+
+.pcz-izdvojeno__header {
+    text-align: center;
+    margin-bottom: 44px;
+}
+
+.pcz-izdvojeno__title {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--izdvojeno-text);
+    letter-spacing: 0.5px;
+    margin: 0 0 20px 0;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.pcz-izdvojeno__divider {
+    width: 80%;
+    max-width: 800px;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        var(--izdvojeno-accent) 15%,
+        var(--izdvojeno-accent) 85%,
+        transparent 100%
+    );
+    margin: 0 auto;
+    opacity: 0.8;
+}
+
+/* ==========================================================================
+   CARDS GRID
+   ========================================================================== */
+
+.pcz-izdvojeno__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    justify-content: center;
+    gap: 28px;
+    margin-bottom: 50px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Centriranje kada ima manje od 4 kartice */
+.pcz-izdvojeno__grid:has(.pcz-izdvojeno__card:nth-child(3):last-child) {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.pcz-izdvojeno__grid:has(.pcz-izdvojeno__card:nth-child(2):last-child) {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.pcz-izdvojeno__grid:has(.pcz-izdvojeno__card:nth-child(1):last-child) {
+    grid-template-columns: 1fr;
+}
+
+/* ==========================================================================
+   CARD ITEM
+   ========================================================================== */
+
+.pcz-izdvojeno__card {
+    width: 100%;
+    max-width: 280px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(24px);
+    animation: izdvojeno-fadeInUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.pcz-izdvojeno__card:nth-child(1) { animation-delay: 0.05s; }
+.pcz-izdvojeno__card:nth-child(2) { animation-delay: 0.1s; }
+.pcz-izdvojeno__card:nth-child(3) { animation-delay: 0.15s; }
+.pcz-izdvojeno__card:nth-child(4) { animation-delay: 0.2s; }
+.pcz-izdvojeno__card:nth-child(5) { animation-delay: 0.25s; }
+.pcz-izdvojeno__card:nth-child(6) { animation-delay: 0.3s; }
+
+@keyframes izdvojeno-fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Card Link Wrapper */
+.pcz-izdvojeno__card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pcz-izdvojeno__card-link:hover {
+    transform: translateY(-6px);
+}
+
+/* ==========================================================================
+   CARD IMAGE
+   ========================================================================== */
+
+.pcz-izdvojeno__card-image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    margin-bottom: 16px;
+    border-radius: 0;
+    overflow: hidden;
+    background: var(--izdvojeno-bg-darker);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pcz-izdvojeno__card-link:hover .pcz-izdvojeno__card-image-wrapper {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+}
+
+.pcz-izdvojeno__card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pcz-izdvojeno__card-link:hover .pcz-izdvojeno__card-image {
+    transform: scale(1.04);
+}
+
+/* Subtle gradient overlay - always visible for depth */
+.pcz-izdvojeno__card-image-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        transparent 60%,
+        rgba(0, 0, 0, 0.15) 100%
+    );
+    z-index: 1;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+/* Accent line on hover */
+.pcz-izdvojeno__card-image-wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--izdvojeno-accent);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 2;
+}
+
+.pcz-izdvojeno__card-link:hover .pcz-izdvojeno__card-image-wrapper::after {
+    transform: scaleX(1);
+}
+
+/* Placeholder */
+.pcz-izdvojeno__card-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--izdvojeno-bg-darker), var(--izdvojeno-bg));
+    color: var(--izdvojeno-text-muted);
+    font-size: 2.5rem;
+}
+
+/* ==========================================================================
+   CARD TITLE
+   ========================================================================== */
+
+.pcz-izdvojeno__card-title {
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--izdvojeno-text);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0 4px;
+    transition: color 0.3s ease;
+}
+
+.pcz-izdvojeno__card-link:hover .pcz-izdvojeno__card-title {
+    color: var(--izdvojeno-accent);
+}
+
+/* ==========================================================================
+   CTA BUTTON
+   ========================================================================== */
+
+.pcz-izdvojeno__cta-wrapper {
+    text-align: center;
+    margin-top: 8px;
+}
+
+.pcz-izdvojeno__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 32px;
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--izdvojeno-accent);
+    background: transparent;
+    border: 2px solid var(--izdvojeno-accent);
+    border-radius: 0;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Background fill effect */
+.pcz-izdvojeno__cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--izdvojeno-accent);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: -1;
+}
+
+.pcz-izdvojeno__cta:hover {
+    color: var(--izdvojeno-text);
+    border-color: var(--izdvojeno-accent);
+}
+
+.pcz-izdvojeno__cta:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.pcz-izdvojeno__cta:active {
+    transform: scale(0.98);
+}
+
+/* ==========================================================================
+   BRAND VISIBILITY
+   ========================================================================== */
+
+.pcz-izdvojeno--visible {
+    opacity: 1;
+    max-height: 2000px;
+    overflow: visible;
+    transition: opacity 0.4s ease, max-height 0.5s ease;
+}
+
+.pcz-izdvojeno--hidden {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin: 0 !important;
+    transition: opacity 0.3s ease, max-height 0.4s ease 0.1s, padding 0.4s ease;
+    pointer-events: none;
+}
+
+.pcz-izdvojeno--force-show {
+    opacity: 1 !important;
+    max-height: 2000px !important;
+    overflow: visible !important;
+}
+
+/* ==========================================================================
+   BRAND-SPECIFIC THEMES
+   ========================================================================== */
+
+/* Sportski Klub brand - narančasta tema */
+.pcz-izdvojeno--brand-sportski-klub {
+    --izdvojeno-accent: #FF6B00;
+    --izdvojeno-accent-hover: #e65c00;
+}
+
+.pcz-izdvojeno--brand-sportski-klub .pcz-izdvojeno__divider {
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        #FF6B00 20%,
+        #FF6B00 80%,
+        transparent 100%
+    );
+}
+
+.pcz-izdvojeno--brand-sportski-klub .pcz-izdvojeno__cta {
+    color: #FF6B00;
+    border-color: #FF6B00;
+}
+
+.pcz-izdvojeno--brand-sportski-klub .pcz-izdvojeno__cta::before {
+    background: #FF6B00;
+}
+
+.pcz-izdvojeno--brand-sportski-klub .pcz-izdvojeno__cta:hover {
+    color: var(--izdvojeno-text);
+    border-color: #FF6B00;
+}
+
+.pcz-izdvojeno--brand-sportski-klub .pcz-izdvojeno__card-link:hover .pcz-izdvojeno__card-title {
+    color: #FF6B00;
+}
+
+.pcz-izdvojeno--brand-sportski-klub .pcz-izdvojeno__card-image-wrapper::after {
+    background: #FF6B00;
+}
+
+/* Subtle texture overlay - brand specific */
+.pcz-izdvojeno--brand-sportski-klub::before {
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(255, 107, 0, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 107, 0, 0.03) 0%, transparent 40%);
+}
+
+/* ==========================================================================
+   RESPONSIVE - Tablet
+   ========================================================================== */
+
+@media screen and (max-width: 1024px) {
+    .pcz-izdvojeno {
+        padding: 60px 20px 70px;
+    }
+    
+    .pcz-izdvojeno__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+    
+    .pcz-izdvojeno__card {
+        max-width: 100%;
+    }
+    
+    .pcz-izdvojeno__card-title {
+        font-size: 0.75rem;
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVE - Mobile
+   ========================================================================== */
+
+@media screen and (max-width: 640px) {
+    .pcz-izdvojeno {
+        padding: 48px 16px 56px;
+    }
+    
+    .pcz-izdvojeno__header {
+        margin-bottom: 32px;
+    }
+    
+    .pcz-izdvojeno__title {
+        font-size: 1.4rem;
+        margin-bottom: 16px;
+    }
+    
+    .pcz-izdvojeno__divider {
+        width: 90%;
+    }
+    
+    .pcz-izdvojeno__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        margin-bottom: 36px;
+    }
+    
+    .pcz-izdvojeno__card {
+        max-width: 100%;
+    }
+    
+    .pcz-izdvojeno__card-image-wrapper {
+        margin-bottom: 10px;
+    }
+    
+    .pcz-izdvojeno__card-title {
+        font-size: 0.65rem;
+        letter-spacing: 0.5px;
+        line-height: 1.4;
+    }
+    
+    /* Disable hover effects on touch */
+    .pcz-izdvojeno__card-link:hover {
+        transform: none;
+    }
+    
+    .pcz-izdvojeno__card-link:hover .pcz-izdvojeno__card-image {
+        transform: none;
+    }
+    
+    .pcz-izdvojeno__card-link:hover .pcz-izdvojeno__card-image-wrapper::after {
+        transform: scaleX(0);
+    }
+    
+    .pcz-izdvojeno__cta {
+        padding: 12px 24px;
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVE - Small Mobile
+   ========================================================================== */
+
+@media screen and (max-width: 380px) {
+    .pcz-izdvojeno {
+        padding: 40px 12px 48px;
+    }
+    
+    .pcz-izdvojeno__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .pcz-izdvojeno__card {
+        max-width: 100%;
+    }
+    
+    .pcz-izdvojeno__card-title {
+        font-size: 0.6rem;
+        padding: 0 2px;
+        letter-spacing: 0.3px;
+    }
+    
+    .pcz-izdvojeno__cta {
+        padding: 11px 20px;
+        font-size: 0.7rem;
+        letter-spacing: 0.8px;
+    }
+}
+
+/* ==========================================================================
+   PRINT STYLES
+   ========================================================================== */
+
+@media print {
+    .pcz-izdvojeno {
+        background: #f0f0f0 !important;
+        padding: 30px 20px !important;
+    }
+    
+    .pcz-izdvojeno__title {
+        color: #333 !important;
+    }
+    
+    .pcz-izdvojeno__card-title {
+        color: #333 !important;
+    }
+    
+    .pcz-izdvojeno__cta {
+        border-color: #333 !important;
+        color: #333 !important;
+    }
+}
+

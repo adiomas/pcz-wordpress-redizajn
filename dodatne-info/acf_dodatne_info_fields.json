@@ -1,0 +1,118 @@
+[
+    {
+        "key": "group_dodatne_info_settings",
+        "title": "Dodatne Informacije (Sportski Klub)",
+        "fields": [
+            {
+                "key": "field_spk_dodatne_info",
+                "label": "",
+                "name": "",
+                "type": "message",
+                "instructions": "",
+                "required": 0,
+                "message": "<strong>Dodatne Informacije Sekcija</strong><br>Grid ikona s linkovima na dodatne informacije. Prikazuje se SAMO za brand \"Sportski Klub\".<br><br>Svaka stavka ima ikonu, naziv i link na stranicu.",
+                "new_lines": "wpautop",
+                "esc_html": 0
+            },
+            {
+                "key": "field_spk_dodatne_naslov",
+                "label": "Naslov Sekcije",
+                "name": "spk_dodatne_naslov",
+                "type": "text",
+                "instructions": "Glavni naslov sekcije (prikazuje se VELIKIM SLOVIMA).",
+                "required": 0,
+                "default_value": "DODATNE INFORMACIJE",
+                "placeholder": "DODATNE INFORMACIJE"
+            },
+            {
+                "key": "field_spk_dodatne_stavke",
+                "label": "Stavke",
+                "name": "spk_dodatne_stavke",
+                "type": "repeater",
+                "instructions": "Dodajte ikone s linkovima. Preporučeno: 5-8 stavki za optimalan prikaz.",
+                "required": 0,
+                "min": 0,
+                "max": 12,
+                "layout": "block",
+                "button_label": "Dodaj Stavku",
+                "sub_fields": [
+                    {
+                        "key": "field_spk_dodatne_ikona",
+                        "label": "Ikona",
+                        "name": "ikona",
+                        "type": "select",
+                        "instructions": "Odaberite ikonu za ovu stavku.",
+                        "required": 1,
+                        "choices": {
+                            "euro": "💶 Cjenik / Euro",
+                            "kontakt": "✉️ Kontakt / Pošta",
+                            "lokacija": "📍 Lokacija / Pin",
+                            "trofej": "🏆 Rezultati / Trofej",
+                            "kamp": "⛺ Kampovi / Šator",
+                            "faq": "❓ FAQ / Pitanje",
+                            "podrska": "👥 Privatna Podrška / Ljudi"
+                        },
+                        "default_value": "kontakt",
+                        "allow_null": 0,
+                        "multiple": 0,
+                        "ui": 1,
+                        "return_format": "value"
+                    },
+                    {
+                        "key": "field_spk_dodatne_custom_svg",
+                        "label": "Custom SVG (opcionalno)",
+                        "name": "custom_svg",
+                        "type": "textarea",
+                        "instructions": "Opcionalno: Zalijepite custom SVG kod. Ako je popunjeno, koristi se umjesto odabrane ikone.",
+                        "required": 0,
+                        "rows": 3,
+                        "placeholder": "<svg viewBox=\"0 0 24 24\">...</svg>",
+                        "new_lines": ""
+                    },
+                    {
+                        "key": "field_spk_dodatne_naziv",
+                        "label": "Naziv",
+                        "name": "naziv",
+                        "type": "text",
+                        "instructions": "Tekst koji se prikazuje ispod ikone (npr. \"CJENIK\", \"KONTAKT\").",
+                        "required": 1,
+                        "placeholder": "CJENIK"
+                    },
+                    {
+                        "key": "field_spk_dodatne_stranica",
+                        "label": "Stranica",
+                        "name": "stranica",
+                        "type": "page_link",
+                        "instructions": "Odaberite stranicu na koju link vodi.",
+                        "required": 1,
+                        "post_type": [
+                            "page"
+                        ],
+                        "taxonomy": "",
+                        "allow_null": 0,
+                        "allow_archives": 0,
+                        "multiple": 0
+                    }
+                ]
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "options_page",
+                    "operator": "==",
+                    "value": "site-settings"
+                }
+            ]
+        ],
+        "menu_order": 17,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "Grid ikona s linkovima na dodatne informacije - samo za Sportski Klub brand"
+    }
+]
+

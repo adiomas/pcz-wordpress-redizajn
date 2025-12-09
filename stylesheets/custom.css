@@ -1602,3 +1602,40 @@ justify-content: center !important;
         transform: scale(0.95) rotate(-7deg);
     }
 }
+
+/* =============================================================================
+   SMOOTH SCROLL - Globalna Navigacija
+   
+   Omogućuje glatki scroll za anchor linkove (#sekcija).
+   Koristi scroll-padding-top za offset fiksiranog headera.
+   ============================================================================= */
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Offset za fiksni header - prilagodi visinu svog headera */
+html {
+    scroll-padding-top: 100px;
+}
+
+/* Fallback za prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* Generički anchor stilovi - koristi za sve sekcije */
+.pcz-anchor {
+    position: absolute;
+    top: -100px; /* Offset za header */
+    left: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Alternativa za sekcije koje koriste scroll-margin */
+[id^="pcz-"] {
+    scroll-margin-top: 100px;
+}

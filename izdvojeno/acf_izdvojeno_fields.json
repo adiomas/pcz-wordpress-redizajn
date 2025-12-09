@@ -1,0 +1,438 @@
+[
+  {
+      "key": "group_izdvojeno_settings",
+      "title": "Izdvojeno iz ponude (Plesna škola)",
+      "fields": [
+          {
+              "key": "field_izdvojeno_info",
+              "label": "",
+              "name": "",
+              "aria-label": "",
+              "type": "message",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": false,
+              "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+              },
+              "message": "<strong>Izdvojeno iz ponude - Plesna škola</strong><br>Sekcija s karticama kategorija tečajeva. Prikazuje se kao grid na desktopu (4 kolone) i kao 2 kolone na mobilnim uređajima.<br><br><em>🎭 Ova sekcija koristi <strong>magenta</strong> temu i prikazuje se za brand Plesna škola.</em>",
+              "new_lines": "wpautop",
+              "esc_html": 0
+          },
+          {
+              "key": "field_izdvojeno_naslov",
+              "label": "Naslov Sekcije",
+              "name": "izdvojeno_naslov",
+              "aria-label": "",
+              "type": "text",
+              "instructions": "Naslov koji se prikazuje iznad kartica. Prikazuje se italic stilom.",
+              "required": 0,
+              "conditional_logic": false,
+              "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+              },
+              "default_value": "Izdvojeno iz ponude",
+              "placeholder": "Izdvojeno iz ponude",
+              "maxlength": "",
+              "prepend": "",
+              "append": ""
+          },
+          {
+              "key": "field_izdvojeno_kartice",
+              "label": "Kartice",
+              "name": "izdvojeno_kartice",
+              "aria-label": "",
+              "type": "repeater",
+              "instructions": "Dodajte kategorije tečajeva. Preporučeno: 4 kartice za optimalan prikaz.",
+              "required": 0,
+              "conditional_logic": false,
+              "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+              },
+              "min": 0,
+              "max": 8,
+              "layout": "block",
+              "button_label": "Dodaj Karticu",
+              "rows_per_page": 20,
+              "collapsed": "",
+              "sub_fields": [
+                  {
+                      "key": "field_izdvojeno_naziv",
+                      "label": "Naziv Kategorije",
+                      "name": "naziv",
+                      "aria-label": "",
+                      "type": "text",
+                      "instructions": "Naziv kategorije tečaja (prikazuje se VELIKIM SLOVIMA).",
+                      "required": 1,
+                      "conditional_logic": false,
+                      "wrapper": {
+                          "width": "",
+                          "class": "",
+                          "id": ""
+                      },
+                      "placeholder": "TEČAJ DRUŠTVENIH PLESOVA",
+                      "default_value": "",
+                      "maxlength": "",
+                      "prepend": "",
+                      "append": "",
+                      "parent_repeater": "field_izdvojeno_kartice"
+                  },
+                  {
+                      "key": "field_izdvojeno_slika",
+                      "label": "Slika",
+                      "name": "slika",
+                      "aria-label": "",
+                      "type": "image",
+                      "instructions": "Slika za karticu. Preporučeno: portretna orijentacija (3:4 omjer), min. 400x533px.",
+                      "required": 0,
+                      "conditional_logic": false,
+                      "wrapper": {
+                          "width": "",
+                          "class": "",
+                          "id": ""
+                      },
+                      "return_format": "array",
+                      "preview_size": "medium",
+                      "library": "all",
+                      "min_width": 300,
+                      "min_height": 400,
+                      "mime_types": "jpg, jpeg, png, webp",
+                      "min_size": 0,
+                      "max_width": 0,
+                      "max_height": 0,
+                      "max_size": 0,
+                      "parent_repeater": "field_izdvojeno_kartice"
+                  },
+                  {
+                      "key": "field_izdvojeno_link",
+                      "label": "Stranica",
+                      "name": "link",
+                      "aria-label": "",
+                      "type": "page_link",
+                      "instructions": "Odaberite stranicu na koju vodi kartica (opcionalno).",
+                      "required": 0,
+                      "conditional_logic": false,
+                      "wrapper": {
+                          "width": "",
+                          "class": "",
+                          "id": ""
+                      },
+                      "post_type": [
+                          "page"
+                      ],
+                      "allow_null": 1,
+                      "allow_archives": 0,
+                      "multiple": 0,
+                      "taxonomy": [],
+                      "parent_repeater": "field_izdvojeno_kartice"
+                  }
+              ]
+          },
+          {
+              "key": "field_izdvojeno_cta_tab",
+              "label": "CTA Button",
+              "name": "",
+              "aria-label": "",
+              "type": "tab",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": false,
+              "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+              },
+              "placement": "left",
+              "endpoint": 0,
+              "selected": 0
+          },
+          {
+              "key": "field_izdvojeno_cta_tekst",
+              "label": "Tekst Buttona",
+              "name": "izdvojeno_cta_tekst",
+              "aria-label": "",
+              "type": "text",
+              "instructions": "Tekst na CTA buttonu ispod kartica.",
+              "required": 0,
+              "conditional_logic": false,
+              "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+              },
+              "default_value": "VIŠE O USLUGAMA",
+              "placeholder": "VIŠE O USLUGAMA",
+              "maxlength": "",
+              "prepend": "",
+              "append": ""
+          },
+          {
+              "key": "field_izdvojeno_cta_link",
+              "label": "Stranica Buttona",
+              "name": "izdvojeno_cta_link",
+              "aria-label": "",
+              "type": "page_link",
+              "instructions": "Odaberite stranicu na koju vodi CTA button.",
+              "required": 0,
+              "conditional_logic": false,
+              "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+              },
+              "post_type": [
+                  "page"
+              ],
+              "allow_null": 1,
+              "allow_archives": 0,
+              "multiple": 0,
+              "taxonomy": []
+          }
+      ],
+      "location": [
+          [
+              {
+                  "param": "options_page",
+                  "operator": "==",
+                  "value": "site-settings"
+              }
+          ]
+      ],
+      "menu_order": 12,
+      "position": "normal",
+      "style": "default",
+      "label_placement": "top",
+      "instruction_placement": "label",
+      "hide_on_screen": "",
+      "active": true,
+      "description": "Sekcija s izdvojenim kategorijama tečajeva za Plesnu školu",
+      "show_in_rest": false,
+      "display_title": "",
+      "acfml_field_group_mode": "advanced",
+      "wpml_field_group_language": "hr"
+  },
+  {
+      "key": "group_izdvojeno_sk_settings",
+      "title": "Izdvojeno - Sportske discipline (Sportski klub)",
+      "fields": [
+          {
+              "key": "field_izdvojeno_sk_info",
+              "label": "",
+              "name": "",
+              "aria-label": "",
+              "type": "message",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": false,
+              "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+              },
+              "message": "<strong>Sportske discipline - Sportski klub</strong><br>Sekcija s karticama sportskih disciplina. Identična struktura kao \"Izdvojeno iz ponude\" za Plesnu školu.<br><br><em>🏆 Ova sekcija koristi <strong>narančastu</strong> temu i prikazuje se za brand Sportski klub.</em>",
+              "new_lines": "wpautop",
+              "esc_html": 0
+          },
+          {
+              "key": "field_izdvojeno_sk_naslov",
+              "label": "Naslov Sekcije",
+              "name": "izdvojeno_sk_naslov",
+              "aria-label": "",
+              "type": "text",
+              "instructions": "Naslov koji se prikazuje iznad kartica. Prikazuje se italic stilom.",
+              "required": 0,
+              "conditional_logic": false,
+              "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+              },
+              "default_value": "Sportske discipline",
+              "placeholder": "Sportske discipline",
+              "maxlength": "",
+              "prepend": "",
+              "append": ""
+          },
+          {
+              "key": "field_izdvojeno_sk_kartice",
+              "label": "Kartice",
+              "name": "izdvojeno_sk_kartice",
+              "aria-label": "",
+              "type": "repeater",
+              "instructions": "Dodajte sportske discipline. Preporučeno: 3-4 kartice za optimalan prikaz.",
+              "required": 0,
+              "conditional_logic": false,
+              "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+              },
+              "min": 0,
+              "max": 8,
+              "layout": "block",
+              "button_label": "Dodaj Disciplinu",
+              "rows_per_page": 20,
+              "collapsed": "",
+              "sub_fields": [
+                  {
+                      "key": "field_izdvojeno_sk_naziv",
+                      "label": "Naziv Discipline",
+                      "name": "naziv",
+                      "aria-label": "",
+                      "type": "text",
+                      "instructions": "Naziv sportske discipline (prikazuje se VELIKIM SLOVIMA).",
+                      "required": 1,
+                      "conditional_logic": false,
+                      "wrapper": {
+                          "width": "",
+                          "class": "",
+                          "id": ""
+                      },
+                      "placeholder": "LA (latinsko-američki plesovi)",
+                      "default_value": "",
+                      "maxlength": "",
+                      "prepend": "",
+                      "append": "",
+                      "parent_repeater": "field_izdvojeno_sk_kartice"
+                  },
+                  {
+                      "key": "field_izdvojeno_sk_slika",
+                      "label": "Slika",
+                      "name": "slika",
+                      "aria-label": "",
+                      "type": "image",
+                      "instructions": "Slika za karticu. Preporučeno: portretna orijentacija (3:4 omjer), min. 400x533px.",
+                      "required": 0,
+                      "conditional_logic": false,
+                      "wrapper": {
+                          "width": "",
+                          "class": "",
+                          "id": ""
+                      },
+                      "return_format": "array",
+                      "preview_size": "medium",
+                      "library": "all",
+                      "min_width": 300,
+                      "min_height": 400,
+                      "mime_types": "jpg, jpeg, png, webp",
+                      "min_size": 0,
+                      "max_width": 0,
+                      "max_height": 0,
+                      "max_size": 0,
+                      "parent_repeater": "field_izdvojeno_sk_kartice"
+                  },
+                  {
+                      "key": "field_izdvojeno_sk_link",
+                      "label": "Stranica",
+                      "name": "link",
+                      "aria-label": "",
+                      "type": "page_link",
+                      "instructions": "Odaberite stranicu na koju vodi kartica (opcionalno).",
+                      "required": 0,
+                      "conditional_logic": false,
+                      "wrapper": {
+                          "width": "",
+                          "class": "",
+                          "id": ""
+                      },
+                      "post_type": [
+                          "page"
+                      ],
+                      "allow_null": 1,
+                      "allow_archives": 0,
+                      "multiple": 0,
+                      "taxonomy": [],
+                      "parent_repeater": "field_izdvojeno_sk_kartice"
+                  }
+              ]
+          },
+          {
+              "key": "field_izdvojeno_sk_cta_tab",
+              "label": "CTA Button",
+              "name": "",
+              "aria-label": "",
+              "type": "tab",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": false,
+              "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+              },
+              "placement": "left",
+              "endpoint": 0,
+              "selected": 0
+          },
+          {
+              "key": "field_izdvojeno_sk_cta_tekst",
+              "label": "Tekst Buttona",
+              "name": "izdvojeno_sk_cta_tekst",
+              "aria-label": "",
+              "type": "text",
+              "instructions": "Tekst na CTA buttonu ispod kartica.",
+              "required": 0,
+              "conditional_logic": false,
+              "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+              },
+              "default_value": "VIDI VIŠE",
+              "placeholder": "VIDI VIŠE",
+              "maxlength": "",
+              "prepend": "",
+              "append": ""
+          },
+          {
+              "key": "field_izdvojeno_sk_cta_link",
+              "label": "Stranica Buttona",
+              "name": "izdvojeno_sk_cta_link",
+              "aria-label": "",
+              "type": "page_link",
+              "instructions": "Odaberite stranicu na koju vodi CTA button.",
+              "required": 0,
+              "conditional_logic": false,
+              "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+              },
+              "post_type": [
+                  "page"
+              ],
+              "allow_null": 1,
+              "allow_archives": 0,
+              "multiple": 0,
+              "taxonomy": []
+          }
+      ],
+      "location": [
+          [
+              {
+                  "param": "options_page",
+                  "operator": "==",
+                  "value": "site-settings"
+              }
+          ]
+      ],
+      "menu_order": 13,
+      "position": "normal",
+      "style": "default",
+      "label_placement": "top",
+      "instruction_placement": "label",
+      "hide_on_screen": "",
+      "active": true,
+      "description": "Sekcija s sportskim disciplinama za Sportski klub (identična struktura kao Izdvojeno)",
+      "show_in_rest": false,
+      "display_title": "",
+      "acfml_field_group_mode": "advanced",
+      "wpml_field_group_language": "hr"
+  }
+]

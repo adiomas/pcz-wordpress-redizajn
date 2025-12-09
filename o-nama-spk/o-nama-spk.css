@@ -1,0 +1,642 @@
+/**
+ * pcz "O Nama - Sportski Klub" - Premium Immersive Design
+ * 
+ * Točna replika preview.html dizajna
+ * Cinematic overlay, dvokolonski layout, grain efekt
+ * Playfair Display + DM Sans tipografija
+ * 
+ * @package pcz_Redizajn
+ * @since 2.0.0
+ */
+
+/* ==========================================================================
+   CSS Variables
+   ========================================================================== */
+
+.o-nama {
+    --accent: #FF6B00;
+    --accent-soft: rgba(255, 107, 0, 0.15);
+    --white: #ffffff;
+    --off-white: #f8f8f8;
+    --gray-100: rgba(255, 255, 255, 0.95);
+    --gray-200: rgba(255, 255, 255, 0.8);
+    --gray-300: rgba(255, 255, 255, 0.6);
+    --gray-400: rgba(255, 255, 255, 0.4);
+    --dark: #0d0d0d;
+}
+
+/* ==========================================================================
+   MAIN SECTION
+   ========================================================================== */
+
+.o-nama {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+}
+
+/* Background Image */
+.o-nama__bg {
+    position: absolute;
+    inset: 0;
+    background: 
+        url('https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?w=1920&q=80') 
+        center 20% / cover no-repeat;
+    background-color: var(--dark);
+    z-index: 0;
+}
+
+/* Cinematic Overlay - pojačan za bolju čitljivost */
+.o-nama__overlay {
+    position: absolute;
+    inset: 0;
+    background: 
+        linear-gradient(180deg, 
+            rgba(0,0,0,0.85) 0%, 
+            rgba(0,0,0,0.7) 30%,
+            rgba(0,0,0,0.75) 60%,
+            rgba(0,0,0,0.95) 100%
+        );
+    z-index: 1;
+}
+
+/* Grain texture overlay */
+.o-nama__grain {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Container */
+.o-nama__container {
+    position: relative;
+    z-index: 3;
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 120px 50px 100px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+}
+
+/* ==========================================================================
+   HEADER - Premium Style
+   ========================================================================== */
+
+.o-nama__header {
+    margin-bottom: 60px;
+}
+
+.o-nama__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.o-nama__logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    flex-shrink: 0;
+}
+
+.o-nama__logo img,
+.o-nama__logo svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.o-nama__club-name {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.o-nama__title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -1px;
+    line-height: 0.95;
+    margin: 0;
+}
+
+.o-nama__title-accent {
+    display: block;
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--gray-400);
+    font-style: italic;
+}
+
+/* ==========================================================================
+   CONTENT - Editorial Style
+   ========================================================================== */
+
+.o-nama__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 80px;
+}
+
+.o-nama__lead {
+    grid-column: 1 / -1;
+    position: relative;
+    padding-left: 30px;
+    border-left: 3px solid var(--accent);
+}
+
+.o-nama__lead p {
+    font-size: 1.35rem;
+    font-weight: 500;
+    line-height: 1.7;
+    color: var(--white);
+    margin: 0;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+}
+
+.o-nama__lead strong {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.o-nama__text {
+    font-size: 1rem;
+    line-height: 1.9;
+    color: var(--gray-100);
+    text-shadow: 0 1px 10px rgba(0,0,0,0.3);
+}
+
+.o-nama__text p {
+    margin: 0 0 1.5em 0;
+}
+
+.o-nama__text p:last-child {
+    margin-bottom: 0;
+}
+
+.o-nama__text strong {
+    font-weight: 600;
+    color: var(--white);
+}
+
+/* Liste - Premium bullets */
+.o-nama__text ul {
+    margin: 1.5em 0;
+    padding: 0;
+    list-style: none;
+}
+
+.o-nama__text ul li {
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: 10px;
+}
+
+.o-nama__text ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+}
+
+/* Ordered lists */
+.o-nama__text ol {
+    margin: 1.5em 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: item;
+}
+
+.o-nama__text ol li {
+    position: relative;
+    padding-left: 32px;
+    margin-bottom: 10px;
+    counter-increment: item;
+}
+
+.o-nama__text ol li::before {
+    content: counter(item);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    background: var(--accent);
+    color: var(--white);
+    font-size: 0.7rem;
+    font-weight: 700;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Links */
+.o-nama__text a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+}
+
+.o-nama__text a:hover {
+    border-bottom-color: var(--accent);
+}
+
+/* Right column wrapper */
+.o-nama__right {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Highlight box */
+.o-nama__highlight {
+    background: var(--accent-soft);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-top: auto;
+}
+
+.o-nama__highlight-title {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+}
+
+.o-nama__highlight p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--gray-100);
+    margin: 0;
+}
+
+.o-nama__highlight strong {
+    color: var(--white);
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   CONTACT - Minimal Footer Style
+   ========================================================================== */
+
+.o-nama__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.o-nama__contact {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.o-nama__contact-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray-400);
+}
+
+.o-nama__contact-links {
+    display: flex;
+    gap: 32px;
+}
+
+.o-nama__contact-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--gray-200);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.o-nama__contact-link:hover {
+    color: var(--white);
+}
+
+.o-nama__contact-link svg {
+    width: 18px;
+    height: 18px;
+    color: var(--accent);
+    flex-shrink: 0;
+}
+
+.o-nama__contact-person {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95rem;
+    color: var(--gray-300);
+}
+
+.o-nama__contact-person svg {
+    width: 18px;
+    height: 18px;
+    color: var(--gray-400);
+}
+
+/* Decorative line */
+.o-nama__deco {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+}
+
+/* ==========================================================================
+   DEV NOTICE
+   ========================================================================== */
+
+.o-nama__dev-notice {
+    background: rgba(255, 107, 0, 0.15);
+    border-left: 4px solid var(--accent);
+    padding: 12px 20px;
+    font-size: 0.85rem;
+    color: var(--white);
+    margin-bottom: 0;
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.o-nama__dev-notice a {
+    color: var(--accent);
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   EMPTY STATE
+   ========================================================================== */
+
+.o-nama--empty {
+    background: #1a1a1a;
+    padding: 80px 40px;
+    text-align: center;
+    color: #fff;
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.o-nama--empty p {
+    margin: 0 0 10px 0;
+    font-size: 1rem;
+}
+
+.o-nama--empty a {
+    color: var(--accent);
+}
+
+/* ==========================================================================
+   ANIMATIONS
+   ========================================================================== */
+
+@media (prefers-reduced-motion: no-preference) {
+    .o-nama__header {
+        animation: reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    
+    .o-nama__lead {
+        animation: reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+    }
+    
+    .o-nama__content > .o-nama__text {
+        animation: reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+    }
+    
+    .o-nama__right {
+        animation: reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+    }
+    
+    .o-nama__footer {
+        animation: reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+    }
+    
+    @keyframes reveal {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVE - Tablet (< 1024px)
+   ========================================================================== */
+
+@media screen and (max-width: 1024px) {
+    .o-nama__container {
+        padding: 100px 40px 80px;
+    }
+    
+    .o-nama__content {
+        gap: 50px;
+    }
+    
+    .o-nama__header {
+        margin-bottom: 50px;
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVE - Mobile (< 900px)
+   ========================================================================== */
+
+@media screen and (max-width: 900px) {
+    .o-nama__content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .o-nama__highlight {
+        margin-top: 0;
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVE - Small Tablet (< 768px)
+   ========================================================================== */
+
+@media screen and (max-width: 768px) {
+    .o-nama__container {
+        padding: 80px 24px 60px;
+    }
+    
+    .o-nama__header {
+        margin-bottom: 40px;
+    }
+    
+    .o-nama__title {
+        font-size: 2.5rem;
+    }
+    
+    .o-nama__lead {
+        padding-left: 20px;
+    }
+    
+    .o-nama__lead p {
+        font-size: 1.15rem;
+    }
+    
+    .o-nama__content {
+        margin-bottom: 50px;
+    }
+    
+    .o-nama__footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+    }
+    
+    .o-nama__contact {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+    
+    .o-nama__contact-links {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVE - Mobile (< 480px)
+   ========================================================================== */
+
+@media screen and (max-width: 480px) {
+    .o-nama__container {
+        padding: 60px 20px 50px;
+    }
+    
+    .o-nama__title {
+        font-size: 2rem;
+    }
+    
+    .o-nama__badge {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .o-nama__logo {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .o-nama__highlight {
+        padding: 20px 24px;
+    }
+    
+    .o-nama__text {
+        font-size: 0.95rem;
+    }
+}
+
+/* ==========================================================================
+   BRAND VISIBILITY
+   ========================================================================== */
+
+.o-nama--visible {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.o-nama--hidden {
+    opacity: 0;
+    visibility: hidden;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 !important;
+    margin: 0 !important;
+    min-height: 0 !important;
+    transition: opacity 0.3s ease, visibility 0.3s ease, max-height 0.4s ease;
+    pointer-events: none;
+}
+
+[data-brand="plesna-skola"] .o-nama:not(.o-nama--force-show) {
+    opacity: 0;
+    visibility: hidden;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 !important;
+    margin: 0 !important;
+    min-height: 0 !important;
+    pointer-events: none;
+}
+
+.o-nama--force-show {
+    opacity: 1 !important;
+    visibility: visible !important;
+    max-height: none !important;
+}
+
+/* ==========================================================================
+   PRINT STYLES
+   ========================================================================== */
+
+@media print {
+    .o-nama {
+        background: white !important;
+        color: black !important;
+        padding: 30px;
+        min-height: auto;
+    }
+    
+    .o-nama__bg,
+    .o-nama__overlay,
+    .o-nama__grain {
+        display: none;
+    }
+    
+    .o-nama__title,
+    .o-nama__text,
+    .o-nama__text p,
+    .o-nama__lead p,
+    .o-nama__contact-link,
+    .o-nama__contact-person {
+        color: black !important;
+        text-shadow: none !important;
+    }
+    
+    .o-nama__title-accent {
+        color: black !important;
+        -webkit-text-stroke: 1px black !important;
+    }
+    
+    .o-nama__highlight {
+        background: #f5f5f5 !important;
+        border: 1px solid #ddd !important;
+    }
+}

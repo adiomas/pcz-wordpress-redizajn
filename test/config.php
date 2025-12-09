@@ -34,6 +34,11 @@ define('pcz_POZNATI_PATH', pcz_PROJECT_ROOT . '/poznati');
 define('pcz_SIDEBAR_PATH', pcz_PROJECT_ROOT . '/sidebar');
 define('pcz_HERO_PATH', pcz_PROJECT_ROOT . '/hero');
 define('pcz_BRAND_PATH', pcz_PROJECT_ROOT . '/brand');
+define('pcz_PRIJAVA_PATH', pcz_PROJECT_ROOT . '/prijava');
+define('pcz_IZDVOJENO_PATH', pcz_PROJECT_ROOT . '/izdvojeno');
+define('pcz_UPOZNAJTE_PATH', pcz_PROJECT_ROOT . '/upoznajte');
+define('pcz_SPORTSKI_KLUB_PATH', pcz_PROJECT_ROOT . '/sportski-klub');
+define('pcz_O_NAMA_SPK_PATH', pcz_PROJECT_ROOT . '/o-nama-spk');
 
 // =============================================================================
 // URLS
@@ -136,6 +141,54 @@ $GLOBALS['pcz_available_templates'] = [
         'path'        => pcz_PROJECT_ROOT . '/brand',
         'test_path'   => pcz_TEST_TEMPLATES . '/brand',
         'scenarios'   => ['default', 'sportski_klub', 'switcher_pills', 'switcher_buttons', 'brand_switch'],
+    ],
+    'prijava' => [
+        'name'        => 'Prijava Forma',
+        'description' => 'Sekcija s formom za prijavu na tečajeve/treninge - brand-aware s Gravity Forms integracijom',
+        'status'      => 'ready',
+        'path'        => pcz_PROJECT_ROOT . '/prijava',
+        'test_path'   => pcz_TEST_TEMPLATES . '/prijava',
+        'scenarios'   => ['default', 'sportski_klub', 'gradient_bg', 'custom_title', 'no_subtitle', 'spk_custom', 'no_form'],
+    ],
+    'izdvojeno' => [
+        'name'        => 'Izdvojeno iz ponude',
+        'description' => 'Sekcija s karticama kategorija tečajeva - samo za Plesnu školu',
+        'status'      => 'ready',
+        'path'        => pcz_PROJECT_ROOT . '/izdvojeno',
+        'test_path'   => pcz_TEST_TEMPLATES . '/izdvojeno',
+        'scenarios'   => ['default', 'four_cards', 'two_cards', 'no_cta', 'long_titles'],
+    ],
+    'upoznajte' => [
+        'name'        => 'Upoznajte nas',
+        'description' => 'Sekcija za upoznavanje s plesnom školom - vlasnici, misija, vizija. Samo za Plesnu školu.',
+        'status'      => 'ready',
+        'path'        => pcz_PROJECT_ROOT . '/upoznajte',
+        'test_path'   => pcz_TEST_TEMPLATES . '/upoznajte',
+        'scenarios'   => ['default', 'no_image', 'short_text', 'long_text', 'no_highlight', 'alt_slogan', 'minimal', 'placeholder_image', 'empty'],
+    ],
+    'sportski-klub' => [
+        'name'        => 'Sportski Klub',
+        'description' => 'Sekcija za predstavljanje Sportskog kluba - naslov, opis i navigacijski linkovi. Samo za Sportski Klub brand.',
+        'status'      => 'ready',
+        'path'        => pcz_PROJECT_ROOT . '/sportski-klub',
+        'test_path'   => pcz_TEST_TEMPLATES . '/sportski-klub',
+        'scenarios'   => ['default', 'minimal', 'no_links', 'short_description', 'long_description', 'many_links', 'two_links', 'alt_title', 'empty'],
+    ],
+    'dodatne-info' => [
+        'name'        => 'Dodatne Informacije',
+        'description' => 'Grid ikona s linkovima na dodatne informacije - cjenik, kontakt, lokacije, rezultati, kampovi, FAQ, privatna podrška. Samo za Sportski Klub brand.',
+        'status'      => 'ready',
+        'path'        => pcz_PROJECT_ROOT . '/dodatne-info',
+        'test_path'   => pcz_TEST_TEMPLATES . '/dodatne-info',
+        'scenarios'   => ['default', 'minimal', 'many_items', 'long_labels', 'two_items', 'alt_title', 'empty', 'custom_icons'],
+    ],
+    'o-nama-spk' => [
+        'name'        => 'O Nama - Sportski Klub',
+        'description' => 'Detaljni About Us za Sportski Plesni Klub Zagreb - logo, slika, tekst, bullet lista, kontakt info i linkovi na stranice. Samo za Sportski Klub brand.',
+        'status'      => 'ready',
+        'path'        => pcz_PROJECT_ROOT . '/o-nama-spk',
+        'test_path'   => pcz_TEST_TEMPLATES . '/o-nama-spk',
+        'scenarios'   => ['default', 'minimal', 'no_image', 'no_logo', 'no_contact', 'short_text', 'long_text', 'alt_title', 'empty'],
     ],
 ];
 

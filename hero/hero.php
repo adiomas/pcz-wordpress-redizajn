@@ -51,7 +51,7 @@ $hero_data = [
     'naslov'           => "Pokret koji\nmijenja život",
     'podnaslov'        => 'Plesna škola i Sportski klub koji spajaju rekreativni i profesionalni ples.',
     'cta_tekst'        => 'ŽELIM PLESATI!',
-    'cta_link'         => '#kontakt',
+    'cta_link'         => '#prijava',
 ];
 
 // Intro sadržaj

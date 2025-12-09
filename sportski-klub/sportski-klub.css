@@ -1,0 +1,338 @@
+/**
+ * pcz "Sportski Klub" - Kompletni Stilovi
+ * 
+ * Sekcija za predstavljanje Sportskog Kluba
+ * Narančasta tema (#FF6B00)
+ * 
+ * @package pcz_Redizajn
+ * @since 1.0.0
+ */
+
+/* ==========================================================================
+   CSS Variables (Sportski Klub - Narančasta tema)
+   ========================================================================== */
+
+:root {
+    --pcz-spk-primary: #FF6B00;
+    --pcz-spk-primary-hover: #e65c00;
+    --pcz-spk-primary-light: #ff8533;
+    --pcz-spk-dark: #3d3d3d;
+    --pcz-spk-darker: #333333;
+    --pcz-spk-gray: #666666;
+    --pcz-spk-light: #ffffff;
+    --pcz-spk-bg: #f9f9f9;
+    --pcz-spk-transition: 0.25s ease;
+}
+
+/* ==========================================================================
+   SPORTSKI KLUB SECTION - Main Container
+   ========================================================================== */
+
+.pcz-sportski-klub {
+    background: var(--pcz-spk-bg);
+    padding: 70px 20px 80px;
+    position: relative;
+}
+
+.pcz-sportski-klub__container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   HEADER / TITLE
+   ========================================================================== */
+
+.pcz-sportski-klub__header {
+    margin-bottom: 28px;
+}
+
+.pcz-sportski-klub__title {
+    font-family: inherit;
+    font-size: clamp(1.75rem, 5vw, 2.5rem);
+    font-weight: 900;
+    color: var(--pcz-spk-dark);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin: 0;
+    line-height: 1.2;
+}
+
+/* ==========================================================================
+   CONTENT - Description Text
+   ========================================================================== */
+
+.pcz-sportski-klub__content {
+    margin-bottom: 30px;
+}
+
+.pcz-sportski-klub__podnaslov {
+    font-family: inherit;
+    font-size: clamp(0.95rem, 2vw, 1.05rem);
+    font-weight: 400;
+    color: var(--pcz-spk-dark);
+    line-height: 1.75;
+    margin: 0 0 16px 0;
+    max-width: 900px;
+}
+
+.pcz-sportski-klub__podnaslov strong {
+    font-weight: 700;
+    color: var(--pcz-spk-dark);
+}
+
+.pcz-sportski-klub__opis {
+    font-family: inherit;
+    font-size: clamp(0.95rem, 2vw, 1.05rem);
+    font-weight: 400;
+    color: var(--pcz-spk-dark);
+    line-height: 1.75;
+    margin: 0;
+    max-width: 900px;
+}
+
+/* ==========================================================================
+   DIVIDER
+   ========================================================================== */
+
+.pcz-sportski-klub__divider {
+    width: 100%;
+    height: 1px;
+    background: var(--pcz-spk-gray);
+    margin: 30px 0;
+    opacity: 0.3;
+}
+
+/* ==========================================================================
+   NAVIGATION LINKS
+   ========================================================================== */
+
+.pcz-sportski-klub__nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 40px;
+    align-items: center;
+}
+
+.pcz-sportski-klub__link {
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--pcz-spk-dark);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 8px 0;
+    position: relative;
+    transition: color var(--pcz-spk-transition);
+}
+
+/* Underline effect */
+.pcz-sportski-klub__link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 4px;
+    width: 100%;
+    height: 2px;
+    background: var(--pcz-spk-primary);
+    transform-origin: left bottom;
+    transition: transform var(--pcz-spk-transition), background var(--pcz-spk-transition);
+}
+
+.pcz-sportski-klub__link:hover {
+    color: var(--pcz-spk-primary);
+}
+
+.pcz-sportski-klub__link:hover::after {
+    background: var(--pcz-spk-primary);
+    transform: scaleX(1.05) scaleY(1.5);
+}
+
+/* Focus state for accessibility */
+.pcz-sportski-klub__link:focus {
+    outline: 2px solid var(--pcz-spk-primary);
+    outline-offset: 4px;
+}
+
+.pcz-sportski-klub__link:focus:not(:focus-visible) {
+    outline: none;
+}
+
+.pcz-sportski-klub__link:focus-visible {
+    outline: 2px solid var(--pcz-spk-primary);
+    outline-offset: 4px;
+}
+
+/* ==========================================================================
+   EMPTY STATE
+   ========================================================================== */
+
+.pcz-sportski-klub--empty {
+    text-align: center;
+}
+
+.pcz-sportski-klub--empty a {
+    color: var(--pcz-spk-primary);
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   RESPONSIVE - Tablet
+   ========================================================================== */
+
+@media screen and (max-width: 1024px) {
+    .pcz-sportski-klub {
+        padding: 60px 20px 70px;
+    }
+    
+    .pcz-sportski-klub__nav {
+        gap: 14px 32px;
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVE - Mobile
+   ========================================================================== */
+
+@media screen and (max-width: 768px) {
+    .pcz-sportski-klub {
+        padding: 50px 20px 60px;
+    }
+    
+    .pcz-sportski-klub__header {
+        margin-bottom: 24px;
+    }
+    
+    .pcz-sportski-klub__title {
+        letter-spacing: 3px;
+    }
+    
+    .pcz-sportski-klub__content {
+        margin-bottom: 24px;
+    }
+    
+    .pcz-sportski-klub__podnaslov,
+    .pcz-sportski-klub__opis {
+        font-size: 0.95rem;
+        line-height: 1.7;
+    }
+    
+    .pcz-sportski-klub__divider {
+        margin: 24px 0;
+    }
+    
+    .pcz-sportski-klub__nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .pcz-sportski-klub__link {
+        font-size: 0.8rem;
+        padding: 10px 0;
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVE - Small Mobile
+   ========================================================================== */
+
+@media screen and (max-width: 480px) {
+    .pcz-sportski-klub {
+        padding: 40px 16px 50px;
+    }
+    
+    .pcz-sportski-klub__title {
+        letter-spacing: 2px;
+    }
+    
+    .pcz-sportski-klub__link {
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+    }
+}
+
+/* ==========================================================================
+   BRAND VISIBILITY - Smooth Transitions
+   
+   Omogućuje glatko sakrivanje/prikazivanje sekcije pri brand switchingu.
+   Koristi CSS umjesto PHP za smooth transitions bez page reload-a.
+   ========================================================================== */
+
+/* Default: Vidljivo */
+.pcz-sportski-klub--visible {
+    opacity: 1;
+    max-height: 1000px;
+    overflow: visible;
+    transition: opacity 0.4s ease, max-height 0.5s ease;
+}
+
+/* Skriveno za druge brandove */
+.pcz-sportski-klub--hidden {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin: 0 !important;
+    transition: opacity 0.3s ease, max-height 0.4s ease 0.1s, padding 0.4s ease;
+    pointer-events: none;
+}
+
+/* Sakrivanje za Plesna Škola brand (default) */
+[data-brand="plesna-skola"] .pcz-sportski-klub:not(.pcz-sportski-klub--force-show) {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin: 0 !important;
+    transition: opacity 0.3s ease, max-height 0.4s ease 0.1s, padding 0.4s ease;
+    pointer-events: none;
+}
+
+/* Klasa za prisilno prikazivanje */
+.pcz-sportski-klub--force-show {
+    opacity: 1 !important;
+    max-height: 1000px !important;
+    overflow: visible !important;
+}
+
+/* ==========================================================================
+   BRAND-SPECIFIC STYLES
+   ========================================================================== */
+
+/* Sportski Klub brand - narančasta tema */
+.pcz-sportski-klub--brand-sportski-klub {
+    /* Background ostaje isti, linkovi su već narančasti */
+}
+
+/* Plesna Škola brand - magenta tema (ako se ikad prikazuje) */
+.pcz-sportski-klub--brand-plesna-skola .pcz-sportski-klub__link::after {
+    background: var(--pcz-primary, #C71585);
+}
+
+.pcz-sportski-klub--brand-plesna-skola .pcz-sportski-klub__link:hover {
+    color: var(--pcz-primary, #C71585);
+}
+
+/* ==========================================================================
+   PRINT STYLES
+   ========================================================================== */
+
+@media print {
+    .pcz-sportski-klub {
+        background: white !important;
+        padding: 40px 20px;
+    }
+    
+    .pcz-sportski-klub__link::after {
+        display: none;
+    }
+    
+    .pcz-sportski-klub__link {
+        color: black !important;
+    }
+}
+

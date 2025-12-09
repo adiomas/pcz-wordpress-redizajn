@@ -1,0 +1,253 @@
+[
+  {
+      "key": "group_prijava_settings",
+      "title": "Prijava Forma",
+      "fields": [
+          {
+              "key": "field_prijava_info",
+              "label": "",
+              "name": "",
+              "aria-label": "",
+              "type": "message",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": false,
+              "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+              },
+              "message": "<strong>Sekcija za prijavu na tečajeve</strong><br>Prikazuje formu za prijavu novih polaznika. Koristi Gravity Forms za upravljanje prijavama.<br><br><em>💡 Forma automatski prepoznaje brand (Plesna škola / Sportski klub) i bilježi ga uz prijavu.</em>",
+              "new_lines": "wpautop",
+              "esc_html": 0
+          },
+          {
+              "key": "field_prijava_tab_plesna",
+              "label": "Plesna Škola",
+              "name": "",
+              "aria-label": "",
+              "type": "tab",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": false,
+              "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+              },
+              "placement": "top",
+              "endpoint": 0,
+              "selected": 0
+          },
+          {
+              "key": "field_prijava_naslov",
+              "label": "Naslov Sekcije",
+              "name": "prijava_naslov",
+              "aria-label": "",
+              "type": "text",
+              "instructions": "Naslov koji se prikazuje iznad forme.",
+              "required": 0,
+              "conditional_logic": false,
+              "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+              },
+              "default_value": "Želim plesati!",
+              "placeholder": "Želim plesati!",
+              "maxlength": "",
+              "prepend": "",
+              "append": ""
+          },
+          {
+              "key": "field_prijava_podnaslov",
+              "label": "Podnaslov",
+              "name": "prijava_podnaslov",
+              "aria-label": "",
+              "type": "textarea",
+              "instructions": "Kratak tekst ispod naslova.",
+              "required": 0,
+              "conditional_logic": false,
+              "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+              },
+              "default_value": "Prijavite se bez obaveza. Kontaktirat ćemo vas u najkraćem roku.",
+              "placeholder": "",
+              "maxlength": "",
+              "rows": 2,
+              "new_lines": ""
+          },
+          {
+              "key": "field_prijava_form_id",
+              "label": "Gravity Forms ID",
+              "name": "prijava_form_id",
+              "aria-label": "",
+              "type": "number",
+              "instructions": "ID forme iz Gravity Forms plugina. Pronađi ID u Forms → [Ime forme] → Settings.",
+              "required": 0,
+              "conditional_logic": false,
+              "wrapper": {
+                  "width": "50",
+                  "class": "",
+                  "id": ""
+              },
+              "default_value": "",
+              "placeholder": "npr. 1",
+              "min": 1,
+              "max": "",
+              "step": 1,
+              "prepend": "Form ID:",
+              "append": ""
+          },
+          {
+              "key": "field_prijava_pozadina",
+              "label": "Stil Pozadine",
+              "name": "prijava_pozadina",
+              "aria-label": "",
+              "type": "select",
+              "instructions": "Odaberite stil pozadine sekcije.",
+              "required": 0,
+              "conditional_logic": false,
+              "wrapper": {
+                  "width": "50",
+                  "class": "",
+                  "id": ""
+              },
+              "choices": {
+                  "light": "Svijetla (#f5f5f5)",
+                  "gradient": "Gradient (svijetla → bijela)"
+              },
+              "default_value": "light",
+              "return_format": "value",
+              "multiple": 0,
+              "allow_null": 0,
+              "ui": 0,
+              "ajax": 0,
+              "placeholder": ""
+          },
+          {
+              "key": "field_prijava_tab_sportski",
+              "label": "Sportski Klub",
+              "name": "",
+              "aria-label": "",
+              "type": "tab",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": false,
+              "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+              },
+              "placement": "top",
+              "endpoint": 0,
+              "selected": 0
+          },
+          {
+              "key": "field_prijava_spk_info",
+              "label": "",
+              "name": "",
+              "aria-label": "",
+              "type": "message",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": false,
+              "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+              },
+              "message": "<em>Ostavite prazno za korištenje istih postavki kao Plesna škola.</em>",
+              "new_lines": "wpautop",
+              "esc_html": 0
+          },
+          {
+              "key": "field_spk_prijava_naslov",
+              "label": "Naslov (Sportski Klub)",
+              "name": "spk_prijava_naslov",
+              "aria-label": "",
+              "type": "text",
+              "instructions": "Naslov za Sportski klub. Ako je prazno, koristi se \"Želim trenirati!\"",
+              "required": 0,
+              "conditional_logic": false,
+              "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+              },
+              "default_value": "",
+              "placeholder": "Želim trenirati!",
+              "maxlength": "",
+              "prepend": "",
+              "append": ""
+          },
+          {
+              "key": "field_spk_prijava_podnaslov",
+              "label": "Podnaslov (Sportski Klub)",
+              "name": "spk_prijava_podnaslov",
+              "aria-label": "",
+              "type": "textarea",
+              "instructions": "Podnaslov za Sportski klub. Ako je prazno, koristi se isti kao za Plesnu školu.",
+              "required": 0,
+              "conditional_logic": false,
+              "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+              },
+              "default_value": "",
+              "placeholder": "Prijavite se za treninge. Kontaktirat ćemo vas u najkraćem roku.",
+              "maxlength": "",
+              "rows": 2,
+              "new_lines": ""
+          },
+          {
+              "key": "field_spk_prijava_form_id",
+              "label": "Gravity Forms ID (Sportski Klub)",
+              "name": "spk_prijava_form_id",
+              "aria-label": "",
+              "type": "number",
+              "instructions": "Opcijski: Koristite drugu formu za Sportski klub. Ako je prazno, koristi se ista forma kao za Plesnu školu s hidden field-om za brand.",
+              "required": 0,
+              "conditional_logic": false,
+              "wrapper": {
+                  "width": "50",
+                  "class": "",
+                  "id": ""
+              },
+              "default_value": "",
+              "placeholder": "Opcijski",
+              "min": 1,
+              "max": "",
+              "step": 1,
+              "prepend": "Form ID:",
+              "append": ""
+          }
+      ],
+      "location": [
+          [
+              {
+                  "param": "options_page",
+                  "operator": "==",
+                  "value": "site-settings"
+              }
+          ]
+      ],
+      "menu_order": 15,
+      "position": "normal",
+      "style": "default",
+      "label_placement": "top",
+      "instruction_placement": "label",
+      "hide_on_screen": "",
+      "active": true,
+      "description": "Postavke za sekciju prijave na tečajeve/treninge",
+      "show_in_rest": false,
+      "display_title": "",
+      "acfml_field_group_mode": "advanced",
+      "wpml_field_group_language": "hr"
+  }
+]
+
+

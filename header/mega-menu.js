@@ -196,6 +196,14 @@
             const link = item.querySelector('.pcz-nav__link');
             if (!link) return;
             
+            // ZAŠTITA OD DVOSTRUKE INICIJALIZACIJE
+            // Ovo je kritično jer se script može učitati više puta
+            if (link.hasAttribute('data-pcz-dropdown-init')) {
+                log('Dropdown already initialized for:', link.textContent.trim());
+                return;
+            }
+            link.setAttribute('data-pcz-dropdown-init', 'true');
+            
             // Dodaj click event za mobile
             link.addEventListener('click', function(e) {
                 if (window.innerWidth <= 768) {
@@ -208,6 +216,8 @@
                     // Update ARIA
                     const isOpen = item.classList.contains('is-open');
                     this.setAttribute('aria-expanded', isOpen);
+                    
+                    log('Mobile dropdown toggled:', isOpen ? 'OPEN' : 'CLOSED');
                 }
             });
         });
@@ -243,6 +253,12 @@
         
         const navLink = dropdownItem.querySelector('.pcz-nav__link');
         if (!navLink) return;
+        
+        // ZAŠTITA OD DVOSTRUKE INICIJALIZACIJE (desktop hover)
+        if (dropdownItem.hasAttribute('data-pcz-desktop-dropdown-init')) {
+            return;
+        }
+        dropdownItem.setAttribute('data-pcz-desktop-dropdown-init', 'true');
         
         let hoverTimeout;
         let closeTimeout;

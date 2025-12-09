@@ -1048,3 +1048,77 @@ if (!function_exists('sanitize_text_field')) {
     }
 }
 
+// =============================================================================
+// PCZ BRAND SYSTEM MOCK FUNCTIONS
+// =============================================================================
+
+// Globalna varijabla za trenutni brand (može se postaviti u testu)
+$GLOBALS['pcz_current_brand'] = $_GET['brand'] ?? 'plesna-skola';
+
+if (!function_exists('pcz_get_current_brand_id')) {
+    /**
+     * Mock implementation of pcz_get_current_brand_id
+     * 
+     * @return string Current brand ID ('plesna-skola' or 'sportski-klub')
+     */
+    function pcz_get_current_brand_id() {
+        return $GLOBALS['pcz_current_brand'] ?? 'plesna-skola';
+    }
+}
+
+if (!function_exists('pcz_is_plesna_skola')) {
+    /**
+     * Check if current brand is Plesna Škola
+     * 
+     * @return bool
+     */
+    function pcz_is_plesna_skola() {
+        return pcz_get_current_brand_id() === 'plesna-skola';
+    }
+}
+
+if (!function_exists('pcz_is_sportski_klub')) {
+    /**
+     * Check if current brand is Sportski Klub
+     * 
+     * @return bool
+     */
+    function pcz_is_sportski_klub() {
+        return pcz_get_current_brand_id() === 'sportski-klub';
+    }
+}
+
+if (!function_exists('pcz_brand_is')) {
+    /**
+     * Check if current brand matches given brand ID
+     * 
+     * @param string $brand_id Brand ID to check
+     * @return bool
+     */
+    function pcz_brand_is($brand_id) {
+        return pcz_get_current_brand_id() === $brand_id;
+    }
+}
+
+if (!function_exists('pcz_brand_is_not')) {
+    /**
+     * Check if current brand does NOT match given brand ID
+     * 
+     * @param string $brand_id Brand ID to check
+     * @return bool
+     */
+    function pcz_brand_is_not($brand_id) {
+        return pcz_get_current_brand_id() !== $brand_id;
+    }
+}
+
+/**
+ * Set current brand for testing
+ * 
+ * @param string $brand_id Brand ID to set
+ * @return void
+ */
+function pcz_set_current_brand($brand_id) {
+    $GLOBALS['pcz_current_brand'] = $brand_id;
+}
+

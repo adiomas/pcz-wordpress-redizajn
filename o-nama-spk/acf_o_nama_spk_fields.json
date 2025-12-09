@@ -1,0 +1,202 @@
+[
+    {
+        "key": "group_spk_onama",
+        "title": "O Nama - Sportski Klub",
+        "fields": [
+            {
+                "key": "field_spk_onama_info",
+                "label": "",
+                "name": "",
+                "type": "message",
+                "message": "<strong>🏆 O Nama - Sportski Klub</strong><br>Premium immersive sekcija za Sportski Plesni Klub Zagreb.<br><br>✨ <em>Cinematic overlay, dvokolonski layout, grain efekt.</em><br>⚠️ Prikazuje se SAMO za brand \"Sportski Klub\".",
+                "esc_html": 0
+            },
+            {
+                "key": "field_spk_onama_osnovne_tab",
+                "label": "Osnovne postavke",
+                "name": "",
+                "type": "tab",
+                "placement": "top"
+            },
+            {
+                "key": "field_spk_onama_naslov",
+                "label": "Naslov sekcije",
+                "name": "spk_onama_naslov",
+                "type": "text",
+                "instructions": "Glavni naslov sekcije (npr. \"O nama\").",
+                "required": 0,
+                "default_value": "O nama",
+                "placeholder": "O nama"
+            },
+            {
+                "key": "field_spk_onama_naslov_akcent",
+                "label": "Naslov akcent",
+                "name": "spk_onama_naslov_akcent",
+                "type": "text",
+                "instructions": "Drugi dio naslova u italic outline stilu (npr. \"& našoj priči\").",
+                "required": 0,
+                "default_value": "& našoj priči",
+                "placeholder": "& našoj priči"
+            },
+            {
+                "key": "field_spk_onama_ime_kluba",
+                "label": "Ime kluba",
+                "name": "spk_onama_ime_kluba",
+                "type": "text",
+                "instructions": "Puno ime kluba koje se prikazuje uz logo.",
+                "required": 0,
+                "default_value": "Sportski Plesni Klub Zagreb",
+                "placeholder": "Sportski Plesni Klub Zagreb"
+            },
+            {
+                "key": "field_spk_onama_logo",
+                "label": "Logo kluba",
+                "name": "spk_onama_logo",
+                "type": "image",
+                "instructions": "Logo Sportskog Plesnog Kluba. Prikazuje se kao mala ikona (48x48px). Preporučeno: PNG/SVG s transparentnom pozadinom.",
+                "required": 0,
+                "return_format": "array",
+                "preview_size": "thumbnail",
+                "library": "all",
+                "mime_types": "png, svg, webp"
+            },
+            {
+                "key": "field_spk_onama_slika",
+                "label": "Pozadinska slika",
+                "name": "spk_onama_slika",
+                "type": "image",
+                "instructions": "Hero fotografija koja pokriva cijelu sekciju. Prikazuje se s cinematic overlay-em. Preporučeno: 1920x1080px ili veće.",
+                "required": 0,
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "min_width": 1200,
+                "min_height": 600,
+                "mime_types": "jpg, jpeg, png, webp"
+            },
+            {
+                "key": "field_spk_onama_sadrzaj_tab",
+                "label": "Sadržaj",
+                "name": "",
+                "type": "tab",
+                "placement": "top"
+            },
+            {
+                "key": "field_spk_onama_lead",
+                "label": "Lead paragraf",
+                "name": "spk_onama_lead",
+                "type": "wysiwyg",
+                "instructions": "Uvodni istaknuti paragraf. Prikazuje se s narančastom linijom s lijeve strane. Koristite <strong> za isticanje ključnih riječi.",
+                "required": 0,
+                "tabs": "all",
+                "toolbar": "basic",
+                "media_upload": 0,
+                "delay": 0
+            },
+            {
+                "key": "field_spk_onama_lijevi_stupac",
+                "label": "Lijevi stupac",
+                "name": "spk_onama_lijevi_stupac",
+                "type": "wysiwyg",
+                "instructions": "Sadržaj za lijevu kolonu. Idealno za opći tekst i liste.",
+                "required": 0,
+                "tabs": "all",
+                "toolbar": "full",
+                "media_upload": 0,
+                "delay": 0
+            },
+            {
+                "key": "field_spk_onama_desni_stupac",
+                "label": "Desni stupac",
+                "name": "spk_onama_desni_stupac",
+                "type": "wysiwyg",
+                "instructions": "Sadržaj za desnu kolonu. Prikazuje se iznad highlight boxa.",
+                "required": 0,
+                "tabs": "all",
+                "toolbar": "full",
+                "media_upload": 0,
+                "delay": 0
+            },
+            {
+                "key": "field_spk_onama_highlight_tab",
+                "label": "Highlight",
+                "name": "",
+                "type": "tab",
+                "placement": "top"
+            },
+            {
+                "key": "field_spk_onama_highlight_naslov",
+                "label": "Highlight naslov",
+                "name": "spk_onama_highlight_naslov",
+                "type": "text",
+                "instructions": "Naslov highlight boxa (npr. \"Vodstvo\", \"Posebnost\").",
+                "required": 0,
+                "default_value": "Vodstvo",
+                "placeholder": "Vodstvo"
+            },
+            {
+                "key": "field_spk_onama_highlight_tekst",
+                "label": "Highlight tekst",
+                "name": "spk_onama_highlight_tekst",
+                "type": "wysiwyg",
+                "instructions": "Sadržaj highlight boxa. Prikazuje se u narančastom okviru. Koristite <strong> za isticanje.",
+                "required": 0,
+                "tabs": "all",
+                "toolbar": "basic",
+                "media_upload": 0,
+                "delay": 0
+            },
+            {
+                "key": "field_spk_onama_kontakt_tab",
+                "label": "Kontakt",
+                "name": "",
+                "type": "tab",
+                "placement": "top"
+            },
+            {
+                "key": "field_spk_onama_kontakt_osoba",
+                "label": "Kontakt osoba",
+                "name": "spk_onama_kontakt_osoba",
+                "type": "text",
+                "instructions": "Ime kontakt osobe za sportski klub.",
+                "required": 0,
+                "placeholder": "Dijana"
+            },
+            {
+                "key": "field_spk_onama_kontakt_telefon",
+                "label": "Telefon",
+                "name": "spk_onama_kontakt_telefon",
+                "type": "text",
+                "instructions": "Broj telefona za kontakt.",
+                "required": 0,
+                "placeholder": "091 1157 442"
+            },
+            {
+                "key": "field_spk_onama_kontakt_email",
+                "label": "Email",
+                "name": "spk_onama_kontakt_email",
+                "type": "email",
+                "instructions": "Email adresa za kontakt.",
+                "required": 0,
+                "placeholder": "spkzagreb@pcz.hr"
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "options_page",
+                    "operator": "==",
+                    "value": "site-settings"
+                }
+            ]
+        ],
+        "menu_order": 17,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "Premium O Nama sekcija za Sportski Plesni Klub Zagreb - cinematic overlay, dvokolonski layout, grain efekt"
+    }
+]
