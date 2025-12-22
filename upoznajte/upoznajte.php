@@ -48,7 +48,7 @@ if ( function_exists('apply_filters') ) {
 // DOHVAT PODATAKA IZ ACF
 // =============================================================================
 
-$naslov = 'UPOZNAJTE NAS';
+$naslov = 'Upoznajte Nas';
 $slogan = 'Za trapave noge i vesele duše';
 $slogan_highlight_1 = 'trapave';
 $slogan_highlight_2 = 'vesele';

@@ -281,7 +281,7 @@
     text-transform: uppercase;
     letter-spacing: 1.5px;
     color: var(--izdvojeno-accent);
-    background: transparent;
+    background: #ffffff;
     border: 2px solid var(--izdvojeno-accent);
     border-radius: 0;
     text-decoration: none;
@@ -289,6 +289,7 @@
     position: relative;
     overflow: hidden;
     transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 1;
 }
 
 /* Background fill effect */
@@ -304,7 +305,7 @@
 }
 
 .pcz-izdvojeno__cta:hover {
-    color: var(--izdvojeno-text);
+    color: #ffffff;
     border-color: var(--izdvojeno-accent);
 }
 
@@ -368,6 +369,7 @@
 .pcz-izdvojeno--brand-sportski-klub .pcz-izdvojeno__cta {
     color: #FF6B00;
     border-color: #FF6B00;
+    background: #ffffff;
 }
 
 .pcz-izdvojeno--brand-sportski-klub .pcz-izdvojeno__cta::before {
@@ -375,7 +377,7 @@
 }
 
 .pcz-izdvojeno--brand-sportski-klub .pcz-izdvojeno__cta:hover {
-    color: var(--izdvojeno-text);
+    color: #ffffff;
     border-color: #FF6B00;
 }
 

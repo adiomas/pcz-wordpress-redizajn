@@ -68,8 +68,16 @@
     color: var(--pcz-di-light);
     text-transform: uppercase;
     letter-spacing: 3px;
-    margin: 0;
+    margin: 0 0 18px 0;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pcz-dodatne-info__divider {
+    width: 85%;
+    max-width: 900px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.5);
+    margin: 0 auto;
 }
 
 /* ==========================================================================
@@ -258,6 +266,10 @@
     .pcz-dodatne-info__title {
         letter-spacing: 2px;
         font-size: 1.4rem;
+    }
+    
+    .pcz-dodatne-info__divider {
+        width: 90%;
     }
     
     /* Grid layout - 3 kolone za bolju strukturu */

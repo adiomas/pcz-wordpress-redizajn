@@ -718,6 +718,8 @@ body.pcz-brand-sportski-klub {
 }
 
 /* Hero overlay prilagođen brandu */
+/* UKLONJENO: Sportski klub sada koristi isti overlay kao Plesna škola */
+/*
 [data-brand="sportski-klub"] .pcz-hero__overlay,
 body.pcz-brand-sportski-klub .pcz-hero__overlay {
     background: linear-gradient(
@@ -727,6 +729,7 @@ body.pcz-brand-sportski-klub .pcz-hero__overlay {
         rgba(204, 85, 0, 0.2) 100%
     );
 }
+*/
 
 /* Hero tagline boja po brandu */
 [data-brand="sportski-klub"] .pcz-hero__tagline,

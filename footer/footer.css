@@ -132,7 +132,6 @@
 }
 
 .pcz-footer__logo img {
-    height: 50px;
     width: auto;
     max-width: 280px;
     object-fit: contain;
@@ -324,9 +323,7 @@
         padding-bottom: 30px;
     }
 
-    .pcz-footer__logo img {
-        height: 40px;
-    }
+    /* Logo height controlled by inline styles from footer.php */
 
     .pcz-footer__nav {
         flex-direction: column;
@@ -376,9 +373,7 @@
         padding: 0 15px;
     }
 
-    .pcz-footer__logo img {
-        height: 35px;
-    }
+    /* Logo height controlled by inline styles from footer.php */
 
     .pcz-footer__nav-link {
         padding: 8px 12px;

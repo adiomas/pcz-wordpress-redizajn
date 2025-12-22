@@ -21,8 +21,8 @@
                 "type": "text",
                 "instructions": "Glavni naslov sekcije (prikazuje se VELIKIM SLOVIMA u magenta boji).",
                 "required": 0,
-                "default_value": "UPOZNAJTE NAS",
-                "placeholder": "UPOZNAJTE NAS"
+                "default_value": "Upoznajte Nas",
+                "placeholder": "Upoznajte Nas"
             },
             {
                 "key": "field_upoznajte_slogan_tab",

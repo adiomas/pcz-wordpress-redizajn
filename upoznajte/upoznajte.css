@@ -110,13 +110,12 @@
     margin-bottom: 60px;
 }
 
-/* Main Title - UPOZNAJTE NAS */
+/* Main Title - Upoznajte Nas */
 .pcz-upoznajte__title {
     font-family: inherit;
     font-size: clamp(1.75rem, 4vw, 2.5rem);
     font-weight: 800;
     color: var(--pcz-primary);
-    text-transform: uppercase;
     letter-spacing: 4px;
     margin: 0;
     flex: 1;

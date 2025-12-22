@@ -112,6 +112,7 @@
     flex-wrap: wrap;
     gap: 16px 40px;
     align-items: center;
+    justify-content: space-between;
 }
 
 .pcz-sportski-klub__link {
@@ -304,9 +305,7 @@
    ========================================================================== */
 
 /* Sportski Klub brand - narančasta tema */
-.pcz-sportski-klub--brand-sportski-klub {
-    /* Background ostaje isti, linkovi su već narančasti */
-}
+/* Background ostaje isti, linkovi su već narančasti */
 
 /* Plesna Škola brand - magenta tema (ako se ikad prikazuje) */
 .pcz-sportski-klub--brand-plesna-skola .pcz-sportski-klub__link::after {

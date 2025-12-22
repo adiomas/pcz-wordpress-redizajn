@@ -192,6 +192,7 @@ function pcz_get_dodatne_icon( $icon_key, $svg_icons ) {
         <!-- Header -->
         <header class="pcz-dodatne-info__header">
             <h2 class="pcz-dodatne-info__title"><?php echo esc_html( $naslov ); ?></h2>
+            <div class="pcz-dodatne-info__divider"></div>
         </header>
         
         <!-- Grid -->
