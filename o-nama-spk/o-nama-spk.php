@@ -1,9 +1,9 @@
 <?php
 /**
- * pcz "O Nama - Sportski Klub" - Premium Immersive Design
+ * pcz "O Nama - Sportski Klub" - Svijetli Dizajn (stil upoznajte)
  * 
- * Cinematic full-bleed dizajn s grain overlay-em i dvokolonskim layoutom
- * Točna replika preview.html dizajna
+ * Fullwidth pozadinska slika s bijelim overlayem
+ * Usklađeno s dizajnom "Upoznajte nas" sekcije
  * 
  * KORIŠTENJE:
  * 1. Direktno uključi u Oxygen Code Block
@@ -11,13 +11,13 @@
  * 
  * ACF POLJA (u Site Settings):
  * - spk_onama_naslov (Text) - glavni naslov
- * - spk_onama_naslov_akcent (Text) - italic outline tekst
+ * - spk_onama_naslov_akcent (Text) - slogan tekst (handwritten stil)
  * - spk_onama_ime_kluba (Text) - naziv kluba
  * - spk_onama_logo (Image) - mala ikona loga
  * - spk_onama_slika (Image) - pozadinska slika
  * - spk_onama_lead (WYSIWYG) - istaknuti uvodni paragraf
- * - spk_onama_lijevi_stupac (WYSIWYG) - lijeva kolona
- * - spk_onama_desni_stupac (WYSIWYG) - desna kolona
+ * - spk_onama_lijevi_stupac (WYSIWYG) - glavni tekst
+ * - spk_onama_desni_stupac (WYSIWYG) - dodatni tekst
  * - spk_onama_highlight_naslov (Text) - naslov highlight boxa
  * - spk_onama_highlight_tekst (WYSIWYG) - sadržaj highlight boxa
  * - spk_onama_kontakt_osoba (Text)
@@ -28,7 +28,7 @@
  * - Prikazuje se SAMO za brand "Sportski Klub"
  * 
  * @package pcz_Redizajn
- * @since 2.0.0
+ * @since 2.1.0
  */
 
 // Sprječava direktan pristup
@@ -50,8 +50,8 @@ if ( function_exists('apply_filters') ) {
 // DOHVAT PODATAKA IZ ACF
 // =============================================================================
 
-$naslov = 'O nama';
-$naslov_akcent = '& našoj priči';
+$naslov = 'O NAMA';
+$naslov_akcent = 'Sportski ples je naša strast';
 $ime_kluba = 'Sportski Plesni Klub Zagreb';
 $logo = '';
 $slika = '';
@@ -215,9 +215,12 @@ $has_contact = ! empty( $kontakt_osoba ) || ! empty( $kontakt_telefon ) || ! emp
 // Provjeri ima li highlight
 $has_highlight = ! empty( $highlight_tekst );
 
+// Background class
+$bg_class = ! empty( $slika ) ? '' : ' o-nama__bg--placeholder';
+
 ?>
 
-<!-- ==================== O NAMA - SPORTSKI KLUB | PREMIUM IMMERSIVE ==================== -->
+<!-- ==================== O NAMA - SPORTSKI KLUB | SVIJETLI DIZAJN ==================== -->
 <?php if ( $using_fallback && function_exists('current_user_can') && current_user_can( 'manage_options' ) ) : ?>
 <div class="o-nama__dev-notice">
     ⚠️ <strong>Demo mod:</strong> Prikazuju se primjeri podataka. 
@@ -227,57 +230,61 @@ $has_highlight = ! empty( $highlight_tekst );
 
 <section class="o-nama <?php echo esc_attr( $section_visibility_class . $brand_classes ); ?>" id="<?php echo esc_attr( $section_id ); ?>" data-fallback="<?php echo $using_fallback ? 'true' : 'false'; ?>">
     
-    <!-- Background -->
-    <div class="o-nama__bg" <?php if ( ! empty( $slika ) ) : ?>style="background-image: url('<?php echo esc_url( $slika ); ?>');"<?php endif; ?>></div>
+    <!-- Background s bijelim overlayem -->
+    <div class="o-nama__bg<?php echo esc_attr( $bg_class ); ?>" <?php if ( ! empty( $slika ) ) : ?>style="background-image: url('<?php echo esc_url( $slika ); ?>');"<?php endif; ?>></div>
     <div class="o-nama__overlay"></div>
-    <div class="o-nama__grain"></div>
     
     <div class="o-nama__container">
         
-        <!-- Header -->
+        <!-- Header s naslovom i sloganom (stil upoznajte) -->
         <header class="o-nama__header">
-            <div class="o-nama__badge">
-                <?php if ( ! empty( $logo ) ) : ?>
-                <div class="o-nama__logo">
-                    <img src="<?php echo esc_url( $logo ); ?>" alt="<?php echo esc_attr( $ime_kluba ); ?>" loading="lazy">
+            <div>
+                <!-- Badge s logom -->
+                <div class="o-nama__badge">
+                    <?php if ( ! empty( $logo ) ) : ?>
+                    <div class="o-nama__logo">
+                        <img src="<?php echo esc_url( $logo ); ?>" alt="<?php echo esc_attr( $ime_kluba ); ?>" loading="lazy">
+                    </div>
+                    <?php else : ?>
+                    <div class="o-nama__logo">
+                        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="48" height="48" fill="#FF6B00"/>
+                            <text x="24" y="22" text-anchor="middle" fill="white" font-size="8" font-weight="bold" font-family="sans-serif">SPK</text>
+                            <text x="24" y="34" text-anchor="middle" fill="white" font-size="6" font-weight="600" font-family="sans-serif">ZAGREB</text>
+                        </svg>
+                    </div>
+                    <?php endif; ?>
+                    <span class="o-nama__club-name"><?php echo esc_html( $ime_kluba ); ?></span>
                 </div>
-                <?php else : ?>
-                <div class="o-nama__logo">
-                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="48" height="48" fill="#FF6B00"/>
-                        <text x="24" y="22" text-anchor="middle" fill="white" font-size="8" font-weight="bold" font-family="sans-serif">SPK</text>
-                        <text x="24" y="34" text-anchor="middle" fill="white" font-size="6" font-weight="600" font-family="sans-serif">ZAGREB</text>
-                    </svg>
-                </div>
-                <?php endif; ?>
-                <span class="o-nama__club-name"><?php echo esc_html( $ime_kluba ); ?></span>
+                
+                <!-- Naslov -->
+                <h2 class="o-nama__title">
+                    <?php echo esc_html( strtoupper( $naslov ) ); ?>
+                    <?php if ( ! empty( $naslov_akcent ) ) : ?>
+                    <span class="o-nama__title-accent"><?php echo esc_html( $naslov_akcent ); ?></span>
+                    <?php endif; ?>
+                </h2>
             </div>
-            <h1 class="o-nama__title">
-                <?php echo esc_html( $naslov ); ?>
-                <?php if ( ! empty( $naslov_akcent ) ) : ?>
-                <span class="o-nama__title-accent"><?php echo esc_html( $naslov_akcent ); ?></span>
-                <?php endif; ?>
-            </h1>
         </header>
         
         <!-- Content -->
         <div class="o-nama__content">
             
-            <!-- Lead paragraph -->
+            <!-- Lead paragraph - istaknuti uvod -->
             <?php if ( ! empty( $lead ) ) : ?>
             <div class="o-nama__lead">
                 <?php echo wp_kses_post( $lead ); ?>
             </div>
             <?php endif; ?>
             
-            <!-- Left column -->
+            <!-- Glavni tekst (lijevi stupac) -->
             <?php if ( ! empty( $lijevi_stupac ) ) : ?>
             <div class="o-nama__text">
                 <?php echo wp_kses_post( $lijevi_stupac ); ?>
             </div>
             <?php endif; ?>
             
-            <!-- Right column -->
+            <!-- Dodatni tekst + highlight -->
             <?php if ( ! empty( $desni_stupac ) || $has_highlight ) : ?>
             <div class="o-nama__right">
                 <?php if ( ! empty( $desni_stupac ) ) : ?>

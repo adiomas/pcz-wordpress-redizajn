@@ -252,3 +252,4 @@ function pcz_dodatne_info_debug_info() {
 add_action( 'wp_footer', 'pcz_dodatne_info_debug_info' );
 
 
+

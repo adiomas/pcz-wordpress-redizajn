@@ -3,9 +3,10 @@
  * Test Wrapper za "O Nama - Sportski Klub" komponentu
  * 
  * Testira o-nama-spk/o-nama-spk.php komponentu s mock podacima
+ * NOVI SVIJETLI DIZAJN (stil upoznajte)
  * 
  * @package pcz_Test_Environment
- * @since 1.0.0
+ * @since 2.1.0
  */
 
 // =============================================================================
@@ -52,6 +53,11 @@ $brand_css = '/brand/brand.css';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test: <?php echo esc_html($component_name); ?> | pcz Test Environment</title>
+    
+    <!-- Google Fonts - Dancing Script za slogan -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <!-- Brand CSS (za CSS varijable) -->
     <?php if ($brand_css && file_exists(pcz_PROJECT_ROOT . $brand_css)): ?>
@@ -141,15 +147,36 @@ $brand_css = '/brand/brand.css';
         .test-preview--tablet { max-width: 768px; box-shadow: 0 0 40px rgba(0, 0, 0, 0.2); }
         .test-preview--desktop { max-width: 1440px; }
 
-        /* Mock content */
-        .test-content {
-            padding: 40px;
-            max-width: 1000px;
-            margin: 0 auto;
-            background: white;
+        /* Mock Hero */
+        .test-mock-hero {
+            background: linear-gradient(135deg, var(--test-accent) 0%, #e55e00 100%);
+            padding: 80px 40px;
+            text-align: center;
+            color: white;
         }
-        .test-content h2 { color: #333; margin-bottom: 16px; }
-        .test-content p { color: #666; line-height: 1.8; }
+        .test-mock-hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        .test-mock-hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        .test-mock-hero__btn {
+            display: inline-block;
+            margin-top: 25px;
+            background: white;
+            color: var(--test-accent);
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
         /* Placeholder for missing component */
         .test-placeholder {
@@ -160,11 +187,11 @@ $brand_css = '/brand/brand.css';
             min-height: 300px;
             text-align: center;
             padding: 60px 40px;
-            background: linear-gradient(135deg, var(--test-accent) 0%, #e65c00 100%);
-            color: white;
+            background: #f9f9f9;
+            color: #666;
         }
         .test-placeholder__icon { font-size: 64px; margin-bottom: 24px; }
-        .test-placeholder__title { font-size: 1.5rem; margin-bottom: 12px; }
+        .test-placeholder__title { font-size: 1.5rem; margin-bottom: 12px; color: var(--test-accent); }
         .test-placeholder__message { opacity: 0.9; max-width: 500px; }
 
         /* Brand badge */
@@ -184,6 +211,21 @@ $brand_css = '/brand/brand.css';
             box-shadow: 0 4px 12px rgba(255, 107, 0, 0.3);
         }
 
+        /* Mock content after section */
+        .test-next-section {
+            background: #f5f5f5;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        .test-next-section h3 {
+            color: #333;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        .test-next-section p {
+            color: #666;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .test-panel {
@@ -193,13 +235,10 @@ $brand_css = '/brand/brand.css';
                 padding: 12px 16px;
             }
             .test-panel__section { justify-content: space-between; }
-            .test-content { padding: 30px 20px; }
+            .test-mock-hero { padding: 50px 20px; }
+            .test-mock-hero h1 { font-size: 1.75rem; }
         }
     </style>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body data-brand="sportski-klub">
 
@@ -208,19 +247,11 @@ $brand_css = '/brand/brand.css';
 
 <div class="test-preview" id="test-preview">
     
-    <!-- Mock Header (simulira sportski klub header) -->
-    <div style="background: #FF6B00; padding: 15px 40px;">
-        <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
-            <div style="color: white; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 2px;">
-                🏆 Sportski Plesni Klub Zagreb
-            </div>
-            <nav style="display: flex; gap: 24px;">
-                <a href="#" style="color: rgba(255,255,255,0.9); text-decoration: none; font-size: 13px; font-weight: 500;">Početna</a>
-                <a href="#" style="color: rgba(255,255,255,0.9); text-decoration: none; font-size: 13px; font-weight: 500;">O Nama</a>
-                <a href="#" style="color: rgba(255,255,255,0.9); text-decoration: none; font-size: 13px; font-weight: 500;">Treneri</a>
-                <a href="#" style="color: rgba(255,255,255,0.9); text-decoration: none; font-size: 13px; font-weight: 500;">Kontakt</a>
-            </nav>
-        </div>
+    <!-- Mock Hero (simulates content above) -->
+    <div class="test-mock-hero">
+        <h1>SPORTSKI PLESNI KLUB ZAGREB</h1>
+        <p>Najbolji sportski plesni klub u Hrvatskoj</p>
+        <a href="#" class="test-mock-hero__btn">Prijavi se</a>
     </div>
     
     <!-- ==================== -->
@@ -243,13 +274,10 @@ $brand_css = '/brand/brand.css';
     <!-- /O NAMA SPK COMPONENT -->
     <!-- ==================== -->
     
-    <!-- Mock Footer -->
-    <div style="background: #3d3d3d; padding: 40px;">
-        <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
-            <p style="color: rgba(255,255,255,0.6); font-size: 14px; margin: 0;">
-                © 2025 Sportski Plesni Klub Zagreb. Sva prava pridržana.
-            </p>
-        </div>
+    <!-- Mock content after section -->
+    <div class="test-next-section">
+        <h3>Sljedeća sekcija</h3>
+        <p>Ovo je mock sadržaj koji simulira ostatak stranice...</p>
     </div>
 
 </div>
@@ -260,7 +288,7 @@ $brand_css = '/brand/brand.css';
         <a href="/" class="test-panel__link">← Natrag</a>
         <div class="test-panel__title">
             <span>O Nama SPK</span>
-            Sportski Klub Test
+            Novi svijetli dizajn
         </div>
     </div>
     
@@ -318,8 +346,8 @@ $brand_css = '/brand/brand.css';
         }
     });
     
-    console.log('%c🏆 pcz Test Environment - Sportski Klub', 'font-size: 16px; font-weight: bold; color: #FF6B00;');
-    console.log('Current template: o-nama-spk');
+    console.log('%c🏆 pcz Test Environment - O Nama SPK', 'font-size: 16px; font-weight: bold; color: #FF6B00;');
+    console.log('NOVI SVIJETLI DIZAJN (stil upoznajte)');
     console.log('Current scenario: <?php echo esc_js($current_scenario); ?>');
     console.log('Press 1-4 to change viewport size');
 })();
@@ -327,4 +355,3 @@ $brand_css = '/brand/brand.css';
 
 </body>
 </html>
-
